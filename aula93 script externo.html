@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            width: 2000px;
+            height: 2000px;
+        }
+
+        p {
+            width: 300px;
+        }
+    </style>
+
+    <!-- <script src="aula93 script externo.js"></script> -->
+    <!-- sem addEventListener load algumas funções nao funcionam  -->
+</head>
+
+<body>
+    <button>click para esconder/mostrar</button>
+    <section>
+        <p>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Adipisci ipsa totam earum dignissimos vitae hic
+            minus deserunt quo eveniet odit, recusandae possimus eos rem ipsam magni architecto iure eius dolorem.
+        </p>
+    </section>
+    
+    <script src="aula93 script externo.js"></script>
+</body>
+
+</html>
+<!--
+    A propriedade HTMLElement.hidden é uma Boolean que é se true o elemento é oculto; 
+        caso contrário, o valor é false. Isso é bem diferente de usar a propriedade CSS display para 
+        controlar a visibilidade de um elemento. A propriedade hidden se aplica a todos os modos de apresentação
+        e não deve ser usada para ocultar o conteúdo destinado a ser diretamente acessível ao usuário.
+
+    Casos de uso apropriados para incluir hidden:
+        Conteúdo que ainda não é relevante, mas pode ser necessário posteriormente
+        Conteúdo que era necessário anteriormente, mas não é mais
+        Conteúdo reutilizado por outras partes da página de maneira semelhante ao modelo
+        Criando uma tela fora da tela como um buffer de desenho
+
+    Os casos de uso inapropriado incluem:
+        Ocultando painéis em uma caixa de diálogo com guias
+        Ocultando conteúdo em uma apresentação e pretendendo que seja visível em outras
+
+    Os elementos que não estão ocultos não devem estar vinculados aos elementos que estão.
+
+Syntax
+isHidden = HTMLElement.hidden;
+
+HTMLElement.hidden = true | false;
+
+O método toggleAttribute() da interface Element alterna um atributo booleano (removendo-o se estiver presente e adicionando-o se não estiver presente) no elemento fornecido.
+
+Sintaxe
+Element.toggleAttribute("nomeDoAtributo" [, force]);
+ -->

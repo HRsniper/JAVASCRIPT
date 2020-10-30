@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    f12 console
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
+    <p></p>
+
+    <script>
+        var palavras = document.getElementsByTagName("p")[0];
+        var palavrasArray = palavras.innerHTML.split(' ');
+        console.log(palavrasArray);
+
+        // const map = new Array.prototype.map(function(valor, index, array) {});
+
+        // percorrer
+        palavrasArray.map(funcaoCallBack);
+
+        function funcaoCallBack(valorItem, indice) {
+            // let palavra = document.getElementsByTagName("p")[1];
+
+            // palavra.innerHTML += 'indice: ' + indice + ' ' + valoeritem + ' :valor' + '<br>';
+            console.log('map ' + indice + ' ' + valorItem);
+        }
+
+
+        var num = [1, 2, 3, 4, 5];
+        var soma = 0;
+        // somar os valores do array
+        num.map(function (valorItem) {
+            soma += valorItem;
+        })
+        console.log('soma: ' + soma);
+
+
+        // percorrer ,multiplicando por 10 o valor da matriz e obtendo novo array
+        var num2 = [1, 2, 3, 4, 5];
+        var novoArray = num2.map(multi);
+
+        function multi(valorItem) {
+            return valorItem * 10;
+        }
+        console.log(num2);
+        console.log(novoArray);
+
+
+        // novo array pegando um array de objetos(parecido com uma struct no c++)
+        var pessoas = [{
+                nome: 'HR',
+                sobrenome: 'Sniper'
+            },
+            {
+                nome: 'Hércules',
+                sobrenome: 'R.'
+            },
+            {
+                nome: 'H.S.R.',
+                sobrenome: 'DEV'
+            },
+        ];
+        console.log(pessoas[0].nome);
+
+        function getFullName(valorItem) {
+            // retorna um array separado por espaço
+            let nomeCompleto = [valorItem.nome, valorItem.sobrenome].join(' ');
+            return nomeCompleto;
+        }
+        
+        var novoArray2 = pessoas.map(getFullName);
+        console.log(novoArray2);
+    </script>
+</body>
+
+</html>
+<!--
+    O método map() cria uma nova matriz com os resultados da chamada de uma função para cada elemento da matriz.
+    O método map() chama a função fornecida uma vez para cada elemento em uma matriz, em ordem.
+    Nota: map() não executa a função para elementos da matriz sem valores.
+    Nota: este método não altera a matriz original.
+Sintaxe
+array.map(function(valorAtual, index, array), thisValue)
+
+valorAtual - obrigatório. O valor do elemento atual.(O valor do item)
+index - opcional. O índice da matriz do elemento atual.(O índice do item)
+array - opcional. O objeto de matriz ao qual o elemento atual pertence.(A própria matriz)
+thisValue - Opcional. Um valor a ser passado para a função a ser usada como seu valor "this".
+    Se este parâmetro estiver vazio, o valor "indefinido" será passado como seu valor "this".
+ -->

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    f12 console
+
+    <script>
+        let a = 5;
+        let b = 10;
+        console.log(`Quinze é ${a + b} e não ${2 * a + b}.`);
+
+
+        // No ES2015 com literais de modelo e sem aninhamento:
+        // const classes = `header ${ isLargeScreen() ? '' 
+        //     : (item.isCollapsed ? 'icon-expander' : 'icon-collapser') 
+        // }`;
+
+        // No ES2015 com literais de modelo aninhados:
+        // const classes1 = `header ${ isLargeScreen() ? '' 
+        //     : `icon-${item.isCollapsed ? 'expander' : 'collapser'}` 
+        // }`;
+
+        let person = 'HR';
+        let age = 21;
+
+        function funcao(strings, personExp, ageExp) {
+            let str0 = strings[0]; // "Retorna Que "
+            let str1 = strings[1]; // " é um "
+
+            // Existe tecnicamente uma string depois
+            // a expressão final (no nosso exemplo),
+            // mas está vazio (""), então desconsidere.
+            // let str2 = strings [2];
+
+            let ageStr;
+            if (ageExp > 99) {
+                ageStr = 'centenario';
+            } else {
+                ageStr = 'jovem';
+            }
+
+            // Podemos até retornar uma string criada usando um literal de modelo
+            return `${str0}${personExp}${str1}${ageStr}`;
+        }
+
+        let output = funcao `Retorna Que ${ person } é um ${ age }`;
+
+        console.log(output);
+        // Que HR é um youngster
+
+
+
+        var j = 'javascript';
+        for (const iterator of j) {
+            let t = "letra:";
+            console.log(`${t} ` + iterator);
+        }
+    </script>
+</body>
+
+</html>
+<!--
+    Literais de modelo são literais de string que permitem expressões incorporadas.
+    Você pode usar strings de várias linhas e recursos de interpolação de strings com eles.
+
+`texto da string`
+
+`linha de texto string 1
+ linha de texto 2 da corda`
+
+`texto da string ${expression} texto da string`
+
+tag `string texto $ {expression} string texto`
+
+
+    Os literais de modelo são delimitados pelo caractere backtick (``) (acento grave) em vez de aspas duplas ou simples.
+    Literais de modelo podem conter espaços reservados. Eles são indicados pelo cifrão e chaves ($ {expression}).
+        As expressões nos espaços reservados e o texto entre os backticks (``) são passados ​​para uma função.
+    A função padrão apenas concatena as partes em uma única sequência. 
+        Se houver uma expressão anterior ao literal do modelo (tag aqui), isso será chamado de modelo marcado.
+        Nesse caso, a expressão de tag (geralmente uma função) é chamada com o literal do modelo, que você pode manipular antes de enviar.
+    Para escapar de um backtick em um literal de modelo, coloque uma barra invertida (\) antes do backtick.
+`\ `` === ' ` '// -> verdadeiro
+
+
+    Modelos marcados
+    Uma forma mais avançada de literais de modelo são modelos marcados.
+    Tags permitem analisar literais de modelo com uma função. O primeiro argumento de uma função de tag 
+        contém uma matriz de valores de string. Os argumentos restantes estão relacionados às expressões.
+    A função tag pode então executar quaisquer operações nesses argumentos que você desejar e retornar 
+        a string manipulada. (Como alternativa, ele pode retornar algo completamente diferente, conforme descrito em um dos seguintes exemplos.)
+    O nome da função usada para a tag pode ser o que você quiser.
+ -->

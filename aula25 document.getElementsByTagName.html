@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+
+    </style>
+
+</head>
+
+<body>
+
+    <p> Este é um elemento p </p>
+
+    <p> Este também é um elemento p. </p>
+
+    <p> Este também é um elemento p - Clique no botão para alterar a cor do plano de fundo de todos os elementos p deste
+        documento. </p>
+
+    <button onclick="funcao()"> click </button>
+
+    <hr>
+
+    <script>
+        function funcao() {
+            var p = document.getElementsByTagName("P");
+            for (let i = 0; i < p.length; i++) {
+                p[i].style.backgroundColor = "#ff0";
+            }
+        }
+
+        var tagp1 = document.getElementsByTagName("p")[0];
+        document.write(tagp1.innerHTML);
+
+        document.write('<hr>');
+
+        var tagp2 = document.getElementsByTagName("p");
+        document.write(tagp2[1].innerHTML);
+
+        document.write('<hr>');
+
+        var tags = document.getElementsByTagName("*");
+        tags[9].style.backgroundColor="#f00";
+    </script>
+
+</body>
+
+</html>
+<!--
+    O método getElementsByTagName () retorna uma coleção de todos os elementos no documento com o nome de marca especificado, como um objeto HTMLCollection .
+    O objeto HTMLCollection representa uma coleção de nós. Os nós podem ser acessados ​​por números de índice. O índice começa em 0.
+    Dica: O parâmetro parâmetro "*" retorna todos os elementos no documento.
+    Dica: Você pode usar a propriedade length do objeto HTMLCollection para determinar o número de elementos com o nome da tag especificada. Em seguida, você pode percorrer todos os elementos e extrair as informações desejadas.
+Sintaxe
+document.getElementsByTagName("tagname")
+ -->

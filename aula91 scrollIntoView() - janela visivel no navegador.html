@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            width: 2000px;
+            height: 2000px;
+        }
+
+        section {
+            position: absolute;
+            top: 900px;
+        }
+
+        p {
+            width: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <button>click</button>
+    <a href="javascript:void(0)" onclick="scroll()">aaa</a>
+    <section>
+        <p>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Adipisci ipsa totam earum dignissimos vitae hic
+            minus deserunt quo eveniet odit, recusandae possimus eos rem ipsam magni architecto iure eius dolorem.
+        </p>
+    </section>
+
+    <script>
+        function scroll() {
+            var elemento = document.getElementsByTagName('section')[0].scrollIntoView();
+        }
+
+        var button = document.getElementsByTagName('button')[0];
+
+        button.onclick = () => {
+            document.getElementsByTagName('section')[0].scrollIntoView();
+        }
+    </script>
+</body>
+
+</html>
+<!--
+    O método scrollIntoView () rola o elemento especificado para uma área visível da janela do navegador.
+Sintaxe
+element.scrollIntoView (alignTo)
+
+    Parâmetros
+alignTo - Booleano Opcional. Um valor booleano que indica o tipo de alinhamento:
+true - a parte superior do elemento será alinhada à parte superior da área visível do ancestral rolável
+false - a parte inferior do elemento será alinhada à parte inferior da área visível do ancestral rolável.
+
+Se omitido, ele irá rolar para a parte superior do elemento.
+Nota: Dependendo do layout de outros elementos, alguns elementos podem não ser rolados completamente para cima ou para baixo.
+ -->

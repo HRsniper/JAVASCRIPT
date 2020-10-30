@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+    </style>
+
+</head>
+
+<body>
+
+    <script>
+        document.write("f12 console" + '<hr>');
+
+        function print() {
+            console.log("função print");
+        }
+        print();
+
+
+        function calculo(a, b) {
+            // var resultado= a*b;
+            // console.log(resultado);
+            console.log(a * b);
+        }
+        calculo(13, 2);
+
+
+        function retorno(a, b) {
+            return a + b;
+        }
+        console.log(retorno(15, 5));
+
+
+        var nArray = [1, 61, 681, 861, 68, 1, 130, 16];
+
+        function fArray(params) {
+            let tamanho = nArray.length;
+            let soma = 0;
+            for (let i = 0; i < tamanho; i++) {
+                // recebe o valor soma de nArray
+                soma += nArray[i];
+                // console.log(nArray);
+                /* soma = nArray[0] + nArray[1] + nArray[2] + nArray[3] +
+                    nArray[4] + nArray[5] + nArray[6] + nArray[7]; */
+            }
+            return soma / tamanho;
+        }
+        console.log(fArray(nArray));
+
+        var pessoa = {
+            nome: "Hércules",
+            sobreNome: "R.",
+            ID: 5566,
+            fullName: function () {
+                return this.nome + " " + this.sobreNome;
+            }
+        };
+        console.log(pessoa.fullName());
+    </script>
+
+</body>
+
+</html>
+<!-- 
+    A declaração da função declara uma função.
+    Uma função declarada é "salva para uso posterior" e será executada mais tarde, quando for chamada (chamada).
+    Em JavaScript, funções são objetos e possuem propriedades e métodos.Uma função também pode ser definida usando uma expressão.
+    Leia nosso tutorial em JavaScript para saber tudo o que você precisa saber sobre funções. Comece com o capítulo de introdução sobre Funções e escopo do JavaScript .
+     Para informações mais detalhadas, consulte a nossa seção de funções sobre definições de funções , parâmetros , invocação e fechamentos .
+    Dica: Use o return declaração para retornar um valor da função.
+Sintaxe
+function functionName(parameters) {
+  code to be executed
+}
+
+
+As funções armazenadas nas variáveis ​​não precisam de nomes de funções. Eles são sempre chamados (chamados) usando o nome da variável.
+A função abaixo é na verdade uma função anônima (uma função sem nome).
+var x = function(a, b) { return a * b };
+    
+    As funções também podem ser definidas com um construtor de função JavaScript interno chamado Function().
+var myFunction = new Function("a", "b", "return a * b");
+
+    Funções de auto-invocação,As expressões de função podem ser "auto-invocadas".
+    Uma expressão de auto-chamada é invocada (iniciada) automaticamente, sem ser chamada.
+    As expressões de função serão executadas automaticamente se a expressão for seguida por ().
+    Você não pode auto-invocar uma declaração de função.Você precisa adicionar parênteses ao redor da função para indicar que é uma expressão de função:
+(function() {
+  var x = "Hello!!";  // I will invoke myself
+})();
+
+    Funções de seta(arrow)
+    As funções de seta permitem uma sintaxe curta para escrever expressões de função.
+    Você não precisa da palavra-chave function, ou da palavra-chave return e dos colchetes .
+// ES6
+const x = (x, y) => x * y;
+
+    As funções de seta não têm suas próprias this. Eles não são adequados para definir métodos de objetos .
+    As funções das setas não são içadas. Eles devem ser definidos antes de serem utilizados.
+    Usar const é mais seguro do que usar var, porque uma expressão de função é sempre um valor constante.
+    Você só pode omitir a palavra-chave return e os colchetes se a função for uma única instrução. Por isso, pode ser um bom hábito mantê-los sempre:
+const x = (x, y) => { return x * y };
+
+
+    A palavra-chave this JavaScript refere-se ao objeto ao qual pertence.
+    Tem valores diferentes dependendo de onde é usado:
+    Em um método, thisrefere-se ao objeto proprietário .
+    Sozinho, thisrefere-se ao objeto global .
+    Em uma função, thisrefere-se ao objeto global .
+    Em uma função, no modo estrito, thisé undefined.
+    Em um evento, thisrefere-se ao elemento que recebeu o evento.
+    Métodos como call()e apply()podem se referir thisa qualquer objeto .
+this.algo
+
+
+    Funções aninhadas JavaScript,Todas as funções têm acesso ao escopo global.  
+    De fato, em JavaScript, todas as funções têm acesso ao escopo "acima" delas.
+    JavaScript suporta funções aninhadas. Funções aninhadas têm acesso ao escopo "acima" delas.
+    Neste exemplo, a função interna plus()tem acesso à variável counter na função pai:
+function add() {
+  var counter = 0;
+  function plus() {counter += 1;}
+  plus();   
+  return counter;
+}
+ -->

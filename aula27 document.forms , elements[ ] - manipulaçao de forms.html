@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            /* display: flex; */
+            /* justify-content: center; */
+            /* flex-direction: column; */
+            /* align-items: center; */
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            width: 30%;
+        }
+    </style>
+
+</head>
+
+<body>
+    <form action="#" method="get" name="fFormulario" id="formularioId">
+        <label for="N">nome:</label>
+        <input type="text" name="fNome" id="N">
+        <label for="E">email:</label>
+        <input type="email" name="fEmail" id="E">
+        <label for="S">senha:</label>
+        <input type="password" name="fSenha" id="S">
+        <input type="submit">
+    </form>
+    <hr>
+    <form action="#" method="get" name="fFormulario1" id="formularioId1">
+        <label for="N1">nome:</label>
+        <input type="text" name="fNome1" id="N1" value="texto1">
+        <label for="E1">email:</label>
+        <input type="email1" name="fEmail1" id="E1">
+        <label for="S1">senha:</label>
+        <input type="password" name="fSenha1" id="S1">
+        <input type="submit">
+    </form>
+
+    <hr>
+    <p>f12 abrir console</p>
+
+    <script>
+        var f = document.forms.length;
+        console.log('tamanho do array de forms: ' + f);
+
+        var f = document.forms[1].id;
+        console.log('id do form1: ' + f);
+
+        var f = document.forms.item(0).id;
+        console.log('id do form: ' + f);
+
+        var f = document.forms.namedItem("fFormulario");
+        console.log('form: ' + f);
+
+        var f = document.forms.namedItem("fFormulario").innerHTML;
+        console.log('form: ' + f);
+
+        var f = document.getElementById("formularioId1").elements[0].value;
+        console.log('form: ' + f);
+
+        //                         inputs
+        var f = document.forms[0].elements.length;
+        console.log('form: ' + f);
+
+        var f = document.forms[0].elements;
+        for (let i = 0; i < f.length; i++) {
+            f[i].style.backgroundColor = "#aaa";
+        }
+    </script>
+
+</body>
+
+</html>
+<!--
+    A coleção de formulários retorna uma coleção de todos os elementos <form> no documento.
+    Nota: Os elementos da coleção são classificados conforme aparecem no código-fonte.
+    Dica: Use a coleção de elementos do Objeto de formulário para retornar uma coleção de todos os elementos em um formulário.
+
+Sintaxe
+document.forms
+
+Propriedades
+length	Returns the number of <form> elements in the collection.
+    Note: This property is read-only
+Métodos
+
+[index] Retorna o elemento <form> da coleção com o índice especificado (começa em 0).
+
+item(index) Retorna o elemento <form> da coleção com o índice especificado (começa em 0).
+
+namedItem(id) Retorna o elemento <form> da coleção com o ID especificado.
+ -->

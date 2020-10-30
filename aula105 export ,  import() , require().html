@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="aula105 export ,  import() , require().js" type="module">
+        // import default
+        import somax2 from "aula105 export ,  import() , require().js";
+        console.log(somax2());//20
+        
+        // importaçao unica por nome
+        import {soma} from "aula105 export ,  import() , require().js";
+        console.log(soma());//10
+
+        // importar uma exportação com um alias mais conveniente (renomear)
+        import { cube as cubo } from "aula105 export ,  import() , require().js";
+        console.log(cubo());//125
+        
+        fetch("./aula104 json.json")
+    </script>
+
+    <script>
+        /*
+        const requerido = require('aula105 export ,  import() , require().js');
+        const foo = requerido.foo;
+        const baz = requerido.baz;
+        console.log(foo);
+        console.log(baz);
+        */
+    </script>
+</body>
+
+</html>
+<!-- 
+    import objetoImportado from 'some-library.js';
+        ou
+    const objetoRequerido = require('some-library.js');
+
+    import
+    A declaração estática import é usada para importar vínculos que são exportados por um outro módulo. Os módulos importados estão em strict mode,  declarado como tal ou não. A declaração import não pode ser usada em scripts embutidos, a menos que tal script tenha um type="module".
+    Há também uma função dinâmica import(), que não requer scripts de type="module".
+Sintaxe
+import defaultExport from "module-name";
+import * as name from "module-name";    insere Modulo no escopo atual, contendo todas as exportações do módulo no arquivo
+import { export } from "module-name";    Importar uma única exportação de um módulo
+import { export as alias } from "module-name";    Importar uma exportação com um alias mais conveniente
+import { export1 , export2 } from "module-name";
+import { foo , bar } from "module-name/path/to/specific/un-exported/file";
+import { export1 , export2 as alias2 , [...] } from "module-name";
+import defaultExport, { export [ , [...] ] } from "module-name"; 
+import defaultExport, * as name from "module-name"; 
+import "module-name"; var promise = import("module-name"); // This is a stage 3 proposal.
+
+module-name = O módulo para importar. Geralmente, esse é um nome de caminho relativo ou absoluto para o arquivo .js contendo esse módulo
+name = Nome do objeto do módulo que será usado como um tipo de espaço de nomes ao se referir às importações.
+export, exportN = Nome das exportações a serem importadas.
+alias, aliasN = Nomes que se referem às importações nomeadas.
+
+    export
+    export é utilizado quando criamos módulos JavaScript para permitir que suas funções, objetos ou valores primitivos sejam utilizados por outros scripts através de import  
+    Módulos exportados ficam em strict mode, independentemente se é declarado dessa forma, ou não. Export não pode ser utilizado em scripts embutidos.
+Sintaxe
+// Exportando recursos individuais
+export { name1, name2, …, nameN }; // também var, const
+export { variable1 as name1, variable2 as name2, …, nameN }; // também var, const
+export let name1, name2, …, nameN; // also var, const
+export let name1 = …, name2 = …, …, nameN; // also var, const
+
+export function functionName(){...}
+export class ClassName {...}
+
+// Exportando listas 
+export { name1, name2, …, nameN }; 
+
+// Renomeando exportações
+export { variable1 as name1, variable2 as name2, …, nameN };
+
+// Exportações default
+export default expression;
+export default function (…) { … } // também class, function*
+export default function name1(…) { … } // também class, function*
+export { name1 as default, … };
+
+// Agregando módulos
+export * from …;
+export { name1, name2, …, nameN } from …;
+export { import1 as name1, import2 as name2, …, nameN } from …;
+export { default } from …;
+
+nameN = Identificador para ser exportado (assim ele pode ser importado via import em outro script).
+ -->

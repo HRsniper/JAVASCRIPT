@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    f12 console
+
+    <script>
+        // Defina e crie um único objeto, usando um literal de objeto.
+
+        // Variáveis ​​JavaScript podem conter valores únicos:
+        var person = "John Doe";
+        console.log(person);
+
+        // Objetos também são variáveis. Mas os objetos podem conter muitos valores.
+        // Os valores são escritos como nome:valor (nome e valor separados por dois pontos).
+        // Um objeto JavaScript é uma coleção de valores nomeados
+        var person2 = {
+            firstName: "John",
+            lastName: "Doe",
+            age: 50,
+            eyeColor: "blue"
+        };
+        console.log(person2.age);
+
+        // Métodos de objeto
+        // Objetos JavaScript são contêineres para valores nomeados, chamados propriedades e métodos.
+        var person3 = {
+            firstName: "John",
+            lastName: "Doe",
+            age: 50,
+            eyeColor: "blue",
+            fullName: function () {
+                return this.firstName + ' ' + this.lastName;
+            }
+        };
+        // Adicionando um método a um objeto
+        // person3.fullName = function () {
+        //     return this.firstName + " " + this.lastName;
+        // };
+        console.log(person3.fullName());
+
+
+
+        // Defina e crie um único objeto, com a palavra-chave new.
+        var person4 = new Object();
+        person4.firstName = "John";
+        person4.lastName = "Doe";
+        person4.age = 50;
+        person4.eyeColor = "blue";
+
+
+
+        // O objeto x não é uma cópia da pessoa. Ele é pessoa. X e person são o mesmo objeto.
+        // Quaisquer alterações em x também mudarão de pessoa, porque x e pessoa são o mesmo objeto.
+        var x = person4;
+        x.age = 10;
+        console.log(x.age);
+        console.log(person4.age);
+
+
+
+
+        // propriedades
+        var ponto = person2.firstName + " is " + person2.age + " years old.";
+        console.log(ponto);
+
+        var barra = person2["firstName"] + " is " + person2["age"] + " years old.";
+        console.log(barra);
+
+        var varBarra = "fullName";
+        console.log(person3[varBarra]);
+        // console.log(person3[varBarra]());
+
+
+
+        //Adicionando novas propriedades Você pode adicionar novas propriedades a um objeto existente,
+        //simplesmente atribuindo-lhe um valor.
+        // Suponha que o objeto da pessoa já exista - você poderá atribuir novas propriedades a ele:
+        var person5 = {
+            firstName: "John",
+            lastName: "Doe",
+            age: 50,
+            eyeColor: "blue"
+        };
+
+        person5.nationality = "English";
+        console.log(person5.nationality);
+        // Excluindo propriedades
+        // A palavra-chave delete exclui uma propriedade de um objeto:
+        delete person5.age; // or delete person5["age"];
+        console.log(person5);
+
+        // Exibindo o objeto usando Object.values​​()
+        // Qualquer objeto JavaScript pode ser convertido em uma matriz usando Object.values():
+        var valor = Object.values(person5);
+        console.log(valor);
+
+
+
+        // Os getters e setters permitem definir acessadores de objetos (propriedades computadas).
+        var person6 = {
+            firstName: "John",
+            language: "en",
+            get lang() {
+                return this.language.toUpperCase();
+            }
+        };
+        console.log(person6.lang);
+
+        var person7 = {
+            firstName: "John",
+            language: "",
+            set lang(lingua) {
+                return this.language = lingua;
+            }
+        };
+        // Defina uma propriedade do objeto usando um setter:
+        person7.lang = "en";
+        console.log(person7.language);
+
+
+
+        // Construtores de objetos JavaScript
+        // Constructor function for Person objects
+        function Person(first, last, age, eye) {
+            this.firstName = first;
+            this.lastName = last;
+            this.age = age;
+            this.eyeColor = eye;
+        }
+
+        // Create a Person object
+        var myFather = new Person("John", "Doe", 50, "blue");
+        console.log(myFather);
+        console.log(myFather.age);
+
+        // Object.keys, values, entries
+        // For plain objects, the following methods are available:
+
+        // Object.keys(obj)– returns an array of keys.
+        // Object.values(obj)– returns an array of values.
+        // Object.entries(obj)– returns an array of [key, value] pairs.
+
+        /*
+        Você sabia?
+        Como você pode ver acima, JavaScript tem versões de objetos dos tipos de dados primitivos String,
+            Number e Boolean. Mas não há razão para criar objetos complexos. 
+            Valores primitivos são muito mais rápidos.
+        ALÉM DISSO:
+        Use literais de objeto  {} em vez de new Object().
+        Use literais de string "" em vez de new String().
+        Use literais numéricos 123 em vez de new Number().
+        Use literais booleanos true/false em vez de new Boolean().
+        Use literais de matriz [] em vez de new Array().
+        Use literais padrão /()/ em vez de new RegExp().
+        Use expressões de função (){} em vez de new Function().
+        */
+    </script>
+</body>
+
+</html>
+<!--
+Em JavaScript, quase "tudo" é um objeto.
+    Booleanos podem ser objetos (se definidos com a palavra-chave new)
+    Os números podem ser objetos (se definidos com a palavra-chave new)
+    Strings podem ser objetos (se definidos com a palavra-chave new)
+    Datas são sempre objetos
+    As matemáticas são sempre objetos
+    Expressões regulares são sempre objetos
+    Matrizes são sempre objetos
+    Funções são sempre objetos
+    Objetos são sempre objetos
+Todos os valores de JavaScript, exceto primitivos, são objetos.
+
+
+Um valor primitivo é um valor que não possui propriedades ou métodos.
+Um tipo de dados primitivo é aquele que possui um valor primitivo.
+O JavaScript define 5 tipos de tipos de dados primitivos:
+    string      "hello"
+    number      3.14
+    boolean     true
+    boolean     false
+    null        null
+    undefined   undefined
+Os valores primitivos são imutáveis ​​(são codificados permanentemente e, portanto, não podem ser alterados).
+
+
+Propriedades são os valores associados a um objeto JavaScript.
+    Um objeto JavaScript é uma coleção de propriedades não ordenadas.
+    As propriedades geralmente podem ser alteradas, adicionadas e excluídas, mas algumas são somente leitura.
+Acessando propriedades JavaScript
+    A sintaxe para acessar a propriedade de um objeto é:
+objectName.property         // person.age
+ou
+objectName["property"]      // person["age"]
+ou
+objectName[expression]      // x = "age"; person[x]
+
+    A expressão deve ser avaliada como um nome de propriedade.
+ -->

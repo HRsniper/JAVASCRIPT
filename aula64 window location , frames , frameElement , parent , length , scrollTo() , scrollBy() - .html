@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            height: 2000px;
+            width: 2000px;
+        }
+
+        button {
+            position: fixed;
+        }
+
+        #P {
+            position: absolute;
+            top: 2000px;
+            left: 2000px;
+        }
+
+        p {
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <p id="P">Scroll TO</p>
+
+    <button onclick="scrollby(0, 50)">Scroll down</button><br>
+    <button onclick="scrollby(0, -50)">Scroll up</button><br>
+    <button onclick="scrollby(100, 0)">Scroll right</button><br>
+    <button onclick="scrollby(-100, 0)">Scroll left</button><br>
+    <button onclick="scrollby(2000, 2000)">Scroll BY/TO</button>
+    <br><br>
+
+    <button onclick="scrollto(200, 200)">Scroll TO</button><br>
+    <button onclick="scrollto(2000, 2000)">Scroll TO2</button>
+    <br><br>
+
+    <button onclick="tamanho()">tamanho</button>
+    <br><br>
+
+    <iframe src="#" frameborder="0"></iframe>
+    <iframe src="#" frameborder="0"></iframe>
+    <iframe src="#" frameborder="0"></iframe>
+    <br><br>
+
+    <button onclick="chance()">chance</button>
+    <br><br>
+
+    <button onclick="frame()">frame chance</button>
+    <br><br>
+
+    <button onclick="parenti()">parent</button>
+    <br><br>
+
+    <iframe src="#" frameborder="1" height="600" style="background:#f1f1f1;"></iframe>
+
+
+    <p></p>
+
+    <script>
+        var p = document.getElementsByTagName("p")[1];
+
+        function scrollby(x, y) {
+            window.scrollBy(x, y);
+        }
+
+        function scrollto(x, y) {
+            window.scrollTo(x, y);
+        }
+
+        function tamanho() {
+            p.innerHTML = window.length;
+            console.log(window.length);
+            console.log(window.frames.length);
+        }
+
+        function chance() {
+            for (let i = 0; i < window.frames.length; i++) {
+                window.frames[i].location = "http://cfbcursos.com.br/";
+            }
+        }
+
+        function frame() {
+            // if (window.frameElement) {
+            window.frameElement.src = "http://cfbcursos.com.br/";
+            // }
+        }
+
+        function parenti() {
+            window.open("", "", "width=200, height=100");
+            alert(window.parent.location);
+        }
+    </script>
+</body>
+
+</html>
+<!--
+    O método scrollBy () rola o documento pelo número especificado de pixels.
+    Nota: Para que esse método funcione, a propriedade visible da barra de rolagem da janela deve estar configurada como true!
+Sintaxe
+window.scrollBy(eixoX-num, eixoY-num)
+
+    O método scrollTo () rola o documento para as coordenadas especificadas unica vez.
+    Dica: Use o método scrollBy () para rolar uma distância especificada várias vezes.
+Sintaxe
+window.scrollTo(xpos, ypos)
+
+    A propriedade length retorna o número de elementos <iframe> na janela atual.
+    Dica: Essa propriedade geralmente é usada junto com a propriedade window.frames .
+    Esta propriedade é somente leitura.
+        Nota: Esta propriedade também funcionará para elementos <frame>. No entanto, o elemento <frame> não é suportado no HTML5.
+Sintaxe
+window.length
+
+    A propriedade frames retorna um objeto semelhante a uma matriz, que representa todos os elementos <iframe> na janela atual.
+    Os elementos <iframe> podem ser acessados ​​por números de índice. O índice começa em 0.
+    Dica: Use frames.length para encontrar o número de quadros.
+    Esta propriedade é somente leitura.
+        Nota: Esta propriedade também funcionará para elementos <frame>. No entanto, o elemento <frame> não é suportado no HTML5.
+Sintaxe
+window.frames
+
+    A propriedade frameElement retorna o elemento <iframe> no qual a janela atual é inserida.
+    Se a janela do documento não for colocada dentro de um <iframe>, o valor de retorno desta propriedade será nulo .
+    Esta propriedade é somente leitura.
+        Nota: Esta propriedade também funcionará para elementos <frame>. No entanto, o elemento <frame> não é suportado no HTML5.
+Sintaxe
+window.frameElement
+
+    A propriedade pai retorna a janela pai da janela atual.
+    Esta propriedade é somente leitura.
+Sintaxe
+window.parent
+
+    O objeto de localização contém informações sobre o URL atual.
+    O objeto de localização faz parte do objeto de janela e é acessado através da propriedade window.location.
+  propriedades->
+hash - define ou retorna a parte da âncora (#) de uma URL.
+host - define ou retorna o nome do host e o número da porta de um URL.
+hostname - define ou retorna o nome do host de uma URL.
+href-Define ou retorna o URL inteiro.
+origem - Retorna o protocolo, nome do host e número da porta de um URL.
+nome do caminho - Define ou retorna o nome do caminho de uma URL.
+port - define ou retorna o número da porta de um URL.
+protocol- Define ou retorna o protocolo para um URL.
+search- Define ou retorna a parte da string de consulta de um URL.
+  métodos->
+assign () -Carrega um novo documento.
+reload () - Recarrega o documento atual.
+replace () - Substitui o documento atual por um novo.
+
+-->

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        table,
+        tr,
+        th,
+        td {
+            border: 1px solid #000000;
+            border-collapse: collapse;
+        }
+    </style>
+
+    <script>
+    </script>
+</head>
+
+<body>
+
+    <table>
+        <tr>
+            <th>Alunos</th>
+            <th>Nota 1</th>
+            <th>Nota 2</th>
+            <th>Media</th>
+        </tr>
+        <tr>
+            <td>Aluno 1</td>
+            <td>8.5</td>
+            <td>7</td>
+            <td id="m1">8</td>
+        </tr>
+        <tr>
+            <td>Aluno 2</td>
+            <td>4</td>
+            <td>5</td>
+            <td id="m2">5</td>
+        </tr>
+        <tr>
+            <td>Aluno 3</td>
+            <td>8.5</td>
+            <td>7</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Aluno 4</td><!--celula 0-->
+            <td>5</td>
+            <td>3</td>
+            <td></td>
+        </tr>
+    </table>
+
+    <script>
+        const tabela = document.getElementsByTagName("table")[0];
+        var notas;
+
+        for (let i = 1; i < tabela.rows.length; i++) {
+            notas = (parseFloat(tabela.rows[i].cells[1].innerHTML) +
+                parseFloat(tabela.rows[i].cells[2].innerHTML)) / 2;
+            tabela.rows[i].cells[3].innerHTML = notas;
+        }
+
+        var v = [];
+        v[0] = document.getElementById("m1");
+        v[1] = document.getElementById("m2");
+        for (let i = 0; i < v.length; i++) {
+            v[i].style.backgroundColor = "#bbb";
+
+            if (v[i].innerHTML < 6) {
+                v[i].style.color = "#f00";
+            } else {
+                v[i].style.color = "#0f0";
+            }
+        }
+    </script>
+</body>
+
+</html>
+<!-- 
+ -->

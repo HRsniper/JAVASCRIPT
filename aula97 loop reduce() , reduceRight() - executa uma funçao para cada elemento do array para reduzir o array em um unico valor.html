@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    f12 console
+
+    <script>
+        var nums = [175, 50, 25];
+        console.log(nums);
+
+        function reducaoDoArray(total, currentValue) {
+            return total - currentValue;
+        }
+
+        var reducao = nums.reduce(reducaoDoArray);
+        console.log(reducao);
+
+        var reducaoRight = nums.reduceRight(reducaoDoArray);
+        console.log(reducaoRight);
+
+
+        var numbers = [15.5, 2.3, 1.1, 4.7];
+        // 23.6
+        var soma = numbers[0] +
+            numbers[1] +
+            numbers[2] +
+            numbers[3];
+        console.log(soma);
+
+        function arredondar(total,value) {
+            return total + Math.round(value);
+        }
+
+        var somaReduce = numbers.reduce(arredondar,0);
+        console.log(somaReduce);
+
+        var somaReduceRight = numbers.reduceRight(arredondar,0);
+        console.log(somaReduceRight);
+
+    </script>
+</body>
+
+</html>
+<!--
+    O método reduce() / reduceRight() reduz a matriz para um único valor.
+    O método reduce() executa uma função fornecida para cada valor da matriz (da esquerda para a direita).
+    O método reduceRight() executa uma função fornecida para cada valor da matriz (da direita para a esquerda).
+    O valor de retorno da função é armazenado em um acumulador (resultado / total).
+    Nota: reduce() / reduceRight() não executa a função para elementos da matriz sem valores.
+    Nota: este método não altera a matriz original.
+Syntax
+array.reduce(function(total, currentValue, currentIndex, array), initialValue)
+array.reduceRight(function(total, currentValue, currentIndex, array), initialValue)
+    
+total - obrigatório. O InitialValue, ou o valor retornado anteriormente da função.(O total (o valor inicial / valor retornado anteriormente))
+currentValue - obrigatório. O valor do elemento atual.(O valor do item)
+currentIndex - Opcional. O índice da matriz do elemento atual.(O índice do item)
+array - opcional. O objeto de matriz ao qual o elemento atual pertence.(A própria matriz)
+initialValue - Opcional. Um valor a ser passado para a função como o valor inicial.(valor inicial)
+
+ -->

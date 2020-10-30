@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    f12 console
+
+    <script>
+        "use strict";
+
+        let wm1 = new WeakMap();
+        let wm2 = new WeakMap();
+        let wm3 = new WeakMap();
+        let wm4 = new WeakMap();
+        console.log(wm1);
+
+        var obj1 = new Object();
+        var obj2 = function () {};
+        var obj3 = window;
+        console.log(obj1);
+        console.log(obj2);
+        console.log(obj3);
+
+
+        // wm1.set(obj1, 30);
+        wm1.set(obj1, 'stringgggg');
+        console.log(wm1);
+
+        wm2.set(wm1, wm2); // chaves e valores pode ser quaisquer objetos. Até mesmo WeakMaps! 
+        console.log(wm2);
+
+        wm3.set(obj1, obj2); // um valor pode ser qualquer coisa, incluindo um objeto or uma função
+        console.log(wm3);
+
+        wm4.set(obj3, undefined);
+        console.log(wm4);
+
+
+        console.log('\n');
+
+
+        let w1 = wm1.get(obj1);
+        console.log(w1);
+
+        let w2 = wm2.get(obj1); //undefined, pois não existe valor para obj1 em wm2 
+        console.log(w2);
+
+        let w3 = wm3.get(obj2); //undefined porque é o valor nao chave
+        console.log(w3);
+
+
+        console.log('\n');
+
+
+        let h1 = wm1.has(obj2); //false
+        console.log(h1);
+
+        let h2 = wm3.has(obj1); //true
+        console.log(h2);
+
+        let h3 = wm4.has(obj3); // true (mesmo se o valor armazenado for 'undefined')
+        console.log(h3);
+
+
+        console.log('\n');
+
+
+        wm4.set(obj1, 30);
+        console.log(wm4);
+        let w5 = wm4.get(obj1);
+        console.log(w5);
+
+
+        console.log('\n');
+
+
+        wm4.delete(obj1);
+        let w6 = wm4.get(obj1); // undefined, pois wm4 foi 'limpado' e não há mais valor para obj1.
+        console.log(w6);
+
+
+        console.log('\n');
+        console.log('\n');
+
+
+        let ws1 = new WeakSet();
+        console.log(ws1);
+
+        ws1.add(window);
+        ws1.add(obj1);
+        console.log(ws1);
+
+        let s1 = ws1.has(window); //true
+        console.log(s1);
+
+        let s2 = ws1.has(obj2); //// false, obj2 não foi adicionado ao set
+        console.log(s2);
+
+        console.log('\n');
+        ws1.delete(window); // remove window do set 
+        let s3 = ws1.has(window); // false, window foi removido
+        console.log(s3);
+    </script>
+</body>
+
+</html>
+<!--
+    O objeto WeakMap é uma coleção de pares key/value na qual as chaves são fracamente referenciadas.
+        As chaves devem ser objetos, e os valores podem ser de tipos arbitrários.
+Sintaxe
+new WeakMap([iterable])
+WeakMap.delete(key)
+Remove qualquer valor associado à  key. WeakMap.prototype.has(key) e retorna false após.
+WeakMap.get(key)
+Retorna o valor associado a key, ou undefined se nenhum existir.
+WeakMap.has(key)
+Retorna um Boolean verificando se há algum valor associado a key no objeto WeakMap ou não.
+WeakMap.set(key, value)
+Configura um valor para key no objeto WeakMap. Retorna undefined.
+
+retirado
+(WeakMap.clear()
+    Remove todos os pares chave/valor do objeto WeakMap)
+
+
+    O objeto WeakSet pertmite que você armazene objetos mantidos “fracamente” na coleção.
+        Objetos WeakSet são coleções de objetos. Um objeto no WeakSet pode ocorrer uma vez; é único na coleção do WeakSet.
+        Em contraste ao Sets, WeakSets são coleções apenas de objetos e não de valores arbitrários de qualquer tipo.
+Syntaxe
+new WeakSet([iterable]);
+
+WeakSet.add(value)
+    Anexa um novo objeto com o valor fornecido ao objeto WeakSet.
+WeakSet.delete(value)
+    Remove o elemento associado ao value. WeakSet.has(value) retornará false depois disso.
+WeakSet.has(value)
+    Retorna um booleano afirmando se um elemento está presente com o valor especificado no objeto WeakSet ou não.
+
+
+    WeakMap é uma Map coleção parecida que permite apenas objetos como chaves e os remove juntamente com o valor associado, uma vez que se tornam inacessíveis por outros meios.
+    WeakSet é uma Set coleção semelhante que armazena apenas objetos e os remove quando se tornam inacessíveis por outros meios.
+    Ambos não oferecem suporte a métodos e propriedades que se referem a todas as chaves ou a sua contagem. Somente operações individuais são permitidas.
+    WeakMap e WeakSet são usados ​​como estruturas de dados "secundárias", além do armazenamento de objetos "principal". Depois que o objeto for removido do armazenamento principal, se ele for encontrado apenas como a chave de WeakMap ou em um WeakSet, ele será limpo automaticamente.
+
+
+ -->

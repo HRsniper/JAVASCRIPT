@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 90vh;
+        }
+
+        #jogo {
+            width: 155px;
+            height: 150px;
+            display: flex;
+            flex-wrap: wrap;
+            /* align-content: flex-start; */
+
+            /* border: 1px solid #ff0000; */
+        }
+
+        .posicao {
+            width: 50px;
+            height: 50px;
+            margin: 0;
+            padding: 0;
+            cursor: pointer;
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+            font-size: 40px;
+            /* border: 1px solid #000000; */
+        }
+
+        #p1,
+        #p2,
+        #p4,
+        #p5 {
+            border-bottom: 2px solid #000000;
+            border-right: 2px solid #000000;
+        }
+
+        #p3,
+        #p6 {
+            border-bottom: 2px solid #000000;
+        }
+
+        #p7,
+        #p8 {
+            border-right: 2px solid #000000;
+        }
+
+        #p9 {
+            background-color: #00000000;
+        }
+
+        #menu {
+            margin-bottom: 10px;
+
+        }
+
+        #menu span {
+            margin-right: 5px;
+            font-size: 30px;
+        }
+
+        #menu button {
+            font-size: 20px;
+            border: none;
+            background-color: rgb(0, 200, 0);
+            color: #ffffff;
+            outline: none;
+            cursor: pointer;
+        }
+
+        #menu button:active {
+            background-color: red;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <nav id="menu">
+        <span id="starter"></span>
+        <button id="btnJogar">Jogar</button>
+    </nav>
+
+    <main id="jogo">
+        <b id="p1" class="posicao" onclick="jogar(1)"></b>
+        <b id="p2" class="posicao" onclick="jogar(2)"></b>
+        <b id="p3" class="posicao" onclick="jogar(3)"></b>
+        <b id="p4" class="posicao" onclick="jogar(4)"></b>
+        <b id="p5" class="posicao" onclick="jogar(5)"></b>
+        <b id="p6" class="posicao" onclick="jogar(6)"></b>
+        <b id="p7" class="posicao" onclick="jogar(7)"></b>
+        <b id="p8" class="posicao" onclick="jogar(8)"></b>
+        <b id="p9" class="posicao" onclick="jogar(9)"></b>
+    </main>
+
+
+    <script>
+        var regraDeJogo = [];
+        var tabuleiroVisual = [];
+
+        var vezJogar = 0; //0=P;1=CPU
+        var verificador; //true/false
+        var jogando = true;
+        var dificuldade = 2; //1;2;3
+
+        var jogadaDaCPU = 2;
+        var jogada = 0;
+
+        var comeca = 1;
+
+        const vezStarter = document.getElementById("starter");
+        const btnJogar = document.getElementById("btnJogar");
+        const jogoMain = document.getElementById("jogo");
+        const bPosicao = document.getElementsByTagName("b");
+        const menu = document.getElementById("menu");
+
+        function jogar(posicao) {
+            if ((jogando) && (vezJogar == 0)) {
+                switch (posicao) {
+                    case 1:
+                        if (regraDeJogo[0][0] == '') {
+                            regraDeJogo[0][0] = 'X';
+                            vezJogar = 1;
+                        }
+                        break;
+
+                    case 2:
+                        if (regraDeJogo[0][1] == '') {
+                            regraDeJogo[0][1] = 'X';
+                            vezJogar = 1;
+                        }
+                        break;
+
+                    case 3:
+                        if (regraDeJogo[0][2] == '') {
+                            regraDeJogo[0][2] = 'X';
+                            vezJogar = 1;
+                        }
+                        break;
+
+                    case 4:
+                        if (regraDeJogo[1][0] == '') {
+                            regraDeJogo[1][0] = 'X';
+                            vezJogar = 1;
+                        }
+                        break;
+
+                    case 5:
+                        if (regraDeJogo[1][1] == '') {
+                            regraDeJogo[1][1] = 'X';
+                            vezJogar = 1;
+                        }
+                        break;
+
+                    case 6:
+                        if (regraDeJogo[1][2] == '') {
+                            regraDeJogo[1][2] = 'X';
+                            vezJogar = 1;
+                        }
+                        break;
+
+                    case 7:
+                        if (regraDeJogo[2][0] == '') {
+                            regraDeJogo[2][0] = 'X';
+                            vezJogar = 1;
+                        }
+                        break;
+
+                    case 8:
+                        if (regraDeJogo[2][1] == '') {
+                            regraDeJogo[2][1] = 'X';
+                            vezJogar = 1;
+                        }
+                        break;
+
+                    case 9:
+                        if (regraDeJogo[2][2] == '') {
+                            regraDeJogo[2][2] = 'X';
+                            vezJogar = 1;
+                        }
+                        break;
+
+                    default:
+                        vezStarter.innerHTML = "Fora do espectro";
+                        break;
+                }
+                // console.log(regraDeJogo);
+
+                if (vezJogar == 1) {
+                    refreshTabuleiro();
+
+                    verificador = vitoria();
+                    if (verificador != '') {
+                        vezStarter.innerHTML = verificador + " venceu";
+                        jogando = false;
+                    }
+                    jogada++;
+                    levelCPU();
+                }
+            }
+        }
+
+        function levelCPU() {
+            if (jogando) {
+                let linha, coluna;
+
+                if (dificuldade == 1) {
+                    do {
+                        linha = Math.round(Math.random() * 2);
+                        coluna = Math.round(Math.random() * 2);
+                    } while (regraDeJogo[linha][coluna] != '');
+                    regraDeJogo[linha][coluna] = 'O';
+
+                } else if (dificuldade == 2) {
+                    // ATK
+                    // linha 1
+                    if ((regraDeJogo[0][0] == 'O') && (regraDeJogo[0][1] == 'O') && (regraDeJogo[0][2] == '')) {
+                        regraDeJogo[0][2] = 'O';
+                    } else if ((regraDeJogo[0][0] == 'O') && (regraDeJogo[0][2] == 'O') && (regraDeJogo[0][1] ==
+                            '')) {
+                        regraDeJogo[0][1] = 'O';
+                    } else if ((regraDeJogo[0][1] == 'O') && (regraDeJogo[0][2] == 'O') && (regraDeJogo[0][0] ==
+                            '')) {
+                        regraDeJogo[0][0] = 'O';
+                    } else {
+                        // linha 2
+                        if ((regraDeJogo[1][0] == 'O') && (regraDeJogo[1][1] == 'O') && (regraDeJogo[1][2] == '')) {
+                            regraDeJogo[1][2] = 'O';
+                        } else if ((regraDeJogo[1][0] == 'O') && (regraDeJogo[1][2] == 'O') && (regraDeJogo[1][1] ==
+                                '')) {
+                            regraDeJogo[1][1] = 'O';
+                        } else if ((regraDeJogo[1][1] == 'O') && (regraDeJogo[1][2] == 'O') && (regraDeJogo[1][0] ==
+                                '')) {
+                            regraDeJogo[1][0] = 'O';
+                        } else {
+                            // linha 3
+                            if ((regraDeJogo[2][0] == 'O') && (regraDeJogo[2][1] == 'O') && (regraDeJogo[2][2] == '')) {
+                                regraDeJogo[2][2] = 'O';
+                            } else if ((regraDeJogo[2][0] == 'O') && (regraDeJogo[2][2] == 'O') && (regraDeJogo[2][1] ==
+                                    '')) {
+                                regraDeJogo[2][1] = 'O';
+                            } else if ((regraDeJogo[2][1] == 'O') && (regraDeJogo[2][2] == 'O') && (regraDeJogo[2][0] ==
+                                    '')) {
+                                regraDeJogo[2][0] = 'O';
+                            } else {
+
+                                // coluna 1
+                                if ((regraDeJogo[0][0] == 'O') && (regraDeJogo[1][0] == 'O') && (regraDeJogo[2][0] ==
+                                        '')) {
+                                    regraDeJogo[2][0] = 'O';
+                                } else if ((regraDeJogo[0][0] == 'O') && (regraDeJogo[2][0] == 'O') && (regraDeJogo[1][
+                                        0
+                                    ] == '')) {
+                                    regraDeJogo[1][0] = 'O';
+                                } else if ((regraDeJogo[1][0] == 'O') && (regraDeJogo[2][0] == 'O') && (regraDeJogo[0][
+                                            0
+                                        ] ==
+                                        '')) {
+                                    regraDeJogo[0][0] = 'O';
+                                } else {
+                                    // coluna 2
+                                    if ((regraDeJogo[0][1] == 'O') && (regraDeJogo[1][1] == 'O') && (regraDeJogo[2][
+                                            1
+                                        ] == '')) {
+                                        regraDeJogo[2][1] = 'O';
+                                    } else if ((regraDeJogo[0][1] == 'O') && (regraDeJogo[2][1] == 'O') && (regraDeJogo[
+                                                1][1] ==
+                                            '')) {
+                                        regraDeJogo[1][1] = 'O';
+                                    } else if ((regraDeJogo[1][1] == 'O') && (regraDeJogo[2][1] == 'O') && (regraDeJogo[
+                                                0][1] ==
+                                            '')) {
+                                        regraDeJogo[0][1] = 'O';
+                                    } else {
+                                        // coluna 3
+                                        if ((regraDeJogo[0][2] == 'O') && (regraDeJogo[1][2] == 'O') && (regraDeJogo[2][
+                                                2
+                                            ] == '')) {
+                                            regraDeJogo[2][2] = 'O';
+                                        } else if ((regraDeJogo[0][2] == 'O') && (regraDeJogo[2][2] == 'O') && (
+                                                regraDeJogo[1][2] ==
+                                                '')) {
+                                            regraDeJogo[1][2] = 'O';
+                                        } else if ((regraDeJogo[1][2] == 'O') && (regraDeJogo[2][2] == 'O') && (
+                                                regraDeJogo[0][2] ==
+                                                '')) {
+                                            regraDeJogo[0][2] = 'O';
+                                        } else {
+
+                                            // diagonal 1
+                                            if ((regraDeJogo[0][0] == 'O') && (regraDeJogo[1][1] == 'O') && (
+                                                    regraDeJogo[2][
+                                                        2
+                                                    ] == '')) {
+                                                regraDeJogo[2][2] = 'O';
+                                            } else if ((regraDeJogo[0][0] == 'O') && (regraDeJogo[2][2] == 'O') && (
+                                                    regraDeJogo[1][1] ==
+                                                    '')) {
+                                                regraDeJogo[1][1] = 'O';
+                                            } else if ((regraDeJogo[1][1] == 'O') && (regraDeJogo[2][2] == 'O') && (
+                                                    regraDeJogo[0][0] ==
+                                                    '')) {
+                                                regraDeJogo[0][0] = 'O';
+                                            } else {
+
+                                                // diagonal 2
+                                                if ((regraDeJogo[0][2] == 'O') && (regraDeJogo[1][1] == 'O') && (
+                                                        regraDeJogo[2][
+                                                            0
+                                                        ] == '')) {
+                                                    regraDeJogo[2][0] = 'O';
+                                                } else if ((regraDeJogo[0][2] == 'O') && (regraDeJogo[2][0] == 'O') && (
+                                                        regraDeJogo[1][1] ==
+                                                        '')) {
+                                                    regraDeJogo[1][1] = 'O';
+                                                } else if ((regraDeJogo[2][0] == 'O') && (regraDeJogo[1][1] == 'O') && (
+                                                        regraDeJogo[0][2] ==
+                                                        '')) {
+                                                    regraDeJogo[0][2] = 'O';
+                                                } else {
+
+                                                    // DEF
+                                                    // linha 1
+                                                    if ((regraDeJogo[0][0] == 'X') && (regraDeJogo[0][1] == 'X') && (
+                                                            regraDeJogo[0][2] == '')) {
+                                                        regraDeJogo[0][2] = 'O';
+                                                    } else if ((regraDeJogo[0][0] == 'X') && (regraDeJogo[0][2] ==
+                                                            'O') && (regraDeJogo[0][1] ==
+                                                            '')) {
+                                                        regraDeJogo[0][1] = 'O';
+                                                    } else if ((regraDeJogo[0][1] == 'X') && (regraDeJogo[0][2] ==
+                                                            'O') && (regraDeJogo[0][0] ==
+                                                            '')) {
+                                                        regraDeJogo[0][0] = 'O';
+                                                    } else {
+                                                        // linha 2
+                                                        if ((regraDeJogo[1][0] == 'X') && (regraDeJogo[1][1] == 'X') &&
+                                                            (regraDeJogo[1][2] == '')) {
+                                                            regraDeJogo[1][2] = 'O';
+                                                        } else if ((regraDeJogo[1][0] == 'X') && (regraDeJogo[1][2] ==
+                                                                'O') && (regraDeJogo[1][1] ==
+                                                                '')) {
+                                                            regraDeJogo[1][1] = 'O';
+                                                        } else if ((regraDeJogo[1][1] == 'X') && (regraDeJogo[1][2] ==
+                                                                'O') && (regraDeJogo[1][0] ==
+                                                                '')) {
+                                                            regraDeJogo[1][0] = 'O';
+                                                        } else {
+                                                            // linha 3
+                                                            if ((regraDeJogo[2][0] == 'X') && (regraDeJogo[2][1] ==
+                                                                    'O') && (regraDeJogo[2][2] == '')) {
+                                                                regraDeJogo[2][2] = 'O';
+                                                            } else if ((regraDeJogo[2][0] == 'X') && (regraDeJogo[2][
+                                                                    2
+                                                                ] == 'X') && (regraDeJogo[2][1] ==
+                                                                    '')) {
+                                                                regraDeJogo[2][1] = 'O';
+                                                            } else if ((regraDeJogo[2][1] == 'X') && (regraDeJogo[2][
+                                                                    2
+                                                                ] == 'X') && (regraDeJogo[2][0] ==
+                                                                    '')) {
+                                                                regraDeJogo[2][0] = 'O';
+                                                            } else {
+
+                                                                // coluna 1
+                                                                if ((regraDeJogo[0][0] == 'X') && (regraDeJogo[1][0] ==
+                                                                        'O') && (regraDeJogo[2][0] ==
+                                                                        '')) {
+                                                                    regraDeJogo[2][0] = 'O';
+                                                                } else if ((regraDeJogo[0][0] == 'X') && (regraDeJogo[2]
+                                                                        [0] == 'X') && (regraDeJogo[1][
+                                                                        0
+                                                                    ] == '')) {
+                                                                    regraDeJogo[1][0] = 'O';
+                                                                } else if ((regraDeJogo[1][0] == 'X') && (regraDeJogo[2]
+                                                                        [0] == 'X') && (regraDeJogo[0][
+                                                                            0
+                                                                        ] ==
+                                                                        '')) {
+                                                                    regraDeJogo[0][0] = 'O';
+                                                                } else {
+                                                                    // coluna 2
+                                                                    if ((regraDeJogo[0][1] == 'X') && (regraDeJogo[1][
+                                                                            1
+                                                                        ] == 'X') && (regraDeJogo[2][
+                                                                            1
+                                                                        ] == '')) {
+                                                                        regraDeJogo[2][1] = 'O';
+                                                                    } else if ((regraDeJogo[0][1] == 'X') && (
+                                                                            regraDeJogo[2][1] == 'X') && (regraDeJogo[
+                                                                                1][1] ==
+                                                                            '')) {
+                                                                        regraDeJogo[1][1] = 'O';
+                                                                    } else if ((regraDeJogo[1][1] == 'X') && (
+                                                                            regraDeJogo[2][1] == 'X') && (regraDeJogo[
+                                                                                0][1] ==
+                                                                            '')) {
+                                                                        regraDeJogo[0][1] = 'O';
+                                                                    } else {
+                                                                        // coluna 3
+                                                                        if ((regraDeJogo[0][2] == 'X') && (regraDeJogo[
+                                                                                1][2] == 'X') && (regraDeJogo[2][
+                                                                                2
+                                                                            ] == '')) {
+                                                                            regraDeJogo[2][2] = 'O';
+                                                                        } else if ((regraDeJogo[0][2] == 'X') && (
+                                                                                regraDeJogo[2][2] == 'X') && (
+                                                                                regraDeJogo[1][2] ==
+                                                                                '')) {
+                                                                            regraDeJogo[1][2] = 'O';
+                                                                        } else if ((regraDeJogo[1][2] == 'X') && (
+                                                                                regraDeJogo[2][2] == 'X') && (
+                                                                                regraDeJogo[0][2] ==
+                                                                                '')) {
+                                                                            regraDeJogo[0][2] = 'O';
+                                                                        } else {
+
+                                                                            // diagonal 1
+                                                                            if ((regraDeJogo[0][0] == 'X') && (
+                                                                                    regraDeJogo[1][1] == 'X') && (
+                                                                                    regraDeJogo[2][
+                                                                                        2
+                                                                                    ] == '')) {
+                                                                                regraDeJogo[2][2] = 'O';
+                                                                            } else if ((regraDeJogo[0][0] == 'X') && (
+                                                                                    regraDeJogo[2][2] == 'X') && (
+                                                                                    regraDeJogo[1][1] ==
+                                                                                    '')) {
+                                                                                regraDeJogo[1][1] = 'O';
+                                                                            } else if ((regraDeJogo[1][1] == 'X') && (
+                                                                                    regraDeJogo[2][2] == 'X') && (
+                                                                                    regraDeJogo[0][0] ==
+                                                                                    '')) {
+                                                                                regraDeJogo[0][0] = 'O';
+                                                                            } else {
+
+                                                                                // diagonal 2
+                                                                                if ((regraDeJogo[0][2] == 'X') && (
+                                                                                        regraDeJogo[1][1] == 'X') && (
+                                                                                        regraDeJogo[2][
+                                                                                            0
+                                                                                        ] == '')) {
+                                                                                    regraDeJogo[2][0] = 'O';
+                                                                                } else if ((regraDeJogo[0][2] == 'X') &&
+                                                                                    (regraDeJogo[2][0] == 'X') && (
+                                                                                        regraDeJogo[1][1] ==
+                                                                                        '')) {
+                                                                                    regraDeJogo[1][1] = 'O';
+                                                                                } else if ((regraDeJogo[2][0] == 'X') &&
+                                                                                    (regraDeJogo[1][1] == 'X') && (
+                                                                                        regraDeJogo[0][2] ==
+                                                                                        '')) {
+                                                                                    regraDeJogo[0][2] = 'O';
+                                                                                } else {
+
+                                                                                    if (jogada < 8) {
+                                                                                        do {
+                                                                                            linha = Math.round(Math
+                                                                                                .random() * 2);
+                                                                                            coluna = Math.round(Math
+                                                                                                .random() * 2);
+                                                                                        } while (regraDeJogo[linha][
+                                                                                                coluna
+                                                                                            ] != '');
+                                                                                        regraDeJogo[linha][coluna] =
+                                                                                            'O';
+                                                                                    } else {
+                                                                                        for (let i = 0; i < 3; i++) {
+                                                                                            for (let i = 0; i <
+                                                                                                3; i++) {
+                                                                                                if (regraDeJogo[i][j] ==
+                                                                                                    '') {
+                                                                                                    regraDeJogo[i][j] =
+                                                                                                        'O';
+                                                                                                }
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                }
+
+
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+
+
+                                            } //diagonal 2
+                                        } //diagonal 1
+                                    } //coluna 3
+                                } //coluna 2
+                            } //coluna 1
+                        } //linha 3
+                    } //linha 2
+                } //linha 1
+                verificador = vitoria();
+                if (verificador != '') {
+                    btnJogar.innerHTML = verificador + " venceu";
+                    jogando = false;
+                }
+                jogada++;
+                refreshTabuleiro();
+                vezJogar = 0;
+            }
+        }
+
+        function vitoria() {
+            //linhas
+            for (let i = 0; i < 3; i++) {
+                if ((regraDeJogo[i][0] == regraDeJogo[i][1]) && (regraDeJogo[i][1] ==
+                        regraDeJogo[i][2])) {
+                    return regraDeJogo[i][i]; //retorna qualquer posisao
+                }
+            }
+
+            //colunas
+            for (let j = 0; j < 3; j++) {
+                if ((regraDeJogo[0][j] == regraDeJogo[1][j]) && (regraDeJogo[1][j] ==
+                        regraDeJogo[2][j])) {
+                    return regraDeJogo[j][j]; //retorna qualquer posisao
+                }
+            }
+
+            // diagonais
+            if ((regraDeJogo[0][0] == regraDeJogo[1][1]) && (regraDeJogo[1][1] ==
+                    regraDeJogo[2][2])) {
+                return regraDeJogo[0][0]; //retorna qualquer posisao
+            }
+
+            if ((regraDeJogo[0][2] == regraDeJogo[1][1]) && (regraDeJogo[1][1] ==
+                    regraDeJogo[2][0])) {
+                return regraDeJogo[0][2]; //retorna qualquer posisao
+            }
+        }
+
+        function refreshTabuleiro() {
+            for (let i = 0; i < 3; i++) {
+                for (let j = 0; j < 3; j++) {
+                    if (regraDeJogo[i][j] == 'X') {
+                        tabuleiroVisual[i][j].innerHTML = 'X';
+                        tabuleiroVisual[i][j].style.curor = 'default';
+                    } else if (regraDeJogo[i][j] == 'O') {
+                        tabuleiroVisual[i][j].innerHTML = 'O';
+                        tabuleiroVisual[i][j].style.curor = 'default';
+                    } else {
+                        tabuleiroVisual[i][j].innerHTML = '';
+                        tabuleiroVisual[i][j].style.curor = 'pointer';
+                    }
+                }
+            }
+        }
+
+        // reload btn
+        btnJogar.addEventListener("click", () => {
+            window.location.reload();
+        });
+
+        //inicializacao
+        (function () {
+            jogando = true;
+            jogadaDaCPU = 1;
+            jogada = 0;
+            //matriz 3x3
+            regraDeJogo = [
+                ['', '', ''],
+                ['', '', ''],
+                ['', '', '']
+            ];
+
+            tabuleiroVisual = [
+                [bPosicao[0], bPosicao[1], bPosicao[2]],
+                [bPosicao[3], bPosicao[4], bPosicao[5]],
+                [bPosicao[6], bPosicao[7], bPosicao[8]]
+            ];
+            // console.log(tabuleiroVisual);
+            refreshTabuleiro();
+
+            btnJogar.addEventListener("click", () => {
+                window.location.reload();
+            });
+            if (comeca == 1) {
+                comeca = 0;
+                vezJogar = comeca;
+                vezStarter.innerHTML = "Quem começa: Jogador";
+            } else {
+                comeca = 1;
+                vezJogar = comeca;
+                levelCPU();
+                vezStarter.innerHTML = "Quem começa: CPU";
+            }
+        })();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        // window.confirm("texto");
+        // confirm("texto");
+
+        var u = prompt("nome de usuario");
+        var r = confirm(u + " deseja continuar?");
+
+        if (r == true) {
+            txt = "confirmaçao do usuario";
+            alert(r + "\n" + txt);
+        } else {
+            txt = "confirmaçao do usuario";
+            alert(r + "\n" + txt);
+        }
+    </script>
+
+</head>
+
+<body>
+    <p id="demo"></p>
+
+    <script>
+        var txt;
+        var r = confirm("Press a button!");
+        if (r == true) {
+            txt = "You pressed OK!";
+        } else {
+            txt = "You pressed Cancel!";
+        }
+        document.getElementById("demo").innerHTML = txt;
+    </script>
+</body>
+
+</html>
+<!-- 
+    A caixa de mensagens confirme se particulariza por apresentar uma mensagem simples, dois botões OK e Cancelar. 
+    Mas sua funcionalidade mais importante é o retorno de qual dos botões foi pressionado,
+    caso seja clicado em OK a caixa retorna o valor “true” e caso seja clicado Cancelar a caixa retorna o valor “false”, simples assim. 
+
+Sintaxe
+    confirm(message)
+
+ -->

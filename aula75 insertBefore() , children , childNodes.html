@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    function start() {
+        const input = document.getElementsByTagName("input")[0] /*.value*/ ;
+        const buttonAdd = document.getElementsByTagName("button")[0];
+        const buttonQtde = document.getElementsByTagName("button")[1];
+        const ul = document.getElementsByTagName("ul")[0];
+        const p = document.getElementsByTagName("p")[0];
+
+        buttonAdd.addEventListener("click", () => {
+            let li = document.createElement("li");
+            li.textContent = input.value;
+            // ul.insertBefore(li,ul.childNodes[0]);//adicionar antes do primeiro elemento
+            ul.insertBefore(li,ul.childNodes[1]);//adicionar antes do segundo elemento
+
+            input.value = null;
+            // input.value = '';
+            input.focus();
+
+            ul.children[0].style.backgroundColor = "red";
+        })
+
+        buttonQtde.addEventListener("click", () => {
+            let qtde = ul.childNodes.length;
+            // let qtde = ul.children.length;
+
+            let qtde1 = ul.childNodes
+            console.log(qtde1)
+            let qtde2 = ul.children
+            console.log(qtde2)
+
+            p.innerHTML = "Quantidade de elementos: " + qtde;
+
+            p.innerHTML += "<br><br> f12 console";
+        })
+
+    }
+    window.addEventListener("load", start);
+</script>
+</head>
+
+<body>
+
+    <input type="text">
+    <button>ADD</button>
+    <button>Quantidade</button>
+    <br>
+    <ul></ul>
+    <br>
+    <p></p>
+
+</body>
+
+</html>
+<!-- 
+    O método insertBefore () insere um nó como filho, imediatamente antes de um filho existente, que você especifica.
+    Dica: Se você deseja criar um novo item de lista, com texto, lembre-se de criar o texto como um nó Texto que você anexa ao elemento <li>, depois insira <li> na lista.
+    Você também pode usar o método insertBefore para inserir / mover um elemento existente (consulte "Mais exemplos").
+Sintaxe
+node.insertBefore(new node, existing node)
+
+    A propriedade children retorna uma coleção dos elementos filhos de um elemento, como um objeto HTMLCollection.
+    Os elementos da coleção são classificados conforme aparecem no código-fonte e podem ser acessados ​​por números de índice. O índice começa em 0.
+    Dica: Você pode usar a propriedade length do objeto HTMLCollection para determinar o número de elementos filhos, depois pode percorrer todos os filhos e extrair as informações desejadas.
+    A diferença entre essa propriedade e childNodes é que childNodes contém todos os nós, incluindo nós de texto e comentários, enquanto os children contêm apenas nós de elementos.
+Sintaxe
+element.children
+
+    A propriedade childNodes retorna uma coleção de nós filhos de um nó, como um objeto NodeList.
+    Os nós da coleção são classificados conforme aparecem no código-fonte e podem ser acessados ​​por números de índice. O índice começa em 0.
+    Nota: O espaço em branco dentro dos elementos é considerado como texto e o texto é considerado como nós. Os comentários também são considerados como nós.
+    Dica: Você pode usar a propriedade length do objeto NodeList para determinar o número de nós filhos, em seguida, pode percorrer todos os nós filhos e extrair as informações desejadas.
+    Esta propriedade é somente leitura.
+    Dica: Para retornar uma coleção de nós de elemento de um nó (excluindo nós de texto e comentário), use a propriedade children .
+    Dica: o elemento .childNodes[0] produzirá o mesmo resultado que a propriedade firstChild .
+Sintaxe
+element.childNodes
+ -->

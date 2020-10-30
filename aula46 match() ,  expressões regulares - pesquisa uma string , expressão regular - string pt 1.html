@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+    </style>
+
+</head>
+
+<body>
+    f12 ---------------------------->
+
+    <script>
+        var txt = "Cursos -> Curso de Javascript, 46 curso javascript";
+
+        var resultado = txt.match("aula");
+        console.log(resultado);
+
+        var resultado = txt.match("curso");
+        console.log(resultado);
+
+        var resultado = txt.match("curso");
+        console.log(resultado.length);
+
+        var resultado = txt.match(/curso/i);
+        console.log(resultado + ' : ' + resultado.length);
+
+        var resultado = txt.match(/curso/ig);
+        console.log(resultado + ' : ' + resultado.length);
+
+        var resultado = txt.match(/javascript/ig);
+        console.log(resultado); /*array*/
+        console.log(resultado[0]); /*array*/
+
+        var resultado = txt.match(/[oa]/ig);
+        console.log(resultado + ' : ' + resultado.length);
+
+        var resultado = txt.match(/[^oa]/ig);
+        console.log(resultado + ' : ' + resultado.length);
+
+        var resultado = txt.match(/[a|o]/ig);
+        console.log(resultado + ' : ' + resultado.length);
+
+        var resultado = txt.match(/[\d]/ig);
+        console.log(resultado + ' : ' + resultado.length);
+
+        var resultado = txt.match(/[\w]/ig);
+        console.log(resultado + ' : ' + resultado.length);
+    </script>
+</body>
+
+</html>
+<!--
+    O método match () pesquisa uma string em uma expressão regular e retorna as correspondências como um objeto Array.
+    Nota: Se a expressão regular não incluir o modificador g (para executar uma pesquisa global ), o método match () retornará apenas a primeira correspondência na sequência.
+    Este método retornará nulo se nenhuma correspondência for encontrada.
+Sintaxe
+string.match(regexp)
+-->
+<!-- 
+    Uma expressão regular é um objeto que descreve um padrão de caracteres.
+    Expressões regulares são usadas para executar funções de correspondência de padrões e "pesquisar e substituir" no texto.
+Sintaxe
+/pattern/modifiers;
+
+    Os modificadores são usados para executar pesquisas globais e sem distinção entre maiúsculas e minúsculas:
+g - Realize uma correspondência global (encontre todas as correspondências em vez de parar após a primeira).
+i - Executar correspondência que não diferencia maiúsculas de minúsculas.
+m - Executar correspondência multilinha.
+
+    Os colchetes são usados para encontrar um intervalo de caracteres:
+[abc] - Encontre qualquer caractere entre colchetes.
+[^ abc] - Encontre qualquer caractere NÃO entre parênteses.
+[0-9] - Encontre qualquer caractere entre colchetes (qualquer dígito).
+[^ 0-9] - Encontre qualquer caractere NÃO entre parênteses (nenhum dígito).
+(x | y) - Encontre qualquer uma das alternativas especificadas.
+
+Metacaracteres são caracteres com um significado especial:
+. - Encontre um único caractere, exceto nova linha ou terminador de linha.
+\w - Encontre um caractere de palavra.
+\W - Encontre um caractere que não seja da palavra.
+\d - Encontre um dígito.
+\D - Encontre um caractere que não seja um dígito.
+\s - Encontre um caractere de espaço em branco.
+\S - Encontre um caractere que não seja um espaço em branco.
+\b - Encontre uma correspondência no início/fim de uma .palavra, começando assim: \bHI, termine assim: HI\b.
+\B - encontre uma correspondência, mas não no início/fim de uma palavra.
+\0 - Encontre um caractere NULL.
+\n - Encontre um novo caractere de linha.
+\f - Encontre um caractere de feed de formulário.
+\r - Encontre um caractere de retorno de carro.
+\t - Encontre um caractere de tabulação.
+\v - Encontre um caractere de tabulação vertical.
+\xxx - Encontre o caractere especificado por um número octal xxx.
+\xdd - Encontre o caractere especificado por um número hexadecimal dd.
+\udddd - Encontre o caractere Unicode especificado por um número hexadecimal dddd.
+
+    Quantificadores:
+n + - Corresponde a qualquer sequência que contenha pelo menos um n.
+n * - Corresponde a qualquer sequência que contenha zero ou mais ocorrências de n.
+n? - Corresponde a qualquer sequência que contenha zero ou uma ocorrência de n.
+n {X} - Corresponde a qualquer sequência que contenha uma sequência de X n's.
+n {X, Y} - Corresponde a qualquer sequência que contenha uma sequência de X a Y n's.
+n {X,} - Corresponde a qualquer sequência que contenha uma sequência de pelo menos X n's.
+n $ - Corresponde a qualquer cadeia de caracteres com n no final dela.
+^ n - Corresponde a qualquer string com n no começo.
+? = n - Corresponde a qualquer sequência que é seguida por uma sequência específica n.
+?! n - Corresponde a qualquer sequência que não é seguida por uma sequência específica n.
+ -->

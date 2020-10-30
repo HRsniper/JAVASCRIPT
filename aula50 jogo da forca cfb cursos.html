@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            position: relative;
+        }
+
+        section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .letra {
+            width: 25px;
+            font-size: 30px;
+            text-transform: uppercase;
+            text-align: center;
+            margin: 5px;
+            display: none;
+        }
+
+        #playerLetra {
+            width: 25px;
+            font-size: 30px;
+            text-transform: uppercase;
+            text-align: center;
+            margin: 5px;
+        }
+
+        #playerInput {
+            display: flex;
+            align-items: center;
+        }
+
+        .palavraDisplay {
+            display: block;
+        }
+
+        #mensagem {
+            margin-left: 5px;
+            padding: 5px;
+            background-color: tomato;
+            color: white;
+        }
+
+        #letrasDigitadas {
+            margin-left: 5px;
+        }
+
+        #forca {
+            position: absolute;
+            /* display: none; */
+        }
+
+        #cabeca {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        #corpo {
+            position: absolute;
+            top: 300px;
+            left: 0;
+        }
+
+        #bracoE {
+            position: absolute;
+            top: 300px;
+            left: -150px;
+        }
+
+        #bracoD {
+            position: absolute;
+            top: 300px;
+            left: 150px;
+        }
+
+        #pernaE {
+            position: absolute;
+            top: 600px;
+            left: -150px;
+        }
+
+        #pernaD {
+            position: absolute;
+            top: 600px;
+            left: 150px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <section>
+        <button onclick="iniciar()">Nova Palavra</button>
+        <br>
+
+        <div class="palavraDisplay" id="palavra">
+            <input type="text" class="letra" id="letra0" maxlength="1">
+            <input type="text" class="letra" id="letra1" maxlength="1">
+            <input type="text" class="letra" id="letra2" maxlength="1">
+            <input type="text" class="letra" id="letra3" maxlength="1">
+            <input type="text" class="letra" id="letra4" maxlength="1">
+            <input type="text" class="letra" id="letra5" maxlength="1">
+            <input type="text" class="letra" id="letra6" maxlength="1">
+            <input type="text" class="letra" id="letra7" maxlength="1">
+            <input type="text" class="letra" id="letra8" maxlength="1">
+            <input type="text" class="letra" id="letra9" maxlength="1">
+            <input type="text" class="letra" id="letra10" maxlength="1">
+            <input type="text" class="letra" id="letra11" maxlength="1">
+            <input type="text" class="letra" id="letra12" maxlength="1">
+            <input type="text" class="letra" id="letra13" maxlength="1">
+            <input type="text" class="letra" id="letra14" maxlength="1">
+            <input type="text" class="letra" id="letra15" maxlength="1">
+            <input type="text" class="letra" id="letra16" maxlength="1">
+            <input type="text" class="letra" id="letra17" maxlength="1">
+            <input type="text" class="letra" id="letra18" maxlength="1">
+            <input type="text" class="letra" id="letra19" maxlength="1">
+        </div>
+
+        <nav id="player" class="palavraDisplay">
+            <div id="playerInput">
+                <input type="text" id="playerLetra" maxlength="1">
+                <button onclick="jogando()">Jogar</button>
+                <span id="letrasDigitadas"></span>
+                <span id="mensagem"></span>
+            </div>
+            <br>
+
+            <button onclick="dica()">Dica/Palavra</button>
+            <br><br><br>
+
+            <div id="forca">
+                <img id="cabeca" src="cabeca.svg">
+                <img id="corpo" src="corpo.svg">
+                <img id="bracoE" src="bracoE.svg">
+                <img id="bracoD" src="bracoD.svg">
+                <img id="pernaE" src="pernaE.svg">
+                <img id="pernaD" src="pernaD.svg">
+            </div>
+        </nav>
+    </section>
+
+    <script>
+        var palavras = [
+            "feliz", "produzir", "doce", "pedra", "silicone", "moeda", "sol", "sarda", "pendurar", "turbante",
+            "paralelogramo", "losango", "oval", "trapezio", "losango", "estrela", "atravessar", "pentagono",
+            "hexagono", "octagono"
+        ];
+        var quantidade = palavras.length - 1;
+        var posicaoPalavra = Math.round(Math.random() * quantidade);
+        var palavraSorteada = palavras[posicaoPalavra];
+        var tamanhoPalavra = palavraSorteada.length;
+
+        // var caixaLetras = [];
+        var acertos;
+        var errosMaximo = 6;
+        var erros = 0;
+        var acertou = false;
+        var jogoProgresso = false;
+        const jogador = document.getElementById("playerLetra");
+        const mensagem = document.getElementById("mensagem");
+        const letrasDigitadas = document.getElementById("letrasDigitadas");
+        const letras = document.getElementsByClassName("letra");
+
+        var forca = [];
+        forca.push(document.getElementById("cabeca"));
+        forca.push(document.getElementById("corpo"));
+        forca.push(document.getElementById("bracoE"));
+        forca.push(document.getElementById("bracoD"));
+        forca.push(document.getElementById("pernaE"));
+        forca.push(document.getElementById("pernaD"));
+        // console.log(forca);
+
+        function definirLetra(letra) {
+            for (let i = 0; i < letras.length; i++) {
+                letras[i].value = '';
+                letras[i].style.display = "none";
+            }
+            for (let i = 0; i < letra; i++) {
+                letras[i].style.display = "inline-block";
+            }
+        }
+
+        function jogando() {
+            jogador.focus();
+            if (jogador.value == null) {
+                alert("Digite uma Letra");
+            } else {
+                if (jogoProgresso) {
+                    let letraTemporaria;
+                    let letra = jogador.value;
+                    jogador.value = null;
+                    acertou = false;
+                    let pesquisa = palavraSorteada.match(letra);
+
+                    while (pesquisa != null) {
+
+                        letraTemporaria = palavraSorteada.search(letra);
+                        letras[letraTemporaria].value = letra;
+
+                        palavraSorteada = palavraSorteada.replace(letra, '0');
+                        acertos++;
+                        pesquisa = palavraSorteada.match(letra);
+                        acertou = true;
+                    }
+                    if (!acertou) {
+                        letrasDigitadas.innerHTML += letra.toUpperCase();
+                        if (erros < errosMaximo) {
+                            forca[erros++].style.display = "block";
+                            // console.log(erros);
+                        } else {
+                            mensagem.innerHTML = "Você Perdeu";
+                            jogoProgresso = false;
+                        }
+                    }
+                    if (acertos == tamanhoPalavra) {
+                        mensagem.innerHTML = "Você Ganhou";
+                        jogoProgresso = false;
+                    }
+                }
+            }
+        }
+
+        function dica() {
+            alert(palavraSorteada);
+            jogador.focus();
+        }
+
+        function iniciar() {
+            jogoProgresso = true;
+            jogador.value = null;
+            jogador.focus();
+            acertos = 0;
+            erros = 0;
+            acertou = false;
+            letrasDigitadas.innerHTML = "Letras Digitadas: ";
+            posicaoPalavra = Math.round(Math.random() * quantidade);
+            palavraSorteada = palavras[posicaoPalavra];
+            tamanhoPalavra = palavraSorteada.length;
+            definirLetra(tamanhoPalavra);
+            mensagem.innerHTML = null;
+
+            for (let i = 0; i < errosMaximo; i++) {
+                forca[i].style.display = "none";
+                // console.log(forca[i]);
+            }
+        }
+
+        window.addEventListener("load", iniciar);
+        window.addEventListener("keydown", (key) => {
+            if (key.code == "Enter") {
+                jogando();
+            }
+        });
+    </script>
+</body>
+
+</html>

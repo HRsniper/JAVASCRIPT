@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        section {
+            width: 200px;
+            height: 200px;
+            border: 1px solid #000000;
+        }
+    </style>
+</head>
+
+<body onload="horario()">
+
+    <button onclick="tempo()">The time is?</button>
+    <p id="demo"></p>
+
+    <section onmouseover="mudarCor(this,'#f00')" onmouseout="mudarCor(this,'#00f')">
+    </section>
+
+
+    <script>
+        function tempo() {
+            var data = document.getElementById("demo").innerHTML = Date();
+        }
+
+        function mudarCor(obj, cor) {
+            obj.style.backgroundColor = cor;
+        }
+
+        function horario() {
+            let data = new Date();
+            let hora = data.getHours();
+            var txt = '';
+
+            if (hora < 12) {
+                txt = "bom dia";
+            } else if (hora < 18) {
+                txt = "boa tarde";
+            } else {
+                txt = "boa noite";
+            }
+            alert("ola, " + txt);
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+    </style>
+
+</head>
+
+<body>
+    f12 ---------------------------->
+
+    <script>
+        //                            char de saida espicial \ para impresao do " ' \ 
+        var txt = "Cursos -> \n Curso de \"Javascript\", 46 curso javascript";
+        let txt2 = 10;
+        var txt3 = "    Cursos -> Curso de Javascript, 46 curso javascript    ";
+
+        var resultado = txt2.toString();
+        console.log(resultado);
+
+        var resultado2 = txt2.toString(2);
+        console.log(resultado2);
+
+        var resultado8 = txt2.toString(8);
+        console.log(resultado8);
+
+        var resultado16 = txt2.toString(16);
+        console.log(resultado16);
+
+        var resultado = txt3.trim();
+        console.log(resultado);
+
+        console.log(txt);
+    </script>
+</body>
+
+</html>
+<!--
+    O método trim () remove os espaços em branco dos dois lados de uma string.
+    Nota: O método trim () não altera a sequência original.
+Sintaxe
+string.trim()
+
+    O método toString () retorna o valor de um objeto String. tambem faz converçao de base binaria(2),octadecimal(8),hexdicimal(16)
+Sintaxe
+string.toString()
+ -->

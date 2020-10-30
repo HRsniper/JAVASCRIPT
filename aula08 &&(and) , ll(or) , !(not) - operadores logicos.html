@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        var p = 40,
+            o = 50;
+        //      V            V      V      F            V
+        if ((p >= 30) && (p <= 40) || ((p >= 70) && (p <= 80))) {
+            //restornou V                retornou F
+            document.write("ganhou" + '<br>');
+        } else {
+            document.write("perdeu" + '<br>');
+        }
+
+        if ((o >= 30) && (o <= 40) || ((o >= 70) && (o <= 80))) {
+            document.write("ganhou" + '<br>');
+        } else {
+            document.write("perdeu" + '<br>');
+        }
+
+        if (!(p == o)) {
+            document.write("difentes");
+        }
+    </script>
+
+</head>
+
+<body>
+
+</body>
+
+</html>
+<!--
+    
+ -->

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <button onclick="abrir()">open</button>
+    <button onclick="fechar()">close</button>
+    <button onclick="check()">open/close?</button>
+    <p></p>
+
+    <br>
+    <button onclick="site()">site</button>
+    <br>
+    <iframe name="cfb" src="" frameborder="1"></iframe>
+
+    <script>
+        var janela
+        var p = document.getElementsByTagName('p')[0]
+
+        function abrir() {
+            janela = window.open('', '_blank', 'height=200,width=200,left=100,top=200', '')
+
+            janela.document.write("<h1>janela aberta</h1>")
+
+            janela.opener.p.innerHTML = 'janela filho aberta'
+        }
+
+        function fechar() {
+            // sem if(janela) para teste da um erro 
+            // janela.close()
+            if (janela) {
+                janela.close()
+            }
+            p.innerHTML = 'nao tem janela para fechar <br> ou janela ja foi fechada'
+        }
+
+        function check() {
+            // if (janela.opener) {
+            // }
+            if (!janela) {
+                p.innerHTML = 'janela nunca foi aberta/fechada'
+            } else if (janela.closed) {
+                p.innerHTML = 'janela ja foi fechada'
+            } else {
+                p.innerHTML = 'janela ja foi ABERTA'
+            }
+        }
+
+        function site() {
+            var janela2 = open("http://cfbcursos.com.br/",);
+            var janela3 = open("http://cfbcursos.com.br/","cfb");
+        }
+    </script>
+</body>
+
+</html>
+<!--
+    A propriedade closed retorna um valor booleano indicando se uma janela foi fechada ou não.
+Sintaxe
+window.closed
+
+    O método close () fecha a janela atual.
+    Dica: Esse método geralmente é usado junto com o método open () .
+Sintaxe
+window.close()
+
+    A propriedade opener retorna uma referência para a janela que criou a janela.
+    Ao abrir uma janela com o método window.open () , você pode usar esta propriedade na janela de destino para retornar detalhes da janela de origem (pai).
+    Dica de codificação: window.opener.close () fechará a janela de origem (pai).
+Sintaxe
+window.opener
+
+    O método open () abre uma nova janela do navegador ou uma nova guia, dependendo das configurações do navegador e dos valores dos parâmetros.
+    Dica: Use o método close () para fechar a janela.
+Sintaxe
+window.open(URL, name/target, specs, replace)
+-->

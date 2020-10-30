@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        var nota = 29,
+            resultado;
+
+        if (nota >= 60) {
+            if (nota >= 95) {
+                resultado = "genio";
+            } else {
+                resultado = "passou";
+            }
+        } else if ((nota >= 31) && (nota <= 59)) {
+            resultado = "recuperação";
+        } else {
+            if (nota >= 30) {
+                resultado = "repovado";
+            } else {
+                resultado = "nao passou";
+            }
+        }
+        document.write(resultado);
+    </script>
+
+</head>
+
+<body>
+
+</body>
+
+</html>
+<!--
+    
+ -->

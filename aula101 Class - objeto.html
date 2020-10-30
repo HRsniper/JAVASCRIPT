@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    f12 console
+
+    <script>
+        class Carro {
+            constructor(marca) {
+                this.carroMarca = marca;
+            }
+        }
+
+        var novoCarro = new Carro("Fiat");
+        console.log(novoCarro.carroMarca);
+
+
+        // Você também é livre para criar seus próprios métodos, a sintaxe deve ser familiar:
+        class Carro2 {
+            constructor(marca) {
+                this.carroMarca = marca;
+            }
+            modelo(modelo) {
+                return modelo + " 1.8 da marca " + this.carroMarca;
+            }
+        }
+
+        var novoCarro2 = new Carro2("Fiat");
+        console.log(novoCarro2.modelo("Strada"));
+
+
+
+
+        // Métodos estáticos
+        // Os métodos estáticos são definidos na própria classe e não no protótipo.
+        // Isso significa que você não pode chamar um método estático no objeto(mycar), mas na classe(Car):
+        // Crie um método estático e chame - o na classe:
+        class Car {
+            constructor(brand) {
+                this.carname = brand;
+            }
+            static hello() {
+                return "Hello!!";
+            }
+            static helloParametro(x) {
+                return "Hello!!" + x.carname;
+            }
+            present() {
+                return 'I have a ' + this.carname;
+            }
+        }
+
+        var mycar = new Car("Ford");
+
+        //Call 'hello()' on the class Car:
+        console.log(Car.hello());
+        // console.log(mycar.hello());//not resulta em erro
+
+        // Se você deseja usar o objeto mycar dentro do método estático, pode enviá-lo como um parâmetro:
+        console.log(Car.helloParametro(mycar));
+
+
+
+        // Herança
+        // Para criar uma herança de classe, use a palavra-chave extends
+        // Uma classe criada com uma herança de classe herda todos os métodos de outra classe:
+
+        class newModelo extends Car {
+            constructor(marca, modelo) {
+                super(marca);
+                this.modeloN = modelo;
+            }
+            show() {
+                return this.present() + ', it is a ' + this.modeloN;
+            }
+        }
+
+        var mycar2 = new newModelo("Ford", "Mustang");
+        console.log(mycar2.show());
+
+        // O método super() refere-se à classe pai.
+        // Ao chamar o método super() no método construtor, chamamos o método construtor do
+        // pai e obtemos acesso às propriedades e métodos do pai.
+
+        // A herança é útil para a reutilização do código:
+        // reutilize propriedades e métodos de uma classe existente ao criar uma nova classe.
+
+
+
+        // Getters e Setters
+        class CarroCarro {
+            constructor(brand) {
+                this.carname = brand;
+            }
+            get cnam() {
+                return this.carname;
+            }
+            set cnam(x) {
+                this.carname = x;
+            }
+        }
+
+        var mycar3 = new CarroCarro("Ford");
+        console.log(mycar3.cnam);//get
+        console.log(mycar3.cnam = "Gol");//set
+    </script>
+</body>
+
+</html>
+<!--
+    O ES6, também conhecido como ECMAScript2015, introduziu classes.
+    Uma classe é um tipo de função, mas em vez de usar a palavra-chave function para iniciá-la,
+        usamos a palavra-chave class as propriedades são atribuídas dentro de um método constructor().
+    Use a palavra-chave class para criar uma classe e sempre adicione o método constructor()
+    O método construtor é chamado sempre que o objeto de classe é inicializado.
+    Nota: O método construtor é chamado automaticamente quando o objeto é inicializado.
+
+    O método construtor é especial, é onde você inicializa propriedades, é chamado automaticamente
+        quando uma classe é iniciada e precisa ter o nome exato "construtor"; na verdade,
+        se você não possui um método construtor, o JavaScript adicionará um método construtor invisível e vazio .
+ -->

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        try {
+            document.writee('HRsniper');
+        } catch (error) {
+            document.write('Erro 404');
+            console.log('erro: ' + error.message);
+            document.write('<br>' + 'erro: ' + error.message);
+        }
+
+
+        var n;
+        // exeção
+        try {
+            n = prompt("n?:", 5);
+            if (n > 10) {
+                // throw "valor acima do permitido";
+                throw new Error("valor acima do permitido");
+            }
+            document.write('<br><br> valor: ' + n);
+        } catch (e) {
+            document.write('<br> erro: ' + e.message);
+        } finally {
+            document.write('<br> final');
+        }
+
+
+        try {
+            n = 11;
+            if (n > 10) {
+                throw new Error("valor acima do permitido");
+            }
+        } catch (e) {
+            document.write('<br><br> erro: ' + e.message);
+        } finally {
+            document.write('<br> valor: ' + n);
+        }
+    </script>
+
+</head>
+
+<body>
+
+</body>
+
+</html>
+<!--
+    
+    A instrução try / catch / finalmente manipula alguns ou todos os erros que podem ocorrer em um bloco de código, enquanto o código ainda está sendo executado.
+    Erros podem ser erros de codificação cometidos pelo programador, erros devido a entrada incorreta e outras coisas imprevisíveis.
+    A instrução try permite definir um bloco de código a ser testado quanto a erros enquanto ele está sendo executado.
+    A instrução catch permite definir um bloco de código a ser executado, se ocorrer um erro no bloco try .
+    A instrução finalmente permite executar o código, após tentar e capturar, independentemente do resultado.
+
+    Nota: As instruções catch e finalmente são opcionais, mas você precisa usar uma delas (se não as duas) enquanto usa a instrução try.
+    Dica: Quando ocorre um erro, o JavaScript normalmente para e gera uma mensagem de erro. Use a instrução throw para criar um erro personalizado (lançar uma exceção). Se você usar o throw junto com o try and catch , poderá controlar o fluxo do programa e gerar mensagens de erro personalizadas.
+
+sintaxe
+try {
+    tryCode - Block of code to try
+}
+catch(err) {
+    catchCode - Block of code to handle errors
+}
+finally {
+    finallyCode - Block of code to be executed regardless of the try / catch result
+}   
+
+    A propriedade name define ou retorna o nome de um erro.
+sintaxe
+error.name;
+
+    A propriedade message define ou retorna uma mensagem de erro.
+sintaxe
+error.message;
+
+    A instrução throw permite que você crie um erro personalizado.
+    O termo técnico para isso é: lançar uma exceção .
+Sintaxe
+throw expression;
+throw new Error(expressao);
+ -->

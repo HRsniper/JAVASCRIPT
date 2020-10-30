@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form id="formHTML">
+        <input type="text" name="name" value="HR">
+        <input type="text" name="lastname" value="DEV">
+        <button type="submit">Enviar</button>
+    </form>
+
+    <script>
+        "use strict"; {
+            const input = document.getElementsByTagName("input");
+
+            let name = input[0].value;
+            let lastname = input[1].value;
+
+            formHTML.onsubmit = async (e) => {
+                e.preventDefault();
+
+                let response = await fetch('/article/formdata/post/user', {
+                    method: 'POST',
+                    body: new FormData(formHTML)
+                });
+
+                XM
+
+                let result = await response.json();
+
+                alert(result.message);
+            };
+        }
+
+
+
+        let formData = new FormData();
+        formData.append('key1', 'value1');
+        formData.append('key2', 'value2');
+
+        // List key/value pairs
+        for (let [name, value] of formData) {
+            console.log(`append: ${name} = ${value}`); // key1=value1, then key2=value2
+        }
+    </script>
+
+</body>
+
+</html>
+<!-- 
+    Se o elemento HTML <form> for fornecido, ele captura automaticamente seus campos.
+    O especial sobre FormData é que os métodos de rede, como fetch, podem aceitar um objeto FormData como um corpo.
+        É codificado e enviado com Content-Type: multipart/form-data.
+    Do ponto de vista do servidor, isso parece um envio de formulário comum.
+
+Sintaxe
+var formData = new FormData(form)
+form (Optional) - Um elemento HTML <form> — quando especifico, o objeto FormData será preenchido com as chaves/valores atuais do formulário
+        usando a propriedade name de cada elemento para as chaves e seu valor enviado para os valores.Também codificara conteúdo de entrada do arquivo.
+    Nota: Todos os elementos de entrada têm um atributo 'name'. Para que possa acessar seus valores mais tarde.
+
+    Métodos
+FormData.append = Acrescenta um novo valor em uma chave existente dentro de um objeto FormData, ou adiciona a chave se ela ainda não existir.
+FormData.set = Define um novo valor para uma chave existente dentro de um objeto FormData, ou adiciona a chave/valor se ele ainda não existir.
+    A diferença é que .set remove todos os campos com o dado name e, em seguida, acrescenta um novo campo. Isso garante que haja apenas um campo com tal name, o resto é como append
+FormData.delete = Apaga um par chave/valor de um objeto FormData.
+FormData.get = Retorna o primeiro valor associado com uma dada chave de dentro de um objeto FormData.
+FormData.getAll = Retorna uma matriz de todos os valores associados a uma determinada chave de dentro de um FormData.
+FormData.has = Retorna um valor booleano indicando se um objeto FormData contém um certo par chave/valor.
+ -->

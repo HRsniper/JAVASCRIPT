@@ -1,0 +1,19 @@
+{
+    "name": "HR",
+    "employees": [{
+            "name": "John",
+            "age": 30,
+            "city": "New York"
+        },
+        {
+            "name": "HR",
+            "age": 23,
+            "city": "EOE"
+        },
+        {
+            "name": "misterio???",
+            "age": 300.5,
+            "city": "undefined???"
+        }
+    ]
+}

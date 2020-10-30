@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+    </style>
+
+</head>
+
+<body>
+
+    <script>
+        document.write('f12 console' + '<hr>');
+
+        var cor = 'azul';
+
+        function name() {
+            let cor = 'red';
+            console.log('local ' + cor);
+            console.log('global ' + this.cor + ' , ' + 'local ' + cor);
+        }
+        name();
+        console.log('global ' + cor);
+
+
+
+        
+        function myFunction() {
+            var carName = "Volvo";
+        }
+        myFunction();
+        console.log(carName);
+    </script>
+
+</body>
+
+</html>
+<!-- 
+Escopo da Função JavaScript Existem dois tipos de escopo: Escopo Local, Escopo Global. Cada função cria um novo escopo, Scope determina a acessibilidade (visibilidade) dessas variáveis. Variáveis ​​definidas dentro de uma função não são acessíveis (visíveis) de fora da função.
+
+Variáveis ​​locais =>
+Variáveis ​​declaradas em uma função JavaScript tornam-se LOCAL para a função.
+Variáveis ​​locais têm escopo de função: elas só podem ser acessadas de dentro da função.
+
+código aqui NÃO pode usar carName
+
+função myFunction () {
+  var carName = "Volvo";
+
+código aqui PODE usar carName
+
+}
+
+código aqui NÃO pode usar carName
+
+Como as variáveis ​​locais são reconhecidas apenas dentro de suas funções, variáveis ​​com o mesmo nome podem ser usadas em diferentes funções. Variáveis ​​locais são criadas quando uma função é iniciada e excluídas quando a função é concluída.
+
+
+Variáveis ​​globais
+Uma variável declarada fora de uma função torna-se GLOBAL.
+Uma variável global tem escopo global: todos os scripts e funções em uma página da web podem acessá-la.
+
+var carName = "Volvo";
+código aqui pode usar carName
+
+função myFunction () {
+código aqui também pode usar carName
+}
+
+
+Variável global automaticamente
+Se você atribuir um valor a uma variável que não foi declarada, ela se tornará automaticamente uma variável GLOBAL.
+
+Este exemplo de código declarará uma variável global carName, mesmo que o valor seja atribuído dentro de uma função.
+
+myFunction ();
+código aqui pode usar carName
+
+função myFunction () {
+    carName = "Volvo";
+}
+ -->

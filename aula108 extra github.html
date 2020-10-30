@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .promise-avatar {
+            border-radius: 50%;
+            box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.5);
+            min-width: 150px;
+            max-width: 150px;
+
+            position: absolute;
+            top: 100px;
+            left: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    f12 console
+    <br><br>
+    <form method="GET" id="form">
+        <label for="login">login github:</label>
+        <input type="text" id="login">
+        <button type="submit">Buscar</button></form>
+    <br>
+
+    <span id="dados"></span>
+
+    <br>
+    <br>
+    <!-- <img src="../HTML5/Google_Chrome_icon.svg" class="promise-avatar" alt=""> -->
+    <script>
+        'use strict';
+
+        function github(login) {
+            return fetch(`https://api.github.com/users/${login}`);
+        }
+
+        const form = document.getElementById("form");
+        form.addEventListener("submit", (event) => {
+            event.preventDefault();
+
+            newSubmit();
+        });
+
+        async function newSubmit() {
+            const login = document.getElementById("login");
+            const dados = document.getElementById("dados");
+
+            dados.innerHTML = "Buscando...";
+
+            try {
+                const githubResposta = await github(login.value);
+                console.log(githubResposta);
+                const githubRespostaJson = await githubResposta.json();
+                console.log(githubRespostaJson);
+
+                let img = document.createElement('img');
+                img.src = githubRespostaJson.avatar_url; // pegando img no avatar do github
+                img.className = "promise-avatar";
+
+                let link = document.createElement("a");
+                link.target = "_blank"
+                link.href = githubRespostaJson.html_url;
+                link.innerHTML = `${githubRespostaJson.login}`;
+
+                if (githubRespostaJson.login) {
+                    dados.innerHTML = '<br> <br> <br> ';
+                    dados.innerHTML += 'Usuario: ' + githubRespostaJson.login + '<br>';
+
+                    if (githubRespostaJson.name == null) {
+                        dados.innerHTML += 'Nome: ' + "Nome Não Atribuido" + '<br>';
+                    } else {
+                        dados.innerHTML += 'Nome: ' + githubRespostaJson.name + '<br>';
+                    }
+
+                    // dados.innerHTML += 'Conta: ' + githubRespostaJson.html_url + '<br>';
+                    dados.innerHTML += 'Conta: ';
+                    dados.appendChild(link);
+
+                    dados.appendChild(img);
+                }
+
+            } catch (error) {
+                console.error(error);
+            }
+        }
+        // ------------------------------------------------------------
+    </script>
+</body>
+
+</html>
+<!-- 
+ -->

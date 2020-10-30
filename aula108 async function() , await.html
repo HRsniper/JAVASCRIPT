@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        main {
+            display: flex;
+            justify-content: center;
+            background-color: #ddd;
+            padding: 10px;
+        }
+
+        .artista {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .musica {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .span {
+            display: flex;
+            place-content: center;
+            background-color: #ddd;
+        }
+
+        .span span {
+            max-width: 400px;
+        }
+    </style>
+</head>
+
+<body>
+    f12 console
+    <br>
+    <img src="https://mdn.mozillademos.org/files/8633/promises.png" alt="">
+    <br>
+
+    <main>
+        <div class="container">
+            <h1>Busca De Musicas</h1>
+
+            <section>
+                <form id="lyrics-form" method="get">
+                    <div class="artista">
+                        <label for="artista">Astista</label>
+                        <input type="text" id="artista">
+                    </div>
+                    <div class="musica">
+                        <label for="musica">Musica</label>
+                        <input type="text" id="musica">
+                    </div>
+                    <button type="submit">Buscar</button>
+                </form>
+            </section>
+        </div>
+    </main>
+    <div class="span">
+        <span id="letra"></span>
+    </div>
+
+
+    <br>
+    <br>
+
+    <script>
+        'use strict';
+        // As funções assíncronas sempre retornam uma promessa.Se o valor de retorno de uma função assíncrona não
+        // for explicitamente uma promessa, ele será implicitamente envolvido em uma promessa.
+        // Por exemplo, o seguinte:
+        async function fooo() {
+            return 1
+        }
+        // ...é equivalente a:
+        function fooo1() {
+            return Promise.resolve(1)
+        }
+
+        async function soma(valorPromise, valor) {
+            let x = new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve(valorPromise);
+                    // para reject comenta resolve
+                    // reject(valorPromise);
+                }, 1000);
+            });
+            let y = new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve(valorPromise);
+                    // para reject comenta resolve
+                    // reject(valorPromise);
+                }, 1000);
+            });
+
+            return valor + await x + await y;
+        }
+        soma(30, 10).then((v) => {
+            console.log('1s soma valor then: ', v);
+        }).catch((e) => {
+            console.error('1s soma valor catch: ', e);
+        });
+
+
+
+
+
+
+
+        console.log(`\n await`);
+        // Se uma Promise é passada para uma expressão await,
+        // ele espera pela finalização da Promise e retorna seu valor final.
+        function resolveAfter2Seconds(value) {
+
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve(value);
+                }, 2000);
+            });
+        }
+        async function f1() {
+            var x = await resolveAfter2Seconds(10);
+            console.log(`resolvido depois de 2 segundo | valor: `, x); // 10
+        }
+        f1();
+
+
+        // Se a Promise for rejeitada, o valor rejeitado é invocado em uma Exception.
+        async function f4() {
+            try {
+                var z = await Promise.reject(30);
+            } catch (e) {
+                console.error('rejeitado: ', e); // 30
+                // console.log(e); // 30
+            }
+        }
+        f4();
+
+
+        // Se o valor não for uma Promise, ele converte o valor para uma Promise resolvida, e espera por ele.
+        async function f3() {
+            var y = await 20;
+            console.log('converte: ', y); // 20
+        }
+        f3();
+
+        // Thenable objects - Os objetos selecionáveis serão preenchidos da mesma forma.
+        async function f2() {
+            const thenable = {
+                then: function (resolve, reject) {
+                    resolve('SUCESSO!')
+                }
+            };
+            console.log('objeto: ', await thenable); // resolved!
+        }
+        f2();
+
+
+        class Thenable {
+            constructor(num) {
+                this.num = num;
+            }
+            then(resolve, reject) {
+                console.log('class: ', resolve);
+                // resolve with this.num*2 after 1000ms
+                setTimeout(() => {
+                    resolve(this.num * 2)
+                }, 1000); // (*)
+            }
+        };
+
+        async function f() {
+            // waits for 1 second, then result becomes 2
+            let result = await new Thenable(1);
+            console.log('resultado f(): ', result);
+        }
+        f();
+
+
+
+        class classe {
+            async metodo() {
+                return await new Promise((resolvido, rejeitado) => {
+                    resolvido('resolvido com sucesso');
+                });
+            }
+        }
+        new classe().metodo().then(console.log);
+        // ------------------------------------------------------------
+
+        async function showAvatar() {
+
+            // read our local JSON
+            let response = await fetch('./user.json');
+            let user = await response.json();
+
+            // read github user
+            let githubResponse = await fetch(`https://api.github.com/users/${user.name}`);
+            let githubUser = await githubResponse.json(); // github JSON user
+
+            // show the avatar
+            let img = document.createElement('img');
+            img.src = githubUser.avatar_url; // pegando img no avatar do github
+            img.className = "promise-avatar-example";
+            document.body.append(img);
+
+            // wait 5 seconds
+            await new Promise((resolve, reject) => {
+                setTimeout(resolve, 5000)
+            });
+
+            console.log('removendo img');
+            img.remove();
+
+            return githubUser;
+        }
+
+        showAvatar();
+
+        // ------------------------------------------------------------
+        // Coldplay
+        // Adventure of a Lifetime
+        function findLyrics(artist, title) {
+            return fetch(`https://api.lyrics.ovh/v1/${artist}/${title}`)
+        }
+
+        const form = document.getElementById("lyrics-form");
+        form.addEventListener("submit", (evento) => {
+            //cancelar submit
+            evento.preventDefault();
+
+            // novo submit
+            submit();
+        });
+
+        async function submit() {
+            const letra = document.getElementById("letra");
+            const artista = document.getElementById("artista");
+            const musica = document.getElementById("musica");
+
+            letra.innerHTML = "Buscando...";
+
+            try {
+                // await
+                const respostaLetra = await findLyrics(artista.value, musica.value);
+                const letraJson = await respostaLetra.json();
+
+                if (letraJson.lyrics) {
+                    letra.innerHTML = letraJson.lyrics;
+                } else {
+                    // letra.innerHTML = letraJson.error;//No lyrics found
+                    
+                    const erroL = new Error('musica nao encontrada');
+                    letra.innerHTML = erroL;
+                }
+            } catch (erro) {
+                console.error(erro);
+            }
+        }
+        // ------------------------------------------------------------
+    </script>
+</body>
+
+</html>
+<!-- 
+
+    A declaração async function define uma função assíncrona, que retorna um objeto AsyncFunction.
+    Quando uma função assíncrona é chamada, ela retorna uma Promise. Quando a função assíncrona retorna um valor, a Promise será resolvida com o valor retornado. Quando a função assíncrona lança uma exceção ou algum valor, a Promise será rejeitada com o valor lançado.
+Sintaxe
+    async function nome([param[, param[, ... param]]]) {
+        instruções
+    }
+nome = O nome da função.
+param = O nome de um parâmetro a ser passado para a função.
+instruções = As instruções que compõem o corpo da função.
+
+// ------------------------------------------------------------
+
+    O operador await é utilizado para esperar por uma Promise. Ele pode ser usado apenas dentro de uma async function.
+    A expressão await faz a execução de uma função async pausar, para esperar pelo retorno da Promise, e resume a execução da função async quando o valor da Promise é resolvido. Ele então retorna o valor final da Promise. Se esse valor não for uma Promise, ele é convertido para uma Promise resolvida.
+    Se a Promise for rejeitada, a expressão await invoca uma Exception com o valor rejeitado.
+Sintaxe
+    [rv] = await expressão;
+expressão = Uma Promise ou qualquer valor para esperar uma resolução.
+rv = Retorna um valor final da promise, ou o próprio valor se ele não for uma Promise.
+
+
+ -->

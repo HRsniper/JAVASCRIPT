@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // funções
+        function sum(x, y, z) {
+            return x + y + z;
+        }
+        const numbers = [1, 2, 3];
+        console.log(sum(...numbers)); //6
+
+        // arrays
+        var arr3 = [1, 2, 3];
+        var arr23 = [...arr3]; // like arr3.slice()
+        console.log("arr23:↓");
+        console.log(arr23);
+
+        var arr21 = [3, 4, 5];
+        var araa = [...arr3, ...arr21];
+        console.log("araa:↓");
+        console.log(araa);
+
+        // objetos
+        var obj11 = {
+            foo: 'bar',
+            x: 42
+        };
+        var obj22 = {
+            foo: 'baz',
+            y: 13
+        };
+
+        var clonedObj = {
+            ...obj11
+        };
+        console.log(clonedObj);
+        // Object { foo: "bar", x: 42 }
+
+        var mergedObj = {
+            ...obj11,
+            ...obj22
+        };
+        console.log(mergedObj);
+        // Object { foo: "baz", x: 42, y: 13 }
+    </script>
+</body>
+
+</html>
+<!--
+    Sintaxe de Espalhamento (Spread syntax) permite que um objeto iterável, como uma expressão de array ou uma string seja
+        expandido para ser usado onde zero ou mais argumentos (para chamadas de funções) ou elementos (para arrays literais) são
+        esperados, ou que um objeto seja expandido onde zero ou mais pares propriedade:valor (para objetos literais) são esperados.
+Sintaxe
+Para chamada de funções:
+myFunction(...iterableObj);
+
+Para arrays literais ou strings:
+[...iterableObj, '4', 'five', 6];
+
+Para objetos literais (novo em ECMAScript 2018; stage 3 draft):
+let objClone = { ...obj };
+-->

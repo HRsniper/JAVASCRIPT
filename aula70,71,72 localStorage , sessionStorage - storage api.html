@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+    </style>
+</head>
+
+<body>
+    <p>f12 -----></p>
+    <hr>
+
+    <button onclick="keyReturn()">Key Return</button>
+    <button onclick="lengthReturn()">Length Return</button>
+    <button onclick="setItem()">SetItem</button>
+    <button onclick="getItem()">GetItem</button>
+    <button onclick="removeItem()">RemoveItem</button>
+    <button onclick="clearItens()">ClearItens</button>
+
+    <script>
+        function keyReturn() {
+            let key = localStorage.key(0);
+            let key2 = sessionStorage.key(0);
+            console.log('local key: ' + key);
+            console.log('session key: ' + key2);
+        }
+
+        function lengthReturn() {
+            let length = localStorage.length;
+            let length2 = sessionStorage.length;
+            console.log('local length: ' + length);
+            console.log('session length: ' + length2);
+        }
+
+        function setItem() {
+            let setItem = localStorage.setItem("Nome", "HRsniper");
+            let setItem2 = sessionStorage.setItem("Nome2", "HRsniper");
+            console.log("setItem('Nome','HRsniper') ADICIONADO");
+            console.log("setItem('Nome2','HRsniper') ADICIONADO");
+        }
+
+        function getItem() {
+            let getItem = localStorage.getItem("Nome");
+            let getItem2 = sessionStorage.getItem("Nome2");
+            console.log("getItem(key:'Nome') : " + getItem);
+            console.log("getItem(key:'Nome2') : " + getItem2);
+        }
+
+        function removeItem() {
+            let removeItem = localStorage.removeItem("Nome");
+            let removeItem2 = sessionStorage.removeItem("Nome2");
+            console.log("removeItem(key:'Nome1') REMOVIDO");
+            console.log("removeItem(key:'Nome2') REMOVIDO");
+        }
+
+        function clearItens() {
+            let clear = localStorage.clear();
+            let clear2 = sessionStorage.clear();
+            console.log('localStorage TODAS CHAVES FORAM REMOVIDAS');
+            console.log('sessionStorage TODAS CHAVES FORAM REMOVIDAS');
+        }
+    </script>
+</body>
+
+</html>
+<!-- 
+    O objeto Storage da Web Storage API fornece acesso ao armazenamento da sessão ou armazenamento local para um domínio específico. Isso permite que você leia, adicione, modifique e exclua itens de dados armazenados.
+
+    Propriedades e métodos do objeto de armazenamento
+    Os métodos pertencem ao objeto de armazenamento, que pode ser um objeto localStorage ou um objeto sessionStorage.
+
+    key(n) - Retorna o nome da enésima chave no armazenamento.
+    Syntax
+localStorage.key(index)
+    Or:
+sessionStorage.key(index)
+
+    length - Retorna o número de itens de dados armazenados no objeto Storage.
+    Syntax
+localStorage.length;
+    Or:
+sessionStorage.length;
+
+    getItem(keyname) - Retorna o valor do nome da chave especificado.
+    Syntax
+localStorage.getItem("keyname")
+    Or:
+sessionStorage.getItem("keyname")
+
+    setItem (nome da chave, valor) - Adiciona essa chave ao armazenamento ou atualiza o valor dessa chave, se ela já existir.
+    Syntax
+localStorage.setItem(keyname, value)
+    Or:
+sessionStorage.setItem(keyname, value)
+
+    removeItem (keyname) - remove essa chave do armazenamento.
+    Syntax
+localStorage.removeItem("keyname")
+    Or:
+sessionStorage.removeItem("keyname")
+
+    clear () - Esvazie toda a chave do armazenamento.
+    Syntax
+localStorage.clear()
+    Or:
+sessionStorage.clear()
+
+Páginas relacionadas para API de armazenamento na Web
+window.localStorage - Permite salvar pares de chave/valor em um navegador da web. Armazena os dados sem data de validade.
+window.sessionStorage - Permite salvar pares de chave/valor em um navegador da web. Armazena os dados para uma sessão.
+ -->

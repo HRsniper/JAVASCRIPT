@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        #luz {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+
+            background-color: rgba(0, 0, 0, 0.6);
+
+            display: none;
+        }
+    </style>
+
+    <script>
+    </script>
+
+</head>
+
+<body>
+    <div id="luz"></div>
+
+    <input type="text" id="texto" value="A text field">
+
+    <p>Clique nos botões para dar foco/remover o foco do campo de texto.</p>
+
+    <button type="button" onclick="getFocus()">obter foco</button>
+    <button type="button" onclick="loseFocus()">perder foco</button>
+
+    <br><br>
+    <input type="text" name="" id="input" size="30">
+
+    <script>
+        function getFocus() {
+            document.getElementById("texto").focus();
+        }
+
+        function loseFocus() {
+            document.getElementById("texto").blur();
+        }
+
+        setInterval(() => {
+            let input = document.getElementById('input');
+            let placeholder = document.createAttribute("placeholder");
+
+            let luz = document.getElementById('luz');
+
+            if (document.hasFocus()) {
+                placeholder.value = "O documento esta em foco"
+                input.setAttributeNode(placeholder);
+
+                luz.style.display = 'none';
+            } else {
+                placeholder.value = "O documento NÃO esta em foco"
+                input.setAttributeNode(placeholder);
+
+                luz.style.display = 'block';
+            }
+        }, 1);
+    </script>
+</body>
+
+</html>
+<!--
+    O método focus () é usado para dar foco a um elemento (se puder ser focado).
+    Dica: Use o método blur () para remover o foco de um elemento.
+HTMLElementObject.focus()
+
+    O método blur () é usado para remover o foco de um elemento.
+    Dica: Use o método focus () para dar foco a um elemento.
+HTMLElementObject.blur()
+
+    O método hasFocus () retorna um valor booleano indicando se o documento (ou qualquer elemento dentro do documento) tem foco.
+    Valor de retorno:	Um valor booleano, incidindo se o documento ou qualquer elemento do documento tem foco:
+        true - o documento tem foco
+        false - O documento não tem foco
+Sintaxe
+document.hasFocus()
+
+-->

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    </style>
+</head>
+
+<body>
+    <a href="#">A</a>
+    <a href="#2">A</a>
+    <a href="#3">A</a>
+
+    <br>
+    <button onclick="avancar()">avançar</button>
+    <button onclick="retroceder()">retroceder</button>
+    <button onclick="gotoo(2)">goto +2</button>
+    <button onclick="gotoo(-2)">goto -2</button>
+
+    <br><br>
+
+    <script>
+        var body = document.body;
+
+        body.innerHTML += 'tamanho do historico: ' + window.history.length;
+
+        function avancar() {
+            window.history.forward();
+        }
+
+        function retroceder() {
+            window.history.back();
+        }
+
+        function gotoo(n) {
+            window.history.go(n);
+        }
+    </script>
+</body>
+
+</html>
+<!--
+    O objeto histórico contém os URLs visitados pelo usuário (dentro de uma janela do navegador).
+    O objeto history faz parte do objeto window e é acessado através da propriedade window.history.
+    Propriedades do objeto Histórico =>
+length - Retorna o número de URLs na lista do histórico.
+    Métodos de objeto de história =>
+back () - Carrega o URL anterior na lista de histórico.
+forward () - Carrega o próximo URL na lista de histórico.
+go () - Carrega um URL específico/avançar ou anterior multiplo da lista de histórico.
+-->

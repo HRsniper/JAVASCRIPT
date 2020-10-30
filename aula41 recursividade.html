@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+    </style>
+
+    <script>
+    </script>
+</head>
+
+<body>
+    <p>f12 --------------------------></p>
+
+    <script>
+        function contador(min, max) {
+            console.log(min);
+            if (min < max) {
+                contador(++min, max);
+            }
+        }
+        contador(0, 10);
+
+
+        function fatorial(params) {
+            if (params == 1) {
+                return 1;
+            }
+            return params * (fatorial(params - 1));
+        }
+        console.log("fatorial: " + fatorial(5));
+    </script>
+</body>
+
+</html>
+<!-- 
+    recursividade, basicamente é quando uma função chama a ela mesmo, 
+     podemos usar funções recursivas para substibuir rotinas de loop por exemplo.
+ -->

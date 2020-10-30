@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+
+    </style>
+
+</head>
+
+<body>
+    <p id="paragrafo">Clique no botão para alterar o texto neste parágrafo.</p>
+
+    <button onclick="funcao()">click aqui</button>
+    <button onclick="funcao2()">click aqui mudar color</button>
+
+    <script>
+        function funcao() {
+            const p = document.getElementById("paragrafo");
+            p.innerHTML = "Hello World";
+        }
+
+        function funcao2() {
+            document.getElementById("paragrafo").style.color = "#f00";
+        }
+    </script>
+
+
+</body>
+
+</html>
+<!--
+    O método getElementById () retorna o elemento que possui o atributo ID com o valor especificado.
+    Esse método é um dos métodos mais comuns no DOM HTML e é usado quase toda vez que você deseja manipular ou obter informações de um elemento do documento.
+    Retorna nulo se não existir nenhum elemento com o ID especificado.
+    Um ID deve ser exclusivo dentro de uma página. No entanto, se houver mais de um elemento com o ID especificado, o método getElementById () retornará o primeiro elemento no código-fonte.
+Sintaxe
+document.getElementById("elementID")
+
+    A propriedade style retorna um objeto CSSStyleDeclaration, que representa o atributo de estilo de um elemento.
+    A propriedade style é usada para obter ou definir um estilo específico de um elemento usando diferentes propriedades CSS.
+Sintaxe
+Retornar propriedades de estilo:
+element.style.property
+
+Defina as propriedades do estilo:
+element.style.property = "value"
+
+ -->

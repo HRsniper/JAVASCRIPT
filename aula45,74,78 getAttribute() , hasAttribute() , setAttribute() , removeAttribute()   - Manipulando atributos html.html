@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        #code {
+            width: 500px;
+            height: 500px;
+            border: 1px solid #000000;
+            margin-top: 20px;
+        }
+
+        .classe1 {
+            background-color: yellow;
+        }
+
+        .classe2 {
+            background-color: #f00;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <button class="btn1" onclick="set(1)">setA click</button>
+    <button class="btn1" onclick="set(2)">setA click2</button>
+
+    <br><br>
+
+    <button class="btn2" onclick="remove()">removeA click</button>
+
+    <br><br>
+
+    <button class="btn3" onclick="tem()">hasA click</button>
+
+    <br><br>
+
+    <button class="btn4" onclick="pega()" title="titulo">getA click</button>
+
+    <br><br>
+
+    <button class="btn5" onclick="">click</button>
+
+    <aside id="code">
+        <p></p>
+    </aside>
+
+    <script>
+        var button = document.getElementsByTagName("button");
+        console.log(button);
+
+        var setA = document.getElementById("code");
+        // var set= document.getElementById("code").setAttribute("class","classe2");
+        // var set= document.getElementById("code").setAttribute("class","classe2");
+        // var set= document.getElementById("code").setAttribute("class","classe2");
+
+        function set(p) {
+            if (p == 1) {
+                setA.setAttribute("class", "classe1");
+            } else if (p == 2) {
+                setA.setAttribute("class", "classe2");
+            }
+        }
+
+        function remove() {
+            setA.removeAttribute("class");
+        }
+
+        function tem() {
+            if (setA.hasAttribute("class")) {
+                alert('com atributo');
+            } else {
+                alert('sem atributo');
+            }
+        }
+
+        function pega() {
+            var x = document.getElementsByTagName("button")[4].getAttribute("title");
+            document.getElementsByTagName("p")[0].innerHTML = x;
+        }
+    </script>
+</body>
+
+</html>
+<!--
+    O método getAttribute () retorna o valor do atributo com o nome especificado, de um elemento.
+    Dica: Use o método getAttributeNode () se desejar retornar o atributo como um objeto Attr.
+Sintaxe
+element.getAttribute("attributename")  
+
+    O método hasAttribute () retornará true se o atributo especificado existir, caso contrário, retornará false.
+    O método hasAttributes () retornará true se o nó especificado tiver algum atributo, caso contrário false .
+    Se o nó especificado não for um elemento, o valor retornado será sempre falso .
+Sintaxe
+element.hasAttribute("attributename")
+
+    O método removeAttribute () remove o atributo especificado de um elemento.
+    A diferença entre esse método e o método removeAttributeNode () é que o método removeAttributeNode () remove o objeto Attr especificado , enquanto esse método remove o atributo com o nome especificado . O resultado será o mesmo. Além disso, esse método não tem valor de retorno, enquanto o método removeAttributeNode () retorna o atributo removido, como um objeto Attr.
+Sintaxe
+element.removeAttribute("attributename")
+
+    O método setAttribute () adiciona o atributo especificado a um elemento e fornece o valor especificado.
+    Se o atributo especificado já existir, apenas o valor será definido / alterado.
+Sintaxe
+element.setAttribute("attributename", "attributevalue")
+ -->

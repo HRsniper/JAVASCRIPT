@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        /*
+        + Adição
+        - Subtração
+        * Multiplicação
+        ** Exponenciação (ES2016)
+        / Divisão
+        % Módulo (retorna o restante da divisão)
+        ++ Incremento (++pre , pos++)
+        -- Decremento (--pre , pos--)
+        +=2 2x incremento
+        -=2 2x decremento
+        */
+        document.write("// F12 para abrir o console" + '<br><br>');
+
+        var x = 5,
+            y = 2;
+
+        var z = x + y;
+        console.log(z);
+
+        var z = x - y;
+        console.log(z);
+
+        var z = x * y;
+        console.log(z);
+
+        var z = x ** y;
+        console.log(z);
+
+        var z = x / y;
+        console.log(z);
+
+        var z = x % y;
+        console.log(z);
+
+        var z = 5;
+        document.write(z++ + ' => ');
+        document.write(z + '<br>');
+
+        var z = 5;
+        document.write(++z + ' => ');
+        document.write(z + '<br>');
+
+        var z = 10;
+        document.write(z-- + ' => ');
+        document.write(z + '<br>');
+
+        var z = 10;
+        document.write(--z + ' => ');
+        document.write(z + '<br>');
+
+        'use strict';
+
+        let firstName = null;
+        let lastName = null;
+        let nickName = "Supercoder";
+        // let nickName = null;
+
+        // show the first not-null/undefined value
+        document.write(firstName ?? lastName ?? nickName ?? "Anonymous"); // Supercoder
+
+        // f12 para abrir o console
+        // console.log();
+    </script>
+
+</head>
+
+<body>
+
+</body>
+
+</html>
+<!--
+    
+ -->

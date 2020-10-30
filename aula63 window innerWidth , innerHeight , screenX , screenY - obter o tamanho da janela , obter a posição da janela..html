@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <button onclick="abrir()">open</button>
+    <button onclick="fechar()">close</button>
+    <button onclick="check()">open/close?</button>
+    <p></p>
+
+    <script>
+        var janela;
+        var p = document.getElementsByTagName('p')[0];
+
+        function abrir() {
+            janela = window.open('', '_blank', 'height=200,width=200,left=100,top=200', '');
+
+            janela.document.write("<h1>janela aberta</h1>");
+            janela.document.write("<p>screenX: horizontal  " + janela.screenX + '<br>' +
+                "screenY: vertical  " + janela.screenY + "</p>");
+
+            janela.opener.p.innerHTML = 'janela filho aberta';
+
+        }
+
+        function fechar() {
+            // sem if(janela) para teste da um erro 
+            // janela.close();
+            if (janela) {
+                janela.close();
+            }
+            p.innerHTML = 'nao tem janela para fechar <br> ou janela ja foi fechada';
+        }
+
+        function check() {
+            // if (janela.opener) {
+            // }
+            if (!janela) {
+                p.innerHTML = 'janela nunca foi aberta/fechada';
+            } else if (janela.closed) {
+                p.innerHTML = 'janela ja foi fechada';
+            } else {
+                p.innerHTML = 'janela ja foi ABERTA';
+            }
+        }
+
+        {
+            setInterval( () => {
+                var txt = "";
+                txt += "<p>largura interna da janela: " + window.innerWidth + "</p>";
+                txt += "<p>altura interna da janela: " + window.innerHeight + "</p>";
+                txt += "<p>largura do navegador: " + window.outerWidth + "</p>";
+                txt += "<p>altura do navegador: " + window.outerHeight + "</p>";
+                p.innerHTML = txt;
+            }, 4000);
+        }
+    </script>
+</body>
+
+</html>
+<!--
+    As propriedades screenX e screenY retornam as coordenadas x (horizontal) e y (vertical) da janela em relação à tela.
+        Dica: No IE8 e versões anteriores, você pode usar " window.screenLeft " e " window.screenTop " 
+Sintaxe
+window.screenX
+window.screenY
+
+    A propriedade innerWidth retorna a largura da área de conteúdo de uma janela.
+    A propriedade innerHeight retorna a altura da área de conteúdo de uma janela.
+    Essas propriedades são somente leitura.
+        Dica: Use as propriedades innerWidth e innerHeight para obter a largura / altura da área de conteúdo da janela (a janela / moldura sem barras de ferramentas).
+    Nota: Para o IE8 e versões anteriores, você pode usar as propriedades clientWidth e clientHeight (consulte "Mais exemplos" abaixo).
+    Sintaxe
+    window.innerWidth
+    window.innerHeight
+    
+    A propriedade outerWidth retorna a largura externa da janela do navegador, incluindo todos os elementos da interface (como barras de ferramentas / barras de rolagem).
+    A propriedade outerHeight retorna a altura externa da janela do navegador, incluindo todos os elementos da interface (como barras de ferramentas / barras de rolagem).
+    Essas propriedades são somente leitura.
+        Dica: Use as propriedades outerWidth e outerHeight para obter a largura / altura da janela total do navegador.
+Sintaxe
+window.outerWidth
+window.outerHeight
+-->

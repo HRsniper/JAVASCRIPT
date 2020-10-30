@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            position: relative;
+        }
+
+        section {
+            width: 200px;
+            height: 200px;
+            border: 1px solid green;
+            background-color: red;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <section>
+        click start
+    </section>
+
+    <script>
+        var obj;
+        var direcaoX, direcaoY;
+        var posicaoX, posicaoY;
+        var velocidade;
+        var tempo;
+
+
+        function startVar() {
+            obj = document.getElementsByTagName("section")[0];
+            direcaoX = 0;
+            direcaoY = 0;
+            posicaoX = 0;
+            posicaoY = 0;
+            velocidade = 10; /*pixel*/
+
+            tempo = setInterval(main, 1); /*taxa de atualizaçao*/
+
+            document.addEventListener("keydown", function (e) {
+                // a w d s
+                // console.log(e.key + ' ' + e.keyCode);
+                switch (e.key) {
+                    case 'a':
+                        direcaoX = -1;
+                        break;
+                    case 'w':
+                        direcaoY = -1;
+                        break;
+                    case 'd':
+                        direcaoX = 1;
+                        break;
+                    case 's':
+                        direcaoY = 1;
+                        break;
+
+                    default:
+                        break;
+                }
+            });
+
+            document.addEventListener("keyup", (e) => {
+                // a 65 w 87 d 68 s 83
+                // console.log(e.key + ' ' + e.keyCode);
+                if (e.keyCode == 65) {
+                    direcaoX = 0;
+                } else if (e.keyCode == 87) {
+                    direcaoY = 0;
+                } else if (e.keyCode == 68) {
+                    direcaoX = 0;
+                } else if (e.keyCode == 83) {
+                    direcaoY = 0;
+                }
+            });
+        }
+
+        function main() {
+            /*+= atribuiçao*/
+            posicaoX += direcaoX * velocidade;
+            posicaoY += direcaoY * velocidade;
+            obj.style.left = posicaoX + 'px';
+            obj.style.top = posicaoY + 'px';
+        }
+
+        window.addEventListener("load", startVar);
+    </script>
+</body>
+
+</html>
+<!-- 
+    O método document.addEventListener () anexa um manipulador de eventos ao documento.
+    Dica: Use o método document.removeEventListener () para remover um manipulador de eventos que foi anexado ao método addEventListener ().
+    Dica: Use o elemento addEventListener () para anexar um manipulador de eventos a um elemento especificado.
+
+Sintaxe
+document.addEventListener(event, function, useCapture)
+
+eventos =>
+https://www.w3schools.com/jsref/dom_obj_event.asp
+ -->

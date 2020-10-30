@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .divbox {
+        box-sizing: border-box;
+        padding: 16px;
+        width: 100%;
+        background-color: red;
+        color: #fff;
+    }
+
+    .closebtn {
+        float: right;
+        font-size: 30px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .closebtn:hover {
+        color: #000;
+    }
+</style>
+
+<script>
+    function start() {
+        const div = document.getElementsByTagName("div")[0] /*.value*/ ;
+        const button = document.getElementsByTagName("button")[0];
+        const p = document.getElementsByTagName("p");
+
+        button.addEventListener("click", () => {
+            p[0].remove();
+        })
+    }
+    window.addEventListener("load", start);
+</script>
+</head>
+
+<body>
+
+    <button>Remove Parágrafo [0]</button>
+    <button onclick="remover()">Remover primeiro filho</button>
+    <div>
+        <p style="background-color: gray;">2</p>
+        <p>5</p>
+        <p>8</p>
+        <p>11</p>
+        <p>14</p>
+    </div>
+
+    <div class="divbox">
+        <span onclick="fechar()" class="closebtn">&times;</span>
+        <p>Para fechar este contêiner, clique no símbolo X à direita.</p>
+    </div>
+
+    <p id="nomePai"></p>
+
+    <script>
+        {
+            var nomePai = document.getElementById("nomePai");
+            nomePai.innerHTML = 'nodeName: ' + nomePai.parentNode.nodeName;
+            nomePai.innerHTML += '<br>tagNamehas: ' + nomePai.parentNode.tagName;
+        }
+
+        function remover() {
+            const div = document.getElementsByTagName("div")[0];
+
+            if (div.hasChildNodes()) {
+                let filho = div.children[0];
+                div.removeChild(filho); //removendo o primeiro filho 
+            } else {
+                alert("todos ja foram removidos");
+            }
+        }
+
+        function fechar() {
+            let span = document.getElementsByClassName("closebtn")[0];
+
+            span.parentNode.style.display = "none";
+        }
+    </script>
+
+</body>
+
+</html>
+<!--
+    O remove() método remove o elemento especificado do DOM.
+Sintaxe
+node.remove()
+
+    O método removeChild () remove um nó filho especificado do elemento especificado.
+    Retorna o nó removido como um objeto Node ou null se o nó não existir.
+    Nota: O nó filho removido não faz mais parte do DOM. No entanto, com a referência retornada por esse método, é possível inserir o filho removido em um elemento posteriormente (consulte "Mais exemplos").
+    Dica: Use o método appendChild() ou insertBefore() para inserir o nó removido no mesmo documento.
+        Para inseri-lo em outro documento, use o método document.adoptNode() ou document.importNode() .
+Sintaxe
+node.removeChild(node)
+
+    A propriedade parentNode retorna o nó pai do nó especificado, como um objeto Node.
+    Nota: No HTML, o próprio documento é o nó pai do elemento HTML, HEAD e BODY são nós filhos do elemento HTML.
+    Esta propriedade é somente leitura.
+Sintaxe
+node.parentNode
+
+    O método hasChildNodes () retornará true se o nó especificado tiver algum nó filho, caso contrário, false.
+    Nota: O espaço em branco dentro de um nó é considerado como nós de texto; portanto, se você deixar algum espaço em branco ou feed de linha dentro de um elemento, esse elemento ainda terá nós filhos.
+Sintaxe
+node.hasChildNodes()
+
+    A propriedade nodeName retorna o nome do nó especificado.
+    Se o nó for um nó de elemento, a propriedade nodeName retornará o nome da marca.
+    Se o nó for um nó de atributo, a propriedade nodeName retornará o nome do atributo.
+    Para outros tipos de nós, a propriedade nodeName retornará nomes diferentes para diferentes tipos de nós.
+    Dica: Você também pode usar a propriedade tagName para retornar o nome da tag de um elemento. A diferença é que tagName retorna apenas nomes de tags, enquanto nodeName retorna o nome de todos os nós (tags, atributos, texto, comentários).
+    Esta propriedade é somente leitura.
+Sintaxe
+node.nodeName
+
+    A propriedade tagName retorna o nome da tag do elemento.
+    Em HTML, o valor retornado da propriedade tagName está sempre em MAIÚSCULAS.
+    Esta propriedade é somente leitura.
+    Dica: Você também pode usar a propriedade nodeName para retornar o nome da marca de um elemento. A diferença é que o nodeName também retorna nós de atributos, nós de texto e nós de comentários.
+Sintaxe
+element.tagName
+-->

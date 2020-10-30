@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        var cars = ["Saab", "Volvo", "BMW", "Gol", "Motos"];
+
+        posicao = cars.indexOf("Gol");
+
+        if (posicao < 0) {
+            document.write("não está na mochila" + "<br>");
+        } else {
+            document.write("<br> posição: " + posicao + "<br><br>");
+        }
+
+        var num = ['c', 'd', 'a', 'b', 'e'];
+        num.sort();
+        num.reverse();
+        document.write(num[0]);
+        document.write(num[1]);
+        document.write(num[2]);
+        document.write(num[3]);
+        document.write(num[4]);
+
+        var p = [1, 3, 5, 7];
+        var n = p.join();
+        document.write("<br>" + n);
+
+        var concatt = cars.concat(num);
+        document.write("<br>" + concatt);
+
+        document.write("<br> tamanho da array cars: " + cars.length);
+
+
+
+        // O operador typeof retorna o objeto porque uma matriz JavaScript é um objeto.
+        var tc = typeof cars;
+        document.write("<br>" + tc);
+
+        var ta = Array.isArray(cars);
+        document.write("<br>" + ta);
+
+        let a = 5;
+        console.log(typeof a);
+
+        let b = BigInt(9007199254740991);
+        console.log(typeof b);
+
+        let c = 'string';
+        console.log(typeof c);
+
+        let d = true;
+        console.log(typeof d);
+
+        let e = null;
+        console.log(typeof e);
+
+        let f = undefined;
+        console.log(typeof f);
+
+        let g = Object();
+        console.log(typeof g);
+
+        let h = Symbol();
+        console.log(typeof h);
+
+
+        /*Matrizes são objetos*/
+        // Matrizes usam números para acessar seus "elementos". Neste exemplo, person[0] retorna John:
+        // var person = ["John", "Doe", 46];
+
+        // Objetos usam nomes para acessar seus "membros". Neste exemplo, person.firstName retorna John:
+        // var person = {firstName:"John", lastName:"Doe", age:46};
+
+        var pessoa = {
+            nome: "HR",
+            sobrenome: "Sniper",
+            idade: 23
+        };
+        document.write('<br>' + pessoa.nome + pessoa.sobrenome + '  ' + "idade:" + pessoa.idade);
+    </script>
+
+</head>
+
+<body>
+
+</body>
+
+</html>
+<!--
+    Uma matriz é uma variável especial, que pode conter mais de um valor por vez.
+    Uma matriz pode conter muitos valores com um único nome e você pode acessar os valores consultando um número de índice.
+Sintaxe
+var array_name = [item1, item2, ...];
+
+    A propriedade length define ou retorna o número de elementos em uma matriz.
+Sintaxe
+    Retorne o comprimento de uma matriz:
+array.length
+    Defina o comprimento de uma matriz:
+array.length = number
+
+    typeof Retorna o tipo de uma variável, objeto, função ou expressão.
+Sintaxe
+typeof name;
+
+    O método isArray () determina se um objeto é uma matriz.
+Sintaxe
+Array.isArray(obj)
+
+    O método indexOf () procura na matriz o item especificado e retorna sua posição.
+    A pesquisa começará na posição especificada ou no início, se nenhuma posição inicial for especificada, e finalizará a pesquisa no final da matriz.
+    Retorna -1 se o item não for encontrado.
+Sintaxe
+array.indexOf(item, start)
+
+
+    O método join() retorna a matriz como uma sequência.
+    Os elementos serão separados por um separador especificado. O separador padrão é vírgula (,).
+Sintaxe
+array.join(separator)
+
+    O método sort () classifica os itens de uma matriz.
+    A ordem de classificação pode ser alfabética ou numérica e crescente (para cima) ou decrescente (para baixo).
+Sintaxe
+array.sort(compareFunction)
+
+    O reverse()método reverte a ordem dos elementos em uma matriz.
+Sintaxe
+array.reverse()
+
+    O método concat() é usado para unir duas ou mais matrizes.
+    Este método não altera as matrizes existentes, mas retorna uma nova matriz, contendo os valores das matrizes unidas.
+Sintaxe
+array1.concat(array2, array3, ..., arrayX)
+ -->

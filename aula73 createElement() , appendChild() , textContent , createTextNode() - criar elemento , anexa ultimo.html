@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        const p = document.createElement("p");
+        p.textContent = "texto";
+        // p.innerText="texto2";
+        // p.innerHTML="texto3";
+
+        var texto = document.createTextNode(" texto do createTextNode");
+
+        function iniciar() {
+            document.body.appendChild(p);
+            p.appendChild(texto);
+        }
+        window.addEventListener("load", iniciar);
+
+
+        function start() {
+            const input = document.getElementsByTagName("input")[0] /*.value*/ ;
+            const button = document.getElementsByTagName("button")[0];
+            const ul = document.getElementsByTagName("ul")[0];
+
+            button.addEventListener("click", () => {
+                let li = document.createElement("li");
+                li.textContent = input.value;
+                ul.appendChild(li);
+
+                input.value = null;
+                // input.value = '';
+                input.focus();
+            })
+        }
+        window.addEventListener("load", start);
+    </script>
+</head>
+
+<body>
+
+    <input type="text">
+    <button>add</button>
+    <br>
+    <ul></ul>
+
+</body>
+
+</html>
+<!-- 
+    O método createElement () cria um nó do elemento com o nome especificado.
+    Os elementos HTML geralmente contêm texto. Para criar um botão com texto , use as propriedades innerText ou innerHTML do objeto de elemento.
+    Dica: Depois do elemento é criado, utilizar o element.appendChild() ou element.insertBefore() método para inseri-lo ao documento.
+Sintaxe
+document.createElement("node name")
+
+    O método appendChild () anexa um nó como o último filho de um nó.
+    Dica: Se você deseja criar um novo parágrafo, com texto, lembre-se de criar o texto como um nó Texto que você anexa ao parágrafo e, em seguida , anexa o parágrafo ao documento.
+    Você também pode usar esse método para mover um elemento de um elemento para outro (consulte "Mais exemplos").
+    Dica: Use o método insertBefore () para inserir um novo nó filho antes de um nó filho especificado e existente.
+Sintaxe
+node.appendChild(node)
+
+    A propriedade textContent define ou retorna o conteúdo de texto do nó especificado e todos os seus descendentes .
+    Se você definir a propriedade textContent, todos os nós filhos serão removidos e substituídos por um único nó Texto que contenha a cadeia especificada.
+    Nota: Essa propriedade é semelhante à innerText , no entanto, existem algumas diferenças:
+        textContent retorna o conteúdo do texto de todos os elementos, enquanto innerText retorna o conteúdo de todos os elementos, exceto os elementos <script> e <style>.
+        innerText não retornará o texto dos elementos ocultos com CSS (textContent will). 
+    Dica: Às vezes, essa propriedade pode ser usada em vez da propriedade nodeValue , mas lembre-se de que essa propriedade retorna o texto de todos os nós filhos também.
+    Dica: Para definir ou retornar o conteúdo HTML de um elemento, use a propriedade innerHTML .
+Sintaxe
+Retorne o conteúdo de texto de um nó:
+node.textContent
+
+Defina o conteúdo do texto de um nó:
+node.textContent = text
+
+    O método createTextNode () cria um nó de texto com o texto especificado.
+    Dica: Use o método createElement () para criar um Nó do Elemento com o nome especificado.
+    Dica: Depois do elemento é criado, utilizar o element.appendChild() ou element.insertBefore() método para inseri-lo ao documento.
+Sintaxe
+document.createTextNode(text)
+ -->

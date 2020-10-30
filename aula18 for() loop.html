@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        for (let i = 0; i < 10; i++) {
+            document.write('texto' + '<br>');
+        }
+
+        document.write('<br>');
+
+        var familia = ['hr', 'ar', 'er', 'ar2', 'tr2', 'lr2'];
+
+        for (let i = 0; i < familia.length; i++) {
+            document.write(familia[i] + '<br>');
+            console.log(familia[i]);
+        }
+
+        document.write('<br>');
+        document.write('<br>');
+
+        var f = [
+            ['hr', 1],
+            ['ar', 1],
+            ['er', 1],
+            ['ar2', 1],
+            ['tr2', 1],
+            ['lr2', 1]
+        ];
+
+        for (let i = 0; i < f.length; i++) {
+            for (let j = 0; j < 2; j++) {
+                document.write(f[i] + [j] + '<br>');
+                console.log(f[i] + [j]);
+            }
+        }
+    </script>
+
+</head>
+
+<body>
+
+</body>
+
+</html>
+<!--
+    A instrução for cria um loop que é executado desde que uma condição seja verdadeira.
+    O loop continuará sendo executado enquanto a condição for verdadeira. Ele irá parar apenas quando a condição se tornar falsa.
+
+Sintaxe
+for (inicializaçao; condiçao; incremento ou decremento) {
+  code block to be executed
+}
+
+    JavaScript suporta diferentes tipos de loops:
+
+for - percorre um bloco de código várias vezes
+for / in - circula pelas propriedades de um objeto
+loop for / of - através dos valores de um objeto iterável
+while - percorre um bloco de código enquanto uma condição especificada é verdadeira
+do / while - percorre um bloco de código uma vez e repete o loop enquanto uma condição especificada for verdadeira
+Dica: Use a instrução (break;) para interromper um loop e a instrução (continue;) para pular um valor no loop.
+ -->

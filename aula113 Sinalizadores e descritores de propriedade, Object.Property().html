@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    f12 console
+
+    <script>
+        "use strict";
+
+        let user = {
+            name: "John"
+        };
+
+        let descriptor = Object.getOwnPropertyDescriptor(user, 'name');
+
+        console.log(JSON.stringify(descriptor, null, 2));
+        /* property descriptor: {
+          "value": "John",
+          "writable": true,
+          "enumerable": true,
+          "configurable": true
+        } */
+
+
+
+
+        let user2 = {}
+
+        Object.defineProperty(user2, "nome", {
+            value: "hrsniper"
+        });
+
+        let descriptor2 = Object.getOwnPropertyDescriptor(user2, 'nome');
+
+        console.log(JSON.stringify(descriptor2, null, 2));
+        /* property descriptor: {
+          "value": "John",
+          "writable": false,
+          "enumerable": false,
+          "configurable": false
+        } */
+
+
+
+        //  Ações de violação de sinalização são simplesmente ignoradas silenciosamente de forma não estrita.
+        let user3 = {
+            name: "John"
+        };
+
+        Object.defineProperty(user3, "name", {
+            writable: false
+        });
+
+        let u = user3.name = "Pete"; // Error: Cannot assign to read only property 'name'
+        console.log(u);
+    </script>
+</body>
+
+</html>
+<!--
+    Sinalizadores de propriedade
+As propriedades do objeto, além de um value, têm três atributos especiais (os chamados “sinalizadores”):
+
+writable- se true, o valor pode ser alterado, caso contrário, é somente leitura.
+enumerable- se true, então listado em loops, caso contrário, não listado.
+configurable- se true, a propriedade pode ser excluída e esses atributos podem ser modificados, caso contrário, não.
+
+value - O valor associado à propriedade (apenas descritores de dados).
+get - Uma função que serve como getter para a propriedade, ou undefined se não houver getter (apenas descritores de acesso).
+set - Uma função que serve como setter para a propriedade, ou undefined se não houver setter (apenas descritores de acesso).
+
+
+O método Object.getOwnPropertyDescriptor() retorna um descritor de propriedade para uma propriedade própria (isto é, uma diretamente presente em um objeto e não na cadeia de protótipos do objeto) de um determinado objeto.
+    Sintaxe
+    Object.getOwnPropertyDescriptor(obj, propName)
+
+Parâmetros
+obj - O objeto no qual procurar a propriedade.
+propName - O nome ou Symbol da propriedade cuja descrição deve ser recuperada.
+Valor de retorno - Um descritor de propriedade da propriedade fornecida se ela existir no objeto, undefined caso contrário.
+
+O método estático Object.defineProperty()define uma nova propriedade diretamente em um objeto ou modifica uma propriedade existente em um objeto e retorna o objeto.
+    Sintaxe
+    Object.defineProperty(obj, prop, descriptor)
+Parâmetros
+obj - O objeto no qual definir a propriedade.
+prop - O nome ou Symbol da propriedade a ser definida ou modificada.
+descriptor - O descritor da propriedade sendo definida ou modificada.
+Valor de retorno - O objeto que foi passado para a função.
+
+
+
+Selando um objeto globalmente
+Os descritores de propriedade funcionam no nível das propriedades individuais.
+
+Também existem métodos que limitam o acesso a todo o objeto:
+
+Object.preventExtensions (obj)
+Proíbe a adição de novas propriedades ao objeto.
+Object.seal (obj)
+Proíbe a adição / remoção de propriedades. Conjuntos configurable: falsepara todas as propriedades existentes.
+Object.freeze (obj)
+Proíbe adicionar / remover / alterar propriedades. Conjuntos configurable: false, writable: falsepara todas as propriedades existentes.
+E também existem testes para eles:
+
+Object.isExtensible (obj)
+Retorna falsese adicionar propriedades é proibido, caso contrário true.
+Object.isSealed (obj)
+Retorna truese adicionar / remover propriedades é proibido, e todas as propriedades existentes foram configurable: false.
+Object.isFrozen (obj)
+Retorna truese adicionar / remover / alterar propriedades é proibido, e todas as propriedades atuais são configurable: false, writable: false.
+Esses métodos raramente são usados ​​na prática.
+ -->

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    </style>
+</head>
+
+<body>
+
+    <script>
+        function localizacao(posicao) {
+            let coOr = posicao.coords;
+            document.write("Lat.: " + coOr.latitude + " - Long.: " + coOr.longitude);
+        }
+
+
+        document.write("Nome do Navegador: " + navigator.appName + '<hr>' +
+            "Versão do Navegador: " + navigator.appVersion + '<hr>' +
+            "Cookies?: " + navigator.cookieEnabled + '<hr>' +
+            "Geolocalizição: " + navigator.geolocation.getCurrentPosition(function (posicao) {
+                let coOr = posicao.coords;
+                document.body.innerHTML += "Lat.: " + coOr.latitude + " - Long.: " + coOr.longitude;
+            }, /*erro*/ ) + '<hr>' +
+            "linguagem: " + navigator.language + '<hr>' +
+            "online: " + navigator.onLine + '<hr>' +
+            "plataforma: " + navigator.platform + '<hr>' +
+            "engine: " + navigator.product + '<hr>' +
+            "agente: " + navigator.userAgent + '<hr>')
+    </script>
+</body>
+
+</html>
+<!--
+    O objeto navegador contém informações sobre o navegador.
+
+    Propriedades do objeto Navegador =>
+appCodeName - Retorna o nome do código do navegador.
+appName - Retorna o nome do navegador.
+appVersion - Retorna as informações da versão do navegador.
+cookieEnabled- Determina se os cookies estão ativados no navegador.
+geolocation- Retorna um objeto de geolocalização que pode ser usado para localizar a posição do usuário.
+    A API de localização geográfica é publicada por meio do objeto navigator.geolocation .
+    https://www.w3schools.com/jsref/obj_geolocation.asp
+language - Retorna o idioma do navegador.
+onLine- Determina se o navegador está online.
+platform- Retorna para qual plataforma o navegador é compilado.
+produto - Retorna o nome do mecanismo do navegador.
+userAgent - Retorna o cabeçalho do agente do usuário enviado pelo navegador ao servidor.
+    Métodos de objeto do navegador =>
+javaEnabled () - especifica se o navegador tem ou não o Java ativado.
+-->

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        var cars = ["Saab", "Volvo", "BMW" , "Gol" , "Motos"];
+
+        cars.unshift("Carros");
+        document.write(cars);
+
+        cars.pop();
+        document.write("<br>" + cars);
+
+        cars.shift();
+        document.write("<br>" + cars);
+
+        cars.splice(2,1);
+        document.write("<br>" + cars);
+    </script>
+
+</head>
+
+<body>
+
+</body>
+
+</html>
+<!--
+    Uma matriz é uma variável especial, que pode conter mais de um valor por vez.
+    Uma matriz pode conter muitos valores com um único nome e você pode acessar os valores consultando um número de índice.
+Sintaxe
+var array_name = [item1, item2, ...];
+
+    O método pop () remove o último elemento de uma matriz e retorna esse elemento.
+Sintaxe
+array.pop()
+
+    O método shift() remove o primeiro item de uma matriz.
+Sintaxe
+array.shift()
+
+    O método splice () adiciona/remove itens de/para uma matriz e retorna os itens removidos.
+Sintaxe
+array.splice(index, howmany, newitem1, ....., newitemX)
+
+    O método unshift () adiciona novos itens ao início de uma matriz e retorna o novo comprimento.
+Sintaxe
+array.unshift(item1, item2, ..., itemX)
+ -->

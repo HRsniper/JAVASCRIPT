@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    </style>
+</head>
+
+<body>
+
+    <script>
+        var body = document.body;
+
+        body.innerHTML += 'Altura: ' + screen.height + 'px' + '<hr>';
+        body.innerHTML += 'Largura: ' + screen.width + 'px' + '<hr>';
+
+        body.innerHTML += 'Altura disponivel: ' + screen.availHeight + 'px' + '<hr>';
+        body.innerHTML += 'Largura disponivel: ' + screen.availWidth + 'px' + '<hr>';
+
+        body.innerHTML += 'Profundidade da paleta de cores: ' + screen.colorDepth + 'bits' + '<hr>';
+        body.innerHTML += 'Resolução de cor: ' + screen.pixelDepth + 'bits/px' + '<hr>';
+    </script>
+</body>
+
+</html>
+<!--
+    O objeto de tela contém informações sobre a tela do visitante.
+    Propriedades do objeto de tela =>
+availHeight - Retorna a altura da tela (excluindo a barra de tarefas do Windows).
+availWidth - Retorna a largura da tela (excluindo a barra de tarefas do Windows).
+colorDepth - Retorna a profundidade de bits da paleta de cores para a exibição de imagens.
+pixelDepth - Retorna a resolução da cor (em bits por pixel) da tela.
+width - Retorna a largura total da tela.
+height- Retorna a altura total da tela.
+-->

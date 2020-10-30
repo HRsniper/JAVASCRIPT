@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        p {
+            font-size: 30px;
+        }
+
+        div {
+            margin-top: 5px;
+            width: 40px;
+            height: 40px;
+            border: 1px solid #000000;
+        }
+    </style>
+
+    <script>
+        window.addEventListener("click", () => {
+            let p = document.getElementById('P');
+            let bodyActive = document.activeElement;
+
+            console.log(bodyActive);
+            p.innerHTML = bodyActive.tagName;
+        });
+
+        // window.addEventListener("load", () => {
+        //     let p2 = document.getElementById('P');
+        //     let bodyActive2 = document.activeElement;
+        //     let frame;
+
+        //     function loop() {
+        //         console.log(bodyActive2);
+        //         p2.innerHTML = bodyActive2.tagName;
+
+        //         // frame = requestAnimationFrame(loop);
+        //     }
+
+        //     loop();
+        // });
+
+
+        window.addEventListener("load", /*iniciar*/ () => {
+            const textArea = document.getElementById('textarea');
+            const cxSpan = document.getElementById('SPAN');
+
+            textArea.addEventListener("mouseup", /*ativo*/ () => {
+                var elemento = document.activeElement;
+                var selecao = elemento.value.substring(elemento.selectionStart,elemento.selectionEnd);
+                cxSpan.innerHTML=selecao;
+            })
+        });
+    </script>
+
+</head>
+
+<body>
+
+    <p style="font-size: medium;">click</p>
+    <input type="text" placeholder="click">
+    <button>click</button>
+    <div id="DIV">click</div>
+    <br>
+
+    <textarea name="" id="textarea" cols="30" rows="10">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe eum ipsum suscipit quia sapiente deserunt a nostrum amet numquam. Nostrum, fuga sed veritatis magnam aliquid quidem iure fugiat asperiores eligendi.
+    </textarea>
+
+    <br>
+    <p id="P"></p>
+    <span id="SPAN"></span>
+
+    <script>
+    </script>
+
+</body>
+
+</html>
+<!--
+    A propriedade activeElement retorna o elemento atualmente focado no documento.
+    Nota: Esta propriedade é somente leitura.
+    Dica: Para dar foco a um elemento, use o método do element.focus().
+    Dica: Para descobrir se o documento está focado, use o método document.hasFocus() .
+    Nota: Para iOS, os elementos que não são <input type="text"> não receberão o foco atribuído a eles.
+        A propriedade retornará BODY ou null.
+Sintaxe
+document.activeElement
+
+propriedades do HTMLInputElement =>
+
+selectionEnd	O índice do final do texto selecionado.
+
+selectionStart	O índice do início do texto selecionado. Quando nada é selecionado, esta também é a posição do cursor dentro do <input>elemento.
+-->

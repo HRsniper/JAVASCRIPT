@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    function start() {
+        const div = document.getElementsByTagName("div")[0] /*.value*/ ;
+        const buttonAdd = document.getElementsByTagName("button")[0];
+        const p = document.getElementsByTagName("p");
+
+        buttonAdd.addEventListener("click", () => {
+            for (let i = 0; i < p.length; i++) {
+                p[i].innerHTML = i;
+            }
+
+            let newH1 = document.createElement("h1");
+            // newH1.innerText="h1";
+
+            let oldP = div.childNodes[5];
+
+            let text = document.createTextNode(oldP.innerHTML);
+            newH1.appendChild(text);
+
+            div.replaceChild(newH1, oldP);
+        })
+    }
+    window.addEventListener("load", start);
+</script>
+</head>
+
+<body>
+
+    <button>ADD Parágrafos</button>
+    <div>
+        <p>2</p>
+        <p>5</p>
+        <p>8</p>
+        <p>11</p>
+        <p>14</p>
+    </div>
+
+</body>
+
+</html>
+<!--
+    O método replaceChild () substitui um nó filho por um novo nó.
+    O novo nó pode ser um nó existente no documento ou você pode criar um novo nó.
+    Dica: Use o método removeChild() para remover um nó filho de um elemento.
+Sintaxe
+node.replaceChild(newnode, oldnode)
+ -->

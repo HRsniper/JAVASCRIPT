@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    f12 console
+
+    <script>
+        console.log('\n JSON.parse()');
+
+        let objeto = {
+            name: "HR"
+        }
+        //json
+        let objetoJson = `{"name": "HR", 
+            "employees": [
+                {"name": "John","age": 30,"city": "New York"},
+                {"name": "HR","age": 23,"city": "EOE"},
+                {"name": "misterio???","age": 300.5,"city": "undefined???"}
+            ]}`
+        // Use a função JavaScript JSON.parse()para converter texto em um objeto JavaScript:
+        // Verifique se o texto está escrito no formato JSON, caso contrário, você receberá um erro de sintaxe.
+        let son = JSON.parse(objetoJson);
+        console.log(son.name); //HR
+        console.log(son.employees[1].age); //23
+
+
+        const json = '{"result":true, "count":42}';
+        const obj = JSON.parse(json);
+        console.log(obj.count); //output: 42
+        console.log(obj.result); //output: true
+
+
+
+        // Usando o parâmetro reviver
+        // Se um reviver for especificado, o valor calculado pela análise será transformado antes de ser retornado
+        // Em seguida, ele é chamado, com o objeto contendo a propriedade sendo processada como this,
+        // e com o nome da propriedade como uma string, e o valor da propriedade como argumentos
+        const objRe = `{
+            "key1": 1, 
+            "key2": 2, 
+            "key3": {
+                "key3-4": 4, 
+                "key3-5": {
+                    "key3-5-6": 6
+                }
+            }
+        }`
+
+        JSON.parse(objRe, (key, value) => {
+            console.log(`reviver: ${key} value ↓`); // mostra o nome da propriedade atual, o último é "".
+            console.log(value);
+            return value; // retorna o valor da propriedade inalterada.
+        });
+
+
+
+        // Analisando datas
+        // Objetos de data não são permitidos no JSON.
+        // Se você precisar incluir uma data, escreva - a como uma sequência.
+        // Você pode convertê - lo novamente em um objeto de data posteriormente:
+        var text = '{ "name":"John", "birth":"1986-12-14", "city":"New York"}';
+        var obj2 = JSON.parse(text);
+        obj2.birth = new Date(obj2.birth);
+        console.log(`datas: ${obj2.name} nasceu em ${obj2.birth}`);
+
+
+
+        // Funções de análise
+        // Funções não são permitidas no JSON.
+        // Se você precisar incluir uma função, escreva - a como uma string.
+        // Você pode convertê - lo novamente em uma função posteriormente:
+        var text = '{ "name":"John", "age":"function () {return 30;}", "city":"New York"}';
+        var obj3 = JSON.parse(text);
+        obj3.age = eval('(' + obj3.age + ')');
+        // Você deve evitar o uso de funções no JSON, as funções perderão seu escopo e você precisará usá-las
+        // eval() para convertê-las novamente em funções.
+        console.log(`funções: ${obj3.name} , função retorna a idade ${obj3.age()}`);
+
+
+        console.log('\n JSON.stringify()');
+
+
+        JSON.stringify({}); // '{}'
+        JSON.stringify(true); // 'true'
+        JSON.stringify('foo'); // '"foo"'
+        JSON.stringify([1, 'false', false]); // '[1,"false",false]'
+        JSON.stringify({
+            x: 5
+        }); // '{"x":5}'
+        JSON.stringify({
+            x: 5,
+            y: 6
+        }); // '{"x":5,"y":6}' or '{"y":6,"x":5}'
+
+
+        var arr = [{
+            name: "HR",
+            age: 23,
+            city: "EOE"
+        }]
+        var stringficado = JSON.stringify(arr);
+        console.log(stringficado);
+
+
+        // replacer stringify
+        function replacer(key, value) {
+            // se for idêntico a um string ignora
+            if (typeof value === "string") {
+                return undefined;
+            }
+            return value;
+        }
+
+        var foo = {
+            fundação: "Mozilla", //ignora
+            modelo: "caixa", //ignora
+            semana: 45,
+            transporte: "carro", //ignora
+            mês: 7
+        };
+        var jsonString = JSON.stringify(foo, replacer);
+        console.log(`replacer: ${jsonString}`);
+
+        // espaço stringify
+        var e = JSON.stringify({
+            a: 2
+        }, null, " "); //1 espaço
+        // }, null, 5);//5 espaço
+        console.log(e);
+
+        // O uso de um caractere de tabulação imita a aparência padrão de impressão pretty - print.
+        var t = JSON.stringify({
+            uno: 1,
+            dos: 2
+        }, null, '\t'); //tabulaçao 4 espaço
+        console.log(t);
+
+
+        // lendo json
+        fetch("./aula104 json.json")
+            .then(results => results.json())
+            .then(console.log);
+    </script>
+</body>
+
+</html>
+<!--
+    A sintaxe JSON é derivada da sintaxe da notação de objeto JavaScript:
+Os dados estão em pares nome / valor
+Os dados são separados por vírgulas
+Aparelhos cacheados segurar objetos
+Os colchetes retêm matrizes
+
+    No JSON, os valores devem ser um dos seguintes tipos de dados:
+a string    "string"
+a number    12345
+any object (JSON object) { }
+object aninhando (JSON object) {chave:{} }
+any array    [ ]
+array aninhado    [chave:[],chave2:[] ]
+a boolean   true/false
+null        null
+    Os valores JSON não podem ser um dos seguintes tipos de dados:
+a function
+a date
+undefined
+
+strings = >
+\" representa o caractere de aspas (U+0022).
+\\ representa o caractere solidus reverso (U+005C).
+\/ representa o caractere solidus (U+002F).
+\b representa o caractere de backspace (U+0008).
+\f representa o caractere de avanço de formulário (U+000C).
+\n representa o caractere de avanço de linha (U+000A).
+\r representa o caractere de retorno de carro (U+000D).
+\t representa o caractere de tabulação de caracteres (U+0009).
+\u representa caracteres de digítos hexadecimal (U+0009).
+
+
+    O método JSON.parse() analisa uma string JSON, construindo o valor ou um objeto JavaScript
+        descrito pela string. Uma função reviver opcional pode ser fornecida para executar uma transformação
+        no objeto resultante antes de ser retornada.
+Sintaxe
+JSON.parse(text[, reviver])
+    Valor retornado é um Object correspondente ao text JSON fornecido.
+
+
+
+    O método JSON.stringify() converte valores em javascript para uma String JSON.
+        Esses valores podem ser substituidos especificando a função replacer, ou incluindo somente 
+        as propriedades específicas, quando o array do replacer for especificado.
+Sintaxe
+JSON.stringify(valor[, replacer[, espaço]])
+replacer - Uma função que altera o comportamento do processo de transformação em string, ou um array de objetos String e Number
+espaço - Um objeto String ou Number que é usado para inserir espaço em branco na saída da string JSON para propósito de legibilidade. Se isto for um Number, indica o número de caracteres espaço para usar como espaço em branco
+
+
+    A função eval () avalia ou executa um argumento.
+        Se o argumento for uma expressão, eval () avaliará a expressão. 
+        Se o argumento for uma ou mais instruções JavaScript, eval () executará as instruções.
+Sintaxe
+eval(string)
+    exemplo:
+  var x = 10;  var y = 20;
+  var resultante = eval("x * y");
+      saida: 200
+
+    O fetch()método é moderno e versátil, então vamos começar com ele. Não é suportado por navegadores antigos (podem ser preenchidos com polifólio), mas muito bem suportado entre os modernos.
+sintaxe básica:
+let promise = fetch(url, [options])
+
+url - o URL para acessar.
+options - parâmetros opcionais: método, cabeçalhos etc.
+    Sem options, isso é uma simples solicitação GET, baixando o conteúdo do url.
+
+Response fornece vários métodos baseados em promessas para acessar o corpo em vários formatos:
+response.text() - leia a resposta e retorne como texto,
+response.json() - analise a resposta como JSON,
+response.formData()- retorne a resposta como FormData objeto (explicado no próximo capítulo ),
+response.blob()- retorne a resposta como Blob (dados binários com tipo),
+response.arrayBuffer()- retorne a resposta como ArrayBuffer (representação de baixo nível de dados binários),
+além disso, response.body é um objeto ReadableStream , permite que você leia o corpo pedaço por pedaço, veremos um exemplo mais adiante.
+ -->

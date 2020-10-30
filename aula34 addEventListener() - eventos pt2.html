@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        section {
+            width: 200px;
+            height: 200px;
+            border: 1px solid #000000;
+
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+
+    <section id="s">
+        aperta a
+    </section>
+
+    <script>
+        //                              function(e)
+        document.addEventListener("keydown", (e) => {
+
+            let obj = document.getElementById("s");
+            var x = 0;
+            var y = 0;
+
+            /*
+            switch (e.key) {
+                case "a":
+                    alert("You pressed the 'A' key!");
+                    break;
+
+                default:
+                    break;
+            }
+            */
+
+            /*
+            if (e.key == 'w' || e.key == 'W') {
+                alert("You pressed the 'w' ou 'W' key!");
+            }
+            */
+            obj.innerHTML = e.key;
+
+            if (e.key == 'a') {
+                x -= 50;
+                obj.style.left = x + "px";
+            } else if (e.key == 'w') {
+                y -= 50;
+                obj.style.top = y + "px";
+            } else if (e.key == 'd') {
+                x += 50;
+                obj.style.left = x + "px";
+            } else if (e.key == 's') {
+                y += 50;
+                obj.style.top = y + "px";
+            }
+        })
+    </script>
+</body>
+
+</html>
+<!-- 
+    O método document.addEventListener () anexa um manipulador de eventos ao documento.
+    Dica: Use o método document.removeEventListener () para remover um manipulador de eventos que foi anexado ao método addEventListener ().
+    Dica: Use o elemento addEventListener () para anexar um manipulador de eventos a um elemento especificado.
+
+Sintaxe
+document.addEventListener(event, function, useCapture)
+
+eventos =>
+https://www.w3schools.com/jsref/dom_obj_event.asp
+ -->

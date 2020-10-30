@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>f12 console</p>
+    <br>
+    <img src="https://mdn.mozillademos.org/files/8633/promises.png" alt="">
+    <br>
+    <ul id="ulUsers"></ul>
+
+    <script>
+        "use strict";
+
+        let promiseBasic = new Promise(function (resolve, reject) {
+            // Chamamos resolver (...) quando o que estávamos fazendo de forma assíncrona foi bem-sucedida
+            // e rejeitamos (...) quando houve falha.
+            // Neste exemplo, usamos setTimeout (...) para simular código assíncrono.
+            setInterval(() => {
+                resolve("SUCESSO");
+                // para rejeitar comenta o resolve
+                reject("REJEITADA");
+            }, 1);
+        });
+
+        promiseBasic.then(function (sucessoMsg) {
+            console.log(`promise: ${sucessoMsg}`);
+
+        }).catch(function (rejeitaMsg) {
+            console.log(`promise: ${rejeitaMsg}`);
+
+        }).finally(function () {
+            setInterval(() => {
+                console.log('promise: Finalizada');
+            }, 3000);
+        });
+
+
+
+        let promiseResolve = Promise.resolve(12345);
+        promiseResolve.then( /*function*/ (value) => {
+            console.log(`promise resolve: ↓`);
+            console.log(value);
+        });
+
+
+
+        let promiseResolveArray = Promise.resolve([1, 2, 3, 4, 5]);
+        promiseResolveArray.then( /*function*/ (value) => {
+            console.log(`promise resolve array: ↓`);
+            console.log(value);
+        });
+
+
+
+        let promiseResolveO = Promise.resolve(2020);
+        let promisePromise = Promise.resolve(promiseResolveO);
+        promisePromise.then((value) => {
+            console.log('promise promise: ↓');
+            console.log(value);
+        });
+        console.log(`idênticas: ${promiseResolveO === promisePromise}`);
+
+
+
+        var p1 = Promise.resolve(3);
+        var p2 = 1337;
+        var p3 = new Promise((resolve, reject) => {
+            resolve("foo");
+        });
+        Promise.all([p1, p2, p3]).then(values => {
+            console.log('promise all: ↓');
+            console.log(values); // [3, 1337, "foo"] 
+        });
+
+
+
+        let pRace = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                // resolve("SUCESSO RACE");
+                reject("REJEITADO RACE");
+                // comentando resolve reject responde mais rapido
+            }, 100);
+        });
+
+        let pRace2 = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve("SUCESSO RACE");
+                reject("REJEITADO RACE");
+            }, 200);
+        });
+
+        Promise.race([pRace, pRace2]).then((value) => {
+            console.log(value);
+        }).catch((value) => {
+            console.log(value);
+        });
+
+
+
+        function resolved(result) {
+            console.log('Resolved');
+        }
+
+        function rejected(result) {
+            console.error(result);
+        }
+
+        Promise.reject(new Error('ERRO DA PROMISE')).then(resolved, rejected);
+
+        Promise.reject(new Error('BUGADO')).then().catch((value) => {
+            console.error(value);
+        });
+
+
+
+        // nao funciona no meu teste
+        /*
+        let pro = Promise.any([
+            Promise.reject(new Error('ERRO PROMISE')),
+            Promise.reject(new Error('ERRO PROMISE')),
+            Promise.resolve('v'),
+            Promise.reject(new Error('ERRO PROMISE'))
+        ]);
+        pro.then((value) => {
+            console.log(`You win at life`, value);
+            // You win at life v
+        });
+        */
+
+
+
+        const promise1 = Promise.resolve(3);
+        const promise2 = new Promise((resolve, reject) => setTimeout(reject, 100, 'foo'));
+        const promises = [promise1, promise2];
+
+        Promise.allSettled(promises).then((results) => {
+            results.forEach((result) => {
+                console.log(result.status);
+                // expected output:
+                // "fulfilled"
+                // "rejected"
+            })
+        });
+
+
+        // -------------------
+        const ul = document.getElementById('ulUsers');
+
+        fetch('./aula106.json')
+            .then((resp) => {
+                console.log(resp);
+
+                // if (resp.ok) {
+                //     console.log(resp.json());
+                //     return resp.json();
+                // }
+                resp.json();
+                console.log(resp.json());
+            })
+            .then(function (data) {
+                // console.log(data);
+
+                return data.map((value) => {
+                    let li = document.createElement("li");
+                    li.innerHTML = `${value.name} ${value.username}`;
+                    ul.appendChild(li);
+                })
+            })
+            .catch((erro) => {
+                console.error(erro);
+            });
+        // -------------------
+    </script>
+</body>
+
+</html>
+<!-- 
+    Promise é um objeto usado para processamento assíncrono. Um Promise (de "promessa") representa um valor que pode estar disponível agora, no futuro ou nunca.
+    Sintaxe
+new Promise(/* executor */ function(resolve, reject) { ... });
+executor = Uma função que recebe dois argumentos resolve e reject. Esta função é executada imediatamente pela implementação do Promise, passando as funções resolve e reject. O executor é chamado antes que o construtor de Promise retorne o objeto criado.  
+    As funções resolve e reject, quando chamadas, resolvem (em caso de sucesso) ou rejeitam (quando ocorre um erro) a promessa, respectivamente. O executor começa o trabalho assíncrono que, quando concluído, chama uma das funções resolve ou reject para definir o estado da promessa.
+    
+    Um Promise está em um destes estados: 
+pending (pendente): Estado inicial, que não foi realizada nem rejeitada.
+fulfilled (realizada): sucesso na operação.
+rejected (rejeitado):  falha na operação.
+settled (estabelecida): Que foi realizada ou rejeitada.
+
+    Propriedades
+Promise.length
+Propriedade length cujo valor é sempre 1 (número de argumentos do método construtor).
+
+Promise.prototype
+Representa o protótipo para o método construtor da Promise.
+
+Métodos
+    Promise.all(lista)
+        Retorna uma promise que é resolvida quando todas as promises no argumento lista forem resolvidas ou rejeitada assim que uma das promises da lista for rejeitada.
+            Se a promise retornada for resolvida ela retorna um array das promises resolvidas,
+            Se a promise for rejeitada ela retorna a primeira promise que foi rejeitada
+
+    Promise.allSettled(iterable)
+        Aguarde até que todas as promessas sejam liquidadas (cada uma pode resolver ou rejeitar).
+
+    Promise.any(iterable)
+        Leva um objeto iterável de Promessa e, assim que a primeira das promessas no iterável é cumprida, retorna uma única promessa que resolve com o valor dessa promessa.
+
+    Promise.race(lista)
+        Retorna uma promise que resolve ou rejeita assim que uma das promises do argumento lista resolve ou rejeita, com um valor ou o motivo daquela promise.
+
+    Promise.reject(motivo)
+        Retorna um objeto Promise que foi rejeitado por um dado motivo.
+
+    Promise.resolve(valor)
+        Retorna um objeto Promise que foi resolvido com um dado valor. Se o valor é thenable (possui um método then),
+            trabalhe com a valor de retorno que é sempre uma promise.
+
+    -------------------------------------------------------
+    Promise.catch(onRejected) / Promise.prototype.catch(onRejected)
+        Adiciona um callback que trata rejeição para a promise e, retorna uma nova promise resolvendo o valor retornado do callback, se ele for chamado, ou para seu valor original de conclusão se a promise for realizada.
+    Promise.then(onFulfilled, onRejected) / Promise.prototype.then(onFulfilled, onRejected)
+        Adiciona os métodos de tratamento da realização e rejeição da promise e, retorna uma nova promise resolvendo para o valor do método chamado.
+    Promise.finally() / Promise.prototype.finally()
+        Anexa um manipulador à promessa e retorna uma nova promessa que é resolvida quando a promessa original é resolvida. O manipulador é chamado quando a promessa é estabelecida, cumprida ou rejeitada.
+            finally é um bom manipulador para executar a limpeza
+    -------------------------------------------------------
+ -->

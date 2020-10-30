@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        // window.prompt("prompt ta aberto",'');
+        prompt("digite algo", 'HRsniper');
+        var p = prompt("digite algo", 'HRsniper');
+
+        document.write(p);
+    </script>
+
+</head>
+
+<body>
+    <p id="p"></p>
+
+
+    <script>
+        var text;
+        const key = prompt("prompt", 's');
+
+        switch (key) {
+            case 's':
+                text = "prompt ja esta aberto";
+                break;
+
+            default:
+                break;
+        }
+        document.getElementById("p").innerHTML = text;
+    </script>
+</body>
+
+</html>
+<!-- 
+    O método prompt () exibe uma caixa de diálogo que solicita entrada ao visitante.
+    A caixa de mensagens prompt se diferencia por possibilitar a entrada de texto, 
+    permitindo que esse texto seja coletado e passado a uma variável.
+    O método prompt () retorna o valor de entrada se o usuário clicar em "OK". 
+    Se o usuário clicar em "cancelar", o método retornará nulo.
+
+Sintaxe
+    prompt(text, inputText)
+
+ -->

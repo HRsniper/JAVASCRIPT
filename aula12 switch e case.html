@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        var n = 999, m;
+        switch (n) {
+            case 1:
+                m = "n 1";
+                break;
+            case 2:
+                m = "n 2";
+                break;
+            case 3:
+                m = "n 3";
+                break;
+            case 4:
+                m = "n 4";
+                break;
+            default:
+                m = "fora do expectro";
+                break;
+        }
+        document.write(m);
+
+        var n1 = 1;
+        switch (n1) {
+            case 1:
+            case 2:
+            case 3:
+                m = "nnn 123";
+                break;
+            default:
+                m = "fora do expectro";
+                break;
+        }
+        document.write("<br>" + m);
+    </script>
+
+</head>
+
+<body>
+
+</body>
+
+</html>
+<!--
+    A instrução switch executa um bloco de código dependendo de casos diferentes.
+    A instrução switch avalia uma expressão. O valor da expressão é então comparado
+     com os valores de cada caso na estrutura. Se houver uma correspondência, 
+     o bloco de código associado será executado.
+
+    A instrução switch é frequentemente usada junto com uma quebra(break)
+     ou uma palavra-chave padrão(default), (ou ambas). Ambos são opcionais:
+    A palavra-chave break quebra o bloco do comutador. Isso interromperá a execução de mais
+     execução de código e / ou teste de caso dentro do bloco. Se a interrupção for omitida, 
+     o próximo bloco de código na instrução switch é executado.
+    A palavra-chave default especifica algum código a ser executado se não houver correspondência
+     de maiúsculas e minúsculas. Só pode haver uma palavra-chave default em um comutador. 
+     Embora isso seja opcional, é recomendável usá-lo, pois trata de casos inesperados.
+
+Syntax
+switch(expression) {
+  case n:
+    code block
+    break;
+  case n:
+    code block
+    break;
+  default:
+    default code block
+}
+ -->

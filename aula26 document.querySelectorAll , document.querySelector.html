@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        div {
+            border: 1px solid #000000;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <p> Este é um elemento p </p>
+    <button onclick="funcao()"> click </button>
+
+    <hr>
+    <p class="exemplo"> Este também é um elemento p. </p>
+
+
+    <hr>
+    <a href="">aaa</a>
+    <a href="" target="_blank">aaa</a>
+    <a href="">aaa</a>
+    <hr>
+
+    <div>
+        <p>Lorem ipsum</p>
+    </div>
+
+    <div>
+        <p>Lorem ipsum</p>
+    </div>
+    <script>
+        function funcao() {
+            var p = document.querySelectorAll("P");
+            p[0].style.backgroundColor = "#0f0"
+        }
+
+        // Obtenha o primeiro elemento <p> no documento em que o pai é um elemento <div>.
+        var a = document.querySelector("div > p");
+        a.style.color = "#ff0";
+        a.style.backgroundColor = "#000";
+
+        var a = document.querySelector("a[target]");
+        a.style.color = "#ff0";
+        a.style.backgroundColor = "#000";
+
+        // Pega todos os elementos <p> no documento com class = "exemplo"
+        var p = document.querySelectorAll(".exemplo");
+        p[0].style.backgroundColor = "#f00";
+    </script>
+
+</body>
+
+</html>
+<!--
+    O método querySelectorAll () retorna todos os elementos no documento que correspondem aos seletores CSS especificados, como um objeto estático NodeList.
+    O objeto NodeList representa uma coleção de nós. Os nós podem ser acessados ​​por números de índice. O índice começa em 0.
+    Dica: Você pode usar a propriedade length do objeto NodeList para determinar o número de elementos que corresponde ao seletor especificado. Em seguida, você pode percorrer todos os elementos e extrair as informações desejadas.
+Sintaxe
+document.querySelectorAll("CSS selectors")
+
+    O método querySelector () retorna o primeiro elemento que corresponde a um (s) seletor (es) CSS especificado (s) no documento.
+    Nota: O método querySelector () retorna apenas o primeiro elemento que corresponde aos seletores especificados. Para retornar todas as correspondências, use o método querySelectorAll () .
+    Se o seletor corresponder a um ID no documento usado várias vezes (observe que um "ID" deve ser exclusivo em uma página e não deve ser usado mais de uma vez), ele retornará o primeiro elemento correspondente.
+Sintaxe
+document.querySelector("CSS selectors")
+
+ -->

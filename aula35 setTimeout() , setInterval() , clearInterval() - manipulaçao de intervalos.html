@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        section {
+            width: 200px;
+            height: 200px;
+            border: 1px solid #000000;
+
+            /* position: absolute; */
+        }
+
+        #barra {
+            width: 100%;
+            height: 30px;
+            position: relative;
+            background-color: #ddd;
+        }
+
+        #porcentagem {
+            background-color: #4CAF50;
+            width: 10px;
+            height: 30px;
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+
+    <section id="s">
+        <!--[0]-->
+        setTimeout
+    </section>
+    <section>
+        <!--[1]-->
+        setInterval
+    </section>
+    <section>
+        <!--[2]-->
+        setInterval
+        <button type="button" id="btn1">iniciar</button>
+        clearInterval
+        <button type="button" id="btn2">parar</button>
+    </section>
+
+
+    <div id="barra">
+        <div id="porcentagem"></div>
+    </div>
+    <button type="button" id="btn3">iniciar</button>
+    <!-- <button onclick="preencher()">Click Me</button> -->
+
+    <script>
+        var tempo;
+
+        function chanceColor() {
+            const sec = document.getElementById("s");
+            // aleatorio de 0 a 255
+            var r = Math.floor(Math.random() * 255);
+            var g = Math.floor(Math.random() * 255);
+            var b = Math.floor(Math.random() * 255);
+            sec.style.backgroundColor = "rgb(" + r + ',' + g + ',' + b + ")";
+        }
+
+
+        setTimeout(chanceColor, 1000);
+
+        function chanceColorIn() {
+
+            const sec = document.getElementsByTagName("section")[1];
+            // aleatorio de 0 a 255
+            var r = Math.floor(Math.random() * 255);
+            var g = Math.floor(Math.random() * 255);
+            var b = Math.floor(Math.random() * 255);
+            sec.style.backgroundColor = "rgb(" + r + ',' + g + ',' + b + ")";
+        }
+        setInterval(chanceColorIn, 1000);
+
+
+        function chanecColorIn2() {
+
+            const sec = document.getElementsByTagName("section")[2];
+            // aleatorio de 0 a 255
+            var r = Math.floor(Math.random() * 255);
+            var g = Math.floor(Math.random() * 255);
+            var b = Math.floor(Math.random() * 255);
+            sec.style.backgroundColor = "rgb(" + r + ',' + g + ',' + b + ")";
+
+        }
+
+        function iniciarInterval() {
+            tempo = setInterval(chanecColorIn2, 2000);
+        }
+
+        function pararInterval() {
+            clearInterval(tempo);
+        }
+
+
+        function preencher() {
+            var elemento = document.getElementById("porcentagem");
+            var tamanho = 0;
+            var tempo = setInterval(mover, 50);
+
+            function mover() {
+                if (tamanho == 100) {
+                    clearInterval(tempo);
+                } else {
+                    tamanho++;
+                    elemento.style.width = tamanho + '%';
+                }
+            }
+        }
+
+        window.addEventListener("load", function () {
+            document.getElementById('btn1').addEventListener("click", iniciarInterval);
+            document.getElementById('btn2').addEventListener("click", pararInterval);
+            document.getElementById('btn3').addEventListener("click", preencher);
+        });
+    </script>
+</body>
+
+</html>
+<!--
+    O método windown.setTimeout() chama uma função ou avalia uma expressão após um número especificado de milissegundos.
+    Dica: 1000 ms = 1 segundo.
+    Dica: A função é executada apenas uma vez.Se você precisar repetir a execução, use o método setInterval().
+    Dica: Use o método clearTimeout() para impedir a execução da função.
+    Sintaxe
+    setTimeout(function, milliseconds, param1, param2, ...)
+
+
+    O método setInterval() chama uma função ou avalia uma expressão em intervalos especificados(em milissegundos).
+    O método setInterval
+    () continuará chamando a função até que clearInterval() seja chamado ou a janela seja fechada.
+    O valor do ID retornado por setInterval() é usado como o parâmetro para o método clearInterval().
+    Sintaxe
+    setInterval(function, milliseconds, param1, param2, ...)
+
+
+    O método clearInterval() limpa um cronômetro definido com o método setInterval().
+    Nota: Para poder usar o método clearInterval(), você deve usar uma variável ao criar o método de intervalo:
+        myVar = setInterval("javascript function", milliseconds);
+    Então você poderá parar a execução chamando o método clearInterval().
+    clearInterval(myVar);
+    Sintaxe
+    clearInterval(var)
+        -->

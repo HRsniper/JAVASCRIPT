@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            position: relative;
+        }
+
+        section {
+            width: 200px;
+            height: 200px;
+            border: 1px solid green;
+            background-color: red;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <section>
+        click start
+    </section>
+
+    <script>
+        var obj;
+        var x = 0;
+        var y = 0;
+
+
+        function start() {
+            obj = document.getElementsByTagName("section")[0];
+            obj.addEventListener("click", starmove);
+        }
+
+        function starmove() {
+            obj.style.backgroundColor = "#0f0";
+            obj.style.border = "1px solid #f00";
+
+            document.addEventListener("keydown", (e) => {
+
+                obj.innerHTML = e.key;
+
+                if (e.key == 'a') {
+                    x -= 20;
+                    obj.style.left = x + "px";
+                } else if (e.key == 'w') {
+                    y -= 20;
+                    obj.style.top = y + "px";
+                } else if (e.key == 'd') {
+                    x += 20;
+                    obj.style.left = x + "px";
+                } else if (e.key == 's') {
+                    y += 20;
+                    obj.style.top = y + "px";
+                } else if (e.key == 'Enter') {
+                    alert("movimentaçao parada click ok para voltar-se a mover");
+                    document.removeEventListener("keydown", starmove);
+                    obj.style.backgroundColor = "#ff0";
+                }
+            })
+        }
+
+        window.addEventListener("load", start);
+    </script>
+</body>
+
+</html>
+<!-- 
+    O método document.addEventListener () anexa um manipulador de eventos ao documento.
+    Dica: Use o método document.removeEventListener () para remover um manipulador de eventos que foi anexado ao método addEventListener ().
+    Dica: Use o elemento addEventListener () para anexar um manipulador de eventos a um elemento especificado.
+
+Sintaxe
+document.addEventListener(event, function, useCapture)
+
+eventos =>
+https://www.w3schools.com/jsref/dom_obj_event.asp
+ -->

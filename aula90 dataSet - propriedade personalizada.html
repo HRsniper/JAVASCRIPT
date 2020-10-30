@@ -1,0 +1,126 @@
+ <!DOCTYPE html>
+ <html lang="en">
+
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Document</title>
+
+     <style>
+         body {
+             display: flex;
+         }
+
+         #c1,
+         #c2,
+         #c3,
+         #c4 {
+             background-color: red;
+             width: 200px;
+             height: 400px;
+             border: 1px solid #000000;
+             margin: 5px;
+             color: white;
+             cursor: pointer;
+         }
+
+         #c2 {
+             background-color: green;
+         }
+
+         #c3 {
+             background-color: yellow;
+             color: #000000;
+         }
+
+         #c4 {
+             background-color: blue;
+         }
+         article{
+             width: 200px;
+             height: 400px;
+             margin: 5px;
+             border: 1px solid #000000;
+         }
+
+     </style>
+ </head>
+
+ <body>
+     <div id="c1" data-tipo="Carro" data-tracao="2x4" data-cor="Vermelho" data-potencia="150 cv|hp" data-velmax="220 km/h">Carro</div>
+     <div id="c2" data-tipo="Carro" data-tracao="4x4" data-cor="Verde" data-potencia="200 cv|hp" data-velmax="180 km/h">Carro</div>
+     <div id="c3" data-tipo="Moto" data-tracao="2x2" data-cor="Amarelo" data-potencia="250 cc" data-velmax="250 km/h">Moto</div>
+     <div id="c4" data-tipo="Moto" data-tracao="1x2" data-cor="Azul" data-potencia="150 cc" data-velmax=" 150km/h">Moto</div>
+
+     <article></article>
+
+     <script>
+         // document.body.dataset
+
+         function iniciar() {
+             let div = document.getElementsByTagName("div"); //array
+             let artigo = document.getElementsByTagName("article")[0];
+
+             for (let i = 0; i < div.length; i++) {
+
+                //  div[i].addEventListener("click", function /*definir*/ () {
+                 div[i].addEventListener("click", function /*definir*/ (e) {
+                     console.log(div[i]);
+                     console.log(div[i].dataset);
+
+                    // let evento = event.target;
+                    let evento = e.target;
+
+                    artigo.innerHTML = "Tipo: " + evento.dataset.tipo;
+                    artigo.innerHTML += "<br> Tração: " + evento.dataset.tracao;
+                    artigo.innerHTML += "<br> Cor: " + evento.dataset.cor;
+                    artigo.innerHTML += "<br> Potencia: " + evento.dataset.potencia;
+                    artigo.innerHTML += "<br> VelMax: " + evento.dataset.velmax;
+                })
+             }
+         }
+         iniciar();//chamada recursiva
+     </script>
+ </body>
+
+ </html>
+ <!-- 
+    A propriedade HTMLElement.dataset permite o acesso, em modo de leitura e escrita, a todos os atributos
+        de dados personalizado (data-*) no elemento. Ele é um mapa de DOMString,
+        com uma entrada para cada atributo de dados personalizado.
+
+    O nome de um atributo de dados customizado inicia com data-. Ele deve conter somente letras,
+        números e os seguintes caracteres: traço (-), ponto (.), dois pontos(:), underline (_).
+        Além disso, ele não deve conter letras ASCII capitalizadas (A à Z).
+
+    Um atributo de dados personalizado é transformado em uma chave para uma entrada no 
+        DOMStringMap de acordo com as seguintes regras.
+
+    O prefixo data- é removido (incluindo o traço);
+    Para qualquer traço (U+002D) seguido por uma ASCII letra minúscula (a à z),
+        o traço é removido e a letra que segue é transformada em maiúscula, outros caracteres 
+        (incluindo outros traço) são deixados inalterados.
+    A transformação oposta, que mapeia uma chave para um nome de atributo, usa as seguintes regras:
+
+    Restrição: um traço pode não ser imediatamente seguido de uma letra ASCII minúscula (a à z) (antes da transformação);
+    Um prefixo data- é adicionado;
+    Qualquer caractere ASCII maiúsculo (A à Z) é transformado em um traço seguido pela sua forma mínúscula;
+    outros caracteres são deixados inalterados.
+    A restrição nas regras acima garantem que as duas transformações são inversa uma da outra.
+
+Por exemplo, o atributo data-abc-def corresponde a chave abcDef.
+
+Sintaxe
+string = element.dataset.NomeDoAtributoPersonalizado;
+
+element.dataset.NomeDoAtributoPersonalizado = string;
+
+
+atributo do HTML
+    data-*
+    Forma uma classe de atributos, chamados atributos de dados personalizados,
+    que permitem que informações proprietárias sejam trocadas entre o HTML e sua representação DOM
+    que pode ser usada por scripts. Todos esses dados personalizados estão disponíveis através 
+    da interface HTMLElement do elemento em que o atributo está definido.
+    A HTMLElement.dataset propriedade dá acesso a eles.
+ -->

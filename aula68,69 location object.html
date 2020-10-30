@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    </style>
+</head>
+
+<body>
+    <a href="#ancora">link</a>
+    <a href="#3">link</a>
+
+    <hr>
+
+    <a href="?rthrh">link search</a>
+    <a href="?rhjhhrs">link search</a>
+
+    <hr>
+
+    <button onclick="assign()">link assign</button>
+    <button onclick="replace()">link replace</button>
+    <button onclick="reload()">link reload</button>
+
+    <hr>
+
+    <p>f12 ----------></p>
+
+    <script>
+        var hash = window.location.hash;
+        console.log('hash: ' + hash);
+
+        var host = location.host;
+        console.log('host: ' + host);
+        // localhost
+        // 127.0.0.1:5500
+
+        var hostname = location.hostname;
+        console.log('hostname: ' + hostname);
+        // localhost
+        // 127.0.0.1
+
+        var href = location.href;
+        console.log('href: ' + href);
+
+        var hrefR = location.href + "https://www.youtube.com/"; //redirecionamento
+        console.log('hrefR: ' + hrefR);
+
+        console.log('origin: ' + origin);
+        var origin = location.origin;
+        // http://127.0.0.1:5500
+
+        var pathname = location.pathname;
+        console.log('pathname: ' + pathname);
+
+        var port = location.port;
+        console.log('port: ' + port);
+
+        var protocol = location.protocol;
+        console.log('protocol: ' + protocol);
+
+        var search = location.search;
+        console.log('search: ' + search);
+
+        function assign() {
+            var assign = location.assign("http://127.0.0.1:5500/Arquivos%20DEV/JAVASCRIPT/");
+        }
+
+        function replace() {
+            var replace = location.replace("http://127.0.0.1:5500/Arquivos%20DEV/JAVASCRIPT/");
+        }
+
+        function reload() {
+            var reload = location.reload();
+        }
+    </script>
+</body>
+
+</html>
+<!--
+    O objeto de localização contém informações sobre o URL atual.
+    O objeto de localização faz parte do objeto de janela e é acessado através da propriedade window.location.
+
+    Propriedades do objeto Local
+hash - define ou retorna a parte da âncora (#) de um URL.
+host - Define ou retorna o nome do host e o número da porta de um URL.
+hostname - define ou retorna o nome do host de um URL.
+href- Define ou retorna o URL inteiro.
+origin - Retorna o protocolo, nome do host e número da porta de uma URL.
+pathname - Define ou retorna o nome do caminho de uma URL.
+port - Define ou retorna o número da porta de um URL.
+protocol - Define ou retorna o protocolo de uma URL.
+search - Define ou retorna a parte da string de consulta de um URL pela ancora (?).
+    Métodos de objeto de localização
+assign () - Carrega um novo documento.
+    Sintaxe
+    location.assign("URL")
+reload () - Recarrega o documento atual.
+    Sintaxe
+    location.reload()
+replace () - Substitui o documento atual por um novo, o que significa que não é possível usar o botão "voltar" para voltar ao documento original.
+    Sintaxe
+    location.replace("newURL")
+
+-->

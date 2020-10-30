@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        var cars = ["Saab", "Volvo", "BMW"];
+
+        /*
+        Espaços e quebras de linha não são importantes.
+        Uma declaração pode abranger várias linhas.
+        var cars = [
+            "Saab",
+            "Volvo",
+            "BMW"
+        ];
+        */
+
+        /*
+        Usando a palavra-chave JavaScript new (new Array()).
+        Para simplicidade, legibilidade e velocidade de execução, use o array[].
+        */
+        // var cars = new Array("Saab", "Volvo", "BMW");
+
+        cars.push("Gol");
+        cars.push("Strada");
+
+        /*
+        Acesse os elementos de uma matriz
+        Você acessa um elemento da matriz consultando o número do índice.
+        */
+        document.write("<br>" + cars[2]);
+        document.write("<br>" + cars[4]);
+        document.write("<br>" + cars[3]);
+
+        /*
+        Alterando ou acrescentando um elemento de matriz
+        */
+        cars[5] = "Carro"
+        document.write("<br>" + cars[5]);
+
+        /*
+        Acessando a matriz completa
+        */
+        document.write("<br><br>" + cars);
+
+
+        /*exemplo jogo*/
+        const itens = ["i1", "i2", "i3", "i4", "i5"];
+        var mochila = [];
+
+        mochila.push(4);
+        mochila.push(1);
+
+        document.write("<br><br>" + itens[mochila[0]]);
+        document.write("<br>" + itens[mochila[1]]);
+    </script>
+
+</head>
+
+<body>
+
+</body>
+
+</html>
+<!--
+    Uma matriz é uma variável especial, que pode conter mais de um valor por vez.
+    Uma matriz pode conter muitos valores com um único nome e você pode acessar os valores consultando um número de índice.
+Sintaxe
+var array_name = [item1, item2, ...];
+
+O método push () adiciona novos itens ao final de uma matriz e retorna o novo comprimento.
+Sintaxe
+array.push(item1, item2, ..., itemX)
+ -->

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    f12 console
+
+    <script>
+        var pessoa = {
+            nome: "HR",
+            sobrenome: "DEV",
+            idade: 23
+        }
+
+        for (const variavel in pessoa) {
+            console.log(pessoa[variavel]);
+        }
+
+        console.log(' '); //espaço 
+
+        var cars = ['BMW', 'Volvo', 'Mini'];
+        for (const iterator of cars) {
+            console.log(iterator);
+        }
+
+        console.log(' '); //espaço
+
+        var txt = 'JavaScript';
+        for (const iterator of txt) {
+            console.log(iterator);
+        }
+    </script>
+</body>
+
+</html>
+<!--
+    A instrução for/in percorre as propriedades de um objeto.
+    O bloco de código dentro do loop será executado uma vez para cada propriedade.
+    Nota: Não use a instrução for/in para percorrer matrizes nas quais a ordem do índice é importante. Use a instrução for .
+Sintaxe
+for (var in object) {
+  code block to be executed
+}
+    var - obrigatório. Uma variável que itera sobre as propriedades de um objeto.
+    object - obrigatório. O objeto especificado que será iterado.
+
+    A instrução for/of percorre os valores de um objeto iterável.
+    for/of permite percorrer estruturas de dados iteráveis, como matrizes, seqüências de caracteres, mapas, listas de nós e muito mais.
+Sintaxe
+for (variable of iterable) {
+  code block to be executed
+}
+ -->

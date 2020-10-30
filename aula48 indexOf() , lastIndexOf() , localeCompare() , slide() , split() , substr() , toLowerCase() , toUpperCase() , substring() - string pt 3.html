@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+    </style>
+
+</head>
+
+<body>
+    f12 ---------------------------->
+
+    <script>
+        var txt = "Cursos -> Curso de Javascript, 46 curso javascript";
+        let txt2 = " CFB Cursos";
+
+        var resultado = txt.substring(0, 4);
+        console.log(resultado);
+
+        var resultado = txt.substr(0, 4);
+        console.log(resultado);
+
+        var resultado = txt.indexOf("J");
+        // var resultado = txt.indexOf("k");
+        if (resultado == 0) {
+            console.log('letra encontrada: ' + resultado);
+        } else {
+            console.log('nao encontrada: ' + resultado);
+        }
+
+        // var resultado = txt.localeCompare(txt);
+        var resultado = txt.localeCompare(txt2);
+        if (resultado == 0) {
+            console.log('strings iguais: ' + resultado);
+        } else {
+            console.log('nao iguais: ' + resultado);
+        }
+
+        var resultado = txt.slice(19, 29);
+        console.log(resultado);
+
+        var resultado = txt.split(' ');
+        for (let i = 0; i < resultado.length; i++) {
+            console.log('split: ' + resultado[i]);
+        }
+
+        var resultado = txt.toUpperCase();
+        console.log(resultado + ' : ' + resultado.length);
+
+        var resultado = txt.toLowerCase();
+        console.log(resultado + ' : ' + resultado.length);
+        
+    </script>
+</body>
+
+</html>
+<!--
+    O método substring () extrai os caracteres de uma sequência entre dois índices especificados e retorna a nova sub sequência.
+    Este método extrai os caracteres em uma sequência entre "start" e "end", sem incluir o próprio "end".
+    Se "start" for maior que "end", esse método trocará os dois argumentos, significando str.substring (1, 4) == str.substring (4, 1).
+    Se "start" ou "end" for menor que 0, será tratado como se fosse 0.
+    Nota: O método substring () não altera a sequência original.
+Sintaxe
+string.substring(start, end)
+
+    O método substr () extrai partes de uma sequência, começando no caractere na posição especificada e retorna o número especificado de caracteres.
+    Dica: Para extrair caracteres do final da sequência, use um número inicial negativo.
+    Nota: O método substr () não altera a sequência original.
+Sintaxe
+string.substr(start, length)
+
+    O método split () é usado para dividir uma string em uma matriz de substrings e retorna a nova matriz.
+    Dica: Se uma sequência vazia ("") for usada como separador, a sequência será dividida entre cada caractere.
+    Nota: O método split () não altera a sequência original.
+Sintaxe
+string.split(separator, limit)
+    
+    O método slice () extrai partes de uma string e retorna as partes extraídas em uma nova string.
+    Use os parâmetros de início e fim para especificar a parte da sequência que você deseja extrair.
+    O primeiro caractere tem a posição 0, o segundo tem a posição 1 e assim por diante.
+    Dica: Use um número negativo para selecionar no final da sequência.
+Sintaxe
+string.slice(start, end)
+
+    O método localeCompare () compara duas cadeias de caracteres no local atual.
+    localidade é baseada nas configurações de idioma do navegador.
+    método localeCompare () retorna um número indicando se a string vem antes, depois ou é igual à compareString na ordem de classificação .
+Sintaxe
+string.localeCompare(compareString)
+
+    O método lastIndexOf () retorna a posição da última ocorrência de um valor especificado em uma sequência.
+    Nota: A cadeia é pesquisada do fim ao início, mas retorna o índice começando no início, na posição 0.
+    Este método retorna -1 se o valor a ser pesquisado nunca ocorrer.
+    Nota: O método lastIndexOf () faz distinção entre maiúsculas e minúsculas!
+Sintaxe
+string.lastIndexOf(searchvalue, start)
+
+    O método indexOf () retorna a posição da primeira ocorrência de um valor especificado em uma sequência.
+    Este método retorna -1 se o valor a ser pesquisado nunca ocorrer.
+    Nota: O método indexOf () faz distinção entre maiúsculas e minúsculas.
+Sintaxe
+string.indexOf(searchvalue, start)
+
+    O método toUpperCase () converte uma string em letras maiúsculas.
+    Nota: O método toUpperCase () não altera a sequência original.
+Sintaxe
+string.toUpperCase()
+
+    O método toLowerCase () converte uma string em letras minúsculas.
+    Nota: O método toLowerCase () não altera a sequência original.
+Sintaxe
+string.toLowerCase()
+ -->

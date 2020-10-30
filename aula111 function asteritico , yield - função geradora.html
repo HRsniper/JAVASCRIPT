@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    f12 console
+
+    <script>
+        "use strict";
+
+        console.log(function* () {});
+
+        function* gerador(i) {
+            yield i;
+            yield i + 10;
+        }
+        const geracao = gerador(10);
+        console.log(geracao);
+
+        // console.log(geracao.next()); // value 10 done false
+        console.log(geracao.next().value);
+
+        console.log(geracao.next().value);
+        console.log(geracao.next()); // completo
+
+
+        console.log('\n');
+
+
+        function* foo() {
+            var index = 0;
+            while (index <= 2) {
+                yield index++;
+            }
+        }
+        var iterator = foo();
+        console.log(iterator.next());
+        console.log(iterator.next());
+        console.log(iterator.next());
+        console.log(iterator.next()); //completo
+
+        console.log('\n');
+
+        // No código seguinte, valores "yeldados"
+        // por g234() são retornados por g234().next() chamam apenas os que foram "yeldados" por g15().
+
+
+        function* g15() {
+            yield 1;
+            yield* g234();
+            yield 5;
+        }
+
+        function* g234() {
+            yield 2;
+            yield 3;
+            yield 4;
+        }
+
+        var iterator = g15();
+
+        console.log(iterator.next()); // {value: 1, done: false}
+        console.log(iterator.next()); // {value: 2, done: false}
+        console.log(iterator.next()); // {value: 3, done: false}
+        console.log(iterator.next()); // {value: 4, done: false}
+        console.log(iterator.next()); // {value: 5, done: false}
+        console.log(iterator.next()); // {value: undefined, done: true}
+
+        console.log('\n');
+
+        // Geradores são iteráveis
+        function* generateSequence() {
+            yield 1;
+            yield 2;
+            return 3;
+            // yield 3;
+        }
+
+        let generator = generateSequence();
+
+        for (let value of generator) {
+            console.log(value); // 1, then 2
+        }
+        // É porque a for..of iteração ignora o último value, quando done: true. 
+        // Portanto, se queremos que todos os resultados sejam mostrados por for..of, devemos devolvê-los com yield
+
+        // Como os geradores são iteráveis, podemos chamar todas as funcionalidades relacionadas
+        //  por exemplo, a sintaxe de propagação ...
+            let sequence = [0, ...generateSequence()];
+        console.log("sequence",sequence);
+    </script>
+</body>
+
+</html>
+<!--
+    A declaração function* (palavra chave function seguida de um asterisco) define um função geradora (generator function), que retorna um objeto Generator.
+    Geradores são funções cuja execução pode ser interrompida e posteriormente reconduzida. Seus contextos (de associações de variáveis) ficarão salvos entre cada recondução.
+    Chamar uma função geradora não executa seu conteúdo imediatamente; ao invés disso um objeto iterator é retornado. Quando o método next() do objeto iterator é chamado, o conteúdo da função do gerador é executado até a primeira expressão yield, que especifica o valor a ser devolvido do iterator ou com yield* que delega para outra função geradora.
+Sintaxe
+function* name([param[, param[, ... param]]]) { 
+   statements 
+}
+
+function* gen() { 
+  yield 1;
+  yield 2;
+  yield 3;
+}
+var g = gen(); // "Generator { }"
+
+name =  O nome da função.
+param =  O nome do argumento que será passado á função. Uma função pode ter até 255 argumentos.
+statements =  As instruções que formam o corpo da função.
+
+name.return()
+name.next()
+    O método next() retorna um objeto com uma propriedade value contendo o valor retornado
+name.done
+    a propriedade boolean: done indicando se o gerador produziu seu último valor. 
+    é false, indicando que a generator function não foi totalmente completada. true se completa
+name.value
+    valor do objeto retornado  A propriedade value é o resultado da avaliação da expressão yield
+
+
+    A palavra-chave yield é usada para pausar e resumir uma generator function (function*)
+    A palavra-chave yield pausa a execução de uma generator function e o valor da expressão em frente a palavra-chave yield é retornado para a chamada do generator. Ele pode ser considerado uma versão da palavra-chave return para o generator.
+Sintaxe
+[rv] = yield [expressão];
+expressão = Define o valor que retorna de uma generator function via o protocolo iterator. Se omitido, será retornado undefined.
+rv = Retorna o valor opcional passado para o metódo next() do generator e resume sua execução.
+
+    throw é usado para invocar uma exception à partir do generator. Isso irá parar completamente a execução do generator, e a execução resume para onde foi chamado o generator normalmente no caso que uma exception é invocada
+
+    A expressão yield* é usada para delegar para outro objeto generator ou iterable.
+    A expressão yield* itera sobre a operação e yields cada valor retornado por ele.
+    O valor da expressão yield* sozinha é o valor retornado pelo iterator quando ele for fechado (i.e., quando done é true).
+    Além de objetos generator, yield* também podem yield outros tipos de objetos iterables, e.g. arrays, strings ou objetos de argumentos.
+Sintaxe
+ yield* [[expressão]];
+
+expressão = A expressão que retorna um objeto iterable.
+ -->

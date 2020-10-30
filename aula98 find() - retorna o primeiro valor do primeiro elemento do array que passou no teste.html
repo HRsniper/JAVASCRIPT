@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    f12 console
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
+    <p></p>
+
+    <script>
+        var palavras = document.getElementsByTagName("p")[0];
+        var palavrasArray = palavras.innerHTML.split(' ');
+        console.log(palavrasArray);
+
+        // const map = new Array.prototype.map(function(valor, index, array) {});
+
+        // percorrer
+        palavrasArray.find(funcaoCallBack);
+
+        function funcaoCallBack(valorItem, indice) {
+
+            console.log('find ' + indice + ' ' + valorItem);
+        }
+
+
+        var find = palavrasArray.find((valorItem) => {
+            return  valorItem;
+        })
+        console.log(find);
+
+        function checar(valorItem) {
+            return valorItem;
+        }
+        var find2 = palavrasArray.find(checar);
+        console.log(find2);
+    </script>
+</body>
+
+</html>
+<!--
+    O método find() retorna o valor do primeiro elemento em uma matriz que passa em um teste (fornecido como uma função).
+    O método find () executa a função uma vez para cada elemento presente na matriz:
+    Se encontrar um elemento da matriz em que a função retorne um valor verdadeiro , find () retornará o valor desse elemento da matriz (e não verificará os valores restantes)
+    Caso contrário, ele retornará indefinido
+    Nota: find () não executa a função para matrizes vazias.
+    Nota: find () não altera a matriz original.
+Syntax
+Sintaxe
+array.find(function(valorAtual, index, array), thisValue)
+
+valorAtual - obrigatório. O valor do elemento atual.(O valor do item)
+index - opcional. O índice da matriz do elemento atual.(O índice do item)
+array - opcional. O objeto de matriz ao qual o elemento atual pertence.(A própria matriz)
+thisValue - Opcional. Um valor a ser passado para a função a ser usada como seu valor "this".
+    Se este parâmetro estiver vazio, o valor "indefinido" será passado como seu valor "this".
+
+ -->

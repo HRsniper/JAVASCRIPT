@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    f12 console
+
+    <script>
+        "use strict";
+
+        // Desestruturação de array
+
+        // Atribuição básica de variável
+        var foo = ["one", "two", "three"];
+
+        var [one, two, three] = foo;
+        console.log(one); // "one"
+        console.log(two); // "two"
+        console.log(three); // "three"
+
+        console.warn('\n');
+
+        // Atribuição separada da declaração
+        // Uma variável pode ter seu valor atribuído via desestruturação separadamente da declaração dela.
+        var a, b;
+
+        [a, b] = [1, 2];
+        console.log(a); // 1
+        console.log(b); // 2
+
+        console.warn('\n');
+
+        // Trocando variáveis
+        // Os valores de duas variáveis podem ser trocados em uma expressão de desestruturação.
+        var aa = 1;
+        var bb = 3;
+
+        [aa, bb] = [bb, aa];
+        console.log(aa); // 3
+        console.log(bb); // 1
+
+        console.warn('\n');
+
+        function f() {
+            return [1, 2, 3];
+        }
+
+        var [a1, b1, c1] = f();
+        console.log(a1); // 1
+        console.log(b1); // 2
+        console.log(c1); // 2
+
+        // Você pode ignorar valores retornados que você não tem interesse:[,,]
+        // var [a, , b] = f();
+
+        console.warn('\n');
+
+        // Atribuindo o resto de um array para uma variável
+        // Ao desestruturar um array, você pode atribuir a parte restante deste em uma viáriável usando o padrão rest:
+        var [a2, ...b2] = [1, 2, 3];
+        console.log(a2); // 1
+        console.log(b2); // [2, 3]
+
+
+
+        console.log('\n');
+        // Desestruturação de objeto
+        // Atribuição sem declaração
+        // Uma variável pode ter seu valor atribuído via desestruturação separadamente da sua declaração.
+        var a3, b3;
+        ({
+            a3,
+            b3
+        } = {
+            a3: 11,
+            b3: 22
+        });
+        console.log(a3);
+        console.log(b3);
+
+        console.warn('\n');
+
+        function d() {
+            return {
+                name: 'hr',
+                age: 23
+            }
+        }
+
+        let {
+            name,
+            age
+        } = d();
+        console.log(name);
+        console.log(age);
+
+        console.warn('\n');
+
+        function drawES2015Chart({
+            size = 'big',
+            cords = {
+                x: 0,
+                y: 0
+            },
+            radius = 0
+        } = {}) {
+            console.log(size, cords, radius);
+        }
+        drawES2015Chart({
+            cords: {
+                x: 18,
+                y: 30
+            },
+            radius: 30
+        });
+
+
+
+        console.warn('\n');
+        console.warn('\n');
+
+        // Objeto aninhado e desestruturação de array
+        var metadata = {
+            title: "Scratchpad",
+            translations: [{
+                locale: "de",
+                localization_tags: [],
+                last_edit: "2014-04-14T08:43:37",
+                url: "/de/docs/Tools/Scratchpad",
+                title: "JavaScript-Umgebung"
+            }],
+            url: "/en-US/docs/Tools/Scratchpad"
+        };
+
+        var {
+            title: englishTitle,
+            translations: [{
+                title: localeTitle
+            }]
+        } = metadata;
+
+        console.log(englishTitle); // "Scratchpad"
+        console.log(localeTitle); // "JavaScript-Umgebung"
+        // For de iteração e desestruturação
+        var people = [{
+                name: "Mike Smith",
+                family: {
+                    mother: "Jane Smith",
+                    father: "Harry Smith",
+                    sister: "Samantha Smith"
+                },
+                age: 35
+            },
+            {
+                name: "Tom Jones",
+                family: {
+                    mother: "Norah Jones",
+                    father: "Richard Jones",
+                    brother: "Howard Jones"
+                },
+                age: 25
+            }
+        ];
+
+        for (var {
+                name: n,
+                family: {
+                    father: f
+                }
+            } of people) {
+            console.log("Name: " + n + ", Father: " + f);
+        }
+
+        // "Name: Mike Smith, Father: Harry Smith"
+        // "Name: Tom Jones, Father: Richard Jones"
+        // Extraindo campos de objetos passados como parâmetro de função
+
+        function userId({
+            id
+        }) {
+            return id;
+        }
+
+        function whois({
+            displayName: displayName,
+            fullName: {
+                firstName: name
+            }
+        }) {
+            console.log(displayName + " is " + name);
+        }
+
+        var user = {
+            id: 42,
+            displayName: "jdoe",
+            fullName: {
+                firstName: "John",
+                lastName: "Doe"
+            }
+        };
+
+        console.log("userId: " + userId(user)); // "userId: 42"
+        whois(user); // "jdoe is John"
+    </script>
+</body>
+
+</html>
+<!--
+    A sintaxe de atribuição via desestruturação (destructuring assignment) é uma expressão JavaScript que possibilita extrair dados de arrays ou objetos em variáveis distintas.
+ -->

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        article {
+            width: 100%;
+            height: 400px;
+            border: 1px solid #000000;
+            position: relative;
+        }
+
+        .btn {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 2px;
+            border-radius: 5px;
+            cursor: pointer;
+            color: white;
+            position: absolute;
+        }
+
+        .btn:hover {
+            color: red;
+        }
+
+        .btna {
+            top: 50%;
+            left: 0;
+        }
+
+        .btnp {
+            top: 50%;
+            right: 0;
+        }
+
+        .borda {
+            width: 100%;
+            height: 5px;
+            margin-bottom: 5px;
+            border: 1px solid rgba(0, 0, 0, 0.7);
+            position: absolute;
+            bottom: 0;
+        }
+
+        .barra {
+            width: 0%;
+            height: 100%;
+            background-color: aqua;
+        }
+    </style>
+
+    <script>
+        var imgs = [];
+        var slider;
+        // const slider = document.getElementsByClassName("slider")[0];
+        var imgAtual;
+        var maxImg;
+        var tempo;
+        var barra;
+        var barraTempo;
+
+        function preCarregamento() {
+            let s = 1;
+            for (let i = 0; i < 5; i++) {
+                imgs[i] = new Image();
+                imgs[i].src = "img" + s + ".jpg";
+                s++;
+            }
+        }
+
+        function upImg(img) {
+            slider.style.backgroundImage = "url('" + imgs[img].src + "')";
+        }
+
+        function iniciar() {
+            slider = document.getElementsByClassName("slider")[0];
+            barra = document.getElementsByClassName("barra")[0];
+            preCarregamento();
+            imgAtual = 0;
+            maxImg = imgs.length - 1;
+            upImg(imgAtual);
+            tempo = 0;
+            animacao();
+            // setInterval(troca, 3000);
+        }
+
+        function troca(dir) {
+            tempo = 0;
+            imgAtual += dir;
+            if (imgAtual > maxImg) {
+                imgAtual = 0;
+            } else if (imgAtual < 0) {
+                imgAtual = maxImg;
+            }
+            upImg(imgAtual);
+        }
+
+        function animacao() {
+            tempo++;
+            if (tempo >= 200) {
+                tempo = 0;
+                troca(1);
+            }
+            barraTempo = tempo / 2;
+            barra.style.width = barraTempo + "%";
+
+            window.requestAnimationFrame(animacao);
+        }
+
+        window.addEventListener("load", iniciar);
+    </script>
+</head>
+
+<body>
+    <article class="slider">
+        <span class="btn btna" onclick="troca(-1)">anterior</span>
+        <span class="btn btnp" onclick="troca(1)">proximo</span>
+        <div class="borda">
+            <div class="barra"></div>
+        </div>
+    </article>
+
+    <script>
+    </script>
+</body>
+
+</html>
+<!--
+ -->

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+    </style>
+
+</head>
+
+<body>
+    f12 ---------------------------->
+
+    <script>
+        var txt = "Cursos -> Curso de Javascript, 46 curso javascript";
+        let txt2 = " CFB Cursos";
+
+        var resultado = txt.search("aula");
+        console.log(resultado);
+
+        var resultado = txt.search("curso");
+        console.log(resultado);
+
+        var resultado = txt.search(/curso/i);
+        console.log(resultado);
+
+        // var resultado = txt.replace(/curso/,"aula");
+        var resultado = txt.replace("curso","aula");
+        console.log(resultado);
+
+        var resultado = txt.charAt(0);
+        console.log(resultado);
+
+        var resultado = txt.charCodeAt(0);
+        console.log(resultado);
+
+        console.log(String.fromCharCode(67));
+
+        var resultado = txt.concat(txt2);
+        console.log(resultado + ' : ' + resultado.length);
+    </script>
+</body>
+
+</html>
+<!--
+    O método charAt () retorna o caractere no índice especificado em uma string.
+    O índice do primeiro caractere é [0],O índice do último caractere em uma string é string.length-1.
+Sintaxe
+string.charAt(index)
+
+    O método charCodeAt () retorna o Unicode do caractere no índice especificado em uma seqüência de caracteres.
+    O índice do primeiro caractere é 0, Você pode usar o método charCodeAt () junto com a propriedade length para retornar o Unicode do último caractere em uma sequência. O índice do último caractere é -1.
+Sintaxe
+string.charCodeAt(index)
+
+    O método concat () é usado para unir duas ou mais seqüências de caracteres.
+    Este método não altera as seqüências existentes, mas retorna uma nova sequência contendo o texto das sequências unidas.
+Sintaxe
+string.concat(string1, string2, ..., stringX)
+
+    O método fromCharCode () converte valores Unicode em caracteres.
+    Nota: Este é um método estático do objeto String, e a sintaxe é sempre String.fromCharCode ().
+Sintaxe
+String.fromCharCode(n1, n2, ..., nX)
+
+    O método search () procura em uma string um valor especificado e retorna a posição da correspondência.
+    O valor da pesquisa pode ser uma sequência ou uma expressão regular.
+    Este método retorna -1 se nenhuma correspondência for encontrada.
+Sintaxe
+string.search(searchvalue)
+
+    O método replace () procura em uma string um valor especificado ou uma expressão regular e retorna uma nova string em que os valores especificados são substituídos.
+    Nota: Se você estiver substituindo um valor (e não uma expressão regular ), apenas a primeira instância do valor será substituída. Para substituir todas as ocorrências de um valor especificado, use o modificador global (g)
+Sintaxe
+string.replace(searchvalue, newvalue)
+ -->

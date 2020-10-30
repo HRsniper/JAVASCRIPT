@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+        input {
+            font-family: 'VT323', monospace;
+            font-size: 30px;
+            text-align: center;
+            background-color: #3f3f3f;
+            color: white;
+        }
+        body {
+            text-align: center;
+        }
+        label ~ label {
+            margin-right: 30px;
+        }
+    </style>
+
+    <script>
+        function relogio(params) {
+            let data = new Date();
+            let hora = data.getHours();
+            let mim = data.getMinutes();
+            let sec = data.getSeconds();
+
+            if (hora < 10) {
+                hora = '0' + hora;
+            }
+            if (mim < 10) {
+                mim = '0' + mim;
+            }
+            if (sec < 10) {
+                sec = '0' + sec;
+            }
+
+            var horas = hora + ':' + mim + ':' + sec;
+
+            document.getElementsByTagName("input")[0].value = horas;
+            document.getElementsByTagName("input")[1].value = horas;
+        }
+
+        var tempo = setInterval(relogio, 1000);
+    </script>
+</head>
+
+<body>
+    <label for="date">datatime</label>
+    <input type="datetime" name="" id="date">
+
+    <br><br>
+
+    <label for="text">text</label>
+    <input type="text" name="" id="text">
+
+</body>
+
+</html>

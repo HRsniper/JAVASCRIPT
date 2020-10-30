@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        #code {
+            width: 500px;
+            height: 500px;
+            border: 1px solid #000000;
+            margin-top: 20px;
+        }
+
+        .classe1 {
+            background-color: yellow;
+        }
+    </style>
+
+</head>
+
+<body onload="">
+
+    <img id="myImg" alt="Flower" src="klematis.jpg" width="150" height="113">
+    <button class="btn1" onclick="attr()">Clique no botão para ver quantos atributos o elemento img possui</button>
+    <button class="btn1" onclick="attr1()">Clique no botão para exibir o nome do segundo atributo do botão (índice
+        1)</button>
+
+    <br><br>
+
+    <a id="link">Link: Go to w3schools.com</a>
+    <button class="btn2" onclick="create()">Clique no botão para criar um atributo "href" com o valor
+        "www.w3schools.com"</button>
+
+    <br><br>
+
+    <a id="link2" href="https://www.w3schools.com" target="_blank">Link: Go to w3schools.com</a>
+    <button class="btn3" onclick="getNode()">Clique no botão para exibir o valor do nó do atributo de destino do
+        link</button>
+
+    <br><br>
+
+    <button class="btn4" onclick="hasAtt()">Clique no botão para descobrir se o elemento body possui algum
+        atributo</button>
+
+    <br><br>
+
+    <h1 class="classe1">titulo</h1>
+    <button class="btn5" onclick="removeNode()">Clique no botão para remover o nó do atributo de classe do elemento
+        h1</button>
+
+    <br><br>
+
+    <h1>titulo</h1>
+    <button class="btn6" onclick="setNode()">Clique no botão para definir o nó do atributo de classe do cabeçalho
+        h1</button>
+
+    <aside id="code">
+        <p></p>
+    </aside>
+
+    <script>
+        var setA = document.getElementById("code");
+
+        function attr() {
+            var x = document.getElementsByTagName("img")[0].attributes.length;
+            document.getElementsByTagName("p")[0].innerHTML = x;
+        }
+
+        function attr1() {
+            var x = document.getElementsByTagName("img")[0].attributes[1].name;
+            document.getElementsByTagName("p")[0].innerHTML = x;
+        }
+
+        function create() {
+            var a = document.getElementById('link');
+            var href = document.createAttribute("href");
+            href.value = "https://www.w3schools.com";
+            a.setAttributeNode(href);
+            a.setAttribute("target", "_blank")
+        }
+
+        function getNode() {
+            var a = document.getElementById('link2');
+            var targetValue = a.getAttributeNode("target").value;
+            document.getElementsByTagName("p")[0].innerHTML = targetValue;
+        }
+
+        function hasAtt() {
+            var x = document.body.hasAttributes();
+            document.getElementsByTagName("p")[0].innerHTML = "body onload='': " + x;
+            alert('Tente adicionar um atributo ao body, e o resultado será verdadeiro, em vez de falso');
+        }
+
+        function removeNode() {
+            var h1 = document.getElementsByTagName("H1")[0];
+            var attr = h1.getAttributeNode("class");
+            h1.removeAttributeNode(attr);
+        }
+
+        function setNode() {
+            var h1 = document.getElementsByTagName("H1")[1];
+            var attr = document.createAttribute("class");
+            attr.value = "classe1";
+            h1.setAttributeNode(attr);
+        }
+    </script>
+</body>
+
+</html>
+<!--
+    A propriedade attributes retorna uma coleção dos atributos do nó especificado, como um objeto NamedNodeMap.
+    Os nós podem ser acessados ​​por números de índice e o índice começa em 0.
+    Dica: A indexação numérica é útil para passar por todos os atributos de um elemento: você pode usar a propriedade length do objeto NamedNodeMap para determinar o número de atributos, em seguida, percorrer todos os nós de atributos e extrair as informações desejadas.
+Sintaxe
+node.attributes
+
+    O método createAttribute () cria um atributo com o nome especificado e retorna o atributo como um objeto Attr.
+    Dica: Use a propriedade attribute.value para retornar o valor do nó do atributo.
+    Sintaxe
+    document.createAttribute(attributename)
+    
+    O método getAttributeNode () retorna o nó do atributo com o nome especificado de um elemento, como um objeto Attr.
+    Dica: Use a propriedade attribute.value para retornar o valor do nó do atributo.
+Sintaxe
+element.getAttributeNode("attributename")
+
+    O método hasAttributes () retornará true se o nó especificado tiver algum atributo, caso contrário false .
+    Se o nó especificado não for um elemento, o valor retornado será sempre falso .
+Sintaxe
+node.hasAttributes()
+
+    O método removeAttributeNode () remove o atributo especificado de um elemento e retorna o atributo removido, como um objeto Attr Node .
+Sintaxe
+element.removeAttributeNode(attributenode)
+
+    O método setAttributeNode () inclui o nó do atributo especificado em um elemento.
+    Se o atributo especificado já existir, esse método o substituirá.
+Sintaxe
+element.setAttributeNode(attributenode)
+ -->

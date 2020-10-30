@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt_BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+
+<body>
+    <p>f12 console</p>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        // ----------------------------------------
+        const xhr = new XMLHttpRequest();
+
+        xhr.open("GET", "https://api.github.com/users/HRsniper");
+        // xhr.send();
+        xhr.send(null);
+
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState === 4) {
+                // console.log(JSON.parse(xhr.response));
+                console.log("AJAX", JSON.parse(xhr.responseText));
+            }
+        };
+        // ----------------------------------------
+
+        const xhrPromise = () => {
+            return new Promise((resolve, reject) => {
+                const xhr2 = new XMLHttpRequest();
+                xhr2.open("GET", "https://api.github.com/users/HRsniper");
+                xhr2.send();
+
+                xhr2.onreadystatechange = () => {
+                    if (xhr2.readyState === 4) {
+                        if (xhr2.status === 200) {
+                            resolve(JSON.parse(xhr2.response));
+                        } else {
+                            reject("Rejeitado");
+                        }
+                    }
+                };
+            });
+        };
+        xhrPromise()
+            .then((response) => {
+                console.log("JAX Promise", response);
+            })
+            .catch((error) => {
+                console.warn(error);
+            });
+
+        let result = xhrPromise();
+        console.log(result);
+        // ----------------------------------------
+
+        axios.get("https://api.github.com/users/HRsniper")
+            .then((response) => {
+                console.log("Axios Promise", response);
+            })
+            .catch((error) => {
+                console.warn(error);
+            });
+        // ----------------------------------------
+    </script>
+</body>
+
+</html>

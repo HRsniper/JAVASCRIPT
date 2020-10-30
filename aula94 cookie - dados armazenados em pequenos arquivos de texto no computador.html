@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body onload="verifyCookie()">
+    <button onclick="verifyCookie()">init cookie</button>
+
+    <script>
+        function createCookie(nome, valor, expirar) {
+            let expirarData = "expires=" + expirar;
+            document.cookie = nome + '=' + valor + '; ' + expirarData;
+        }
+
+        function readCookie(nome) {
+            let nomeArmazenado = nome + '=';
+            let arrayCookiesDividido = document.cookie.split(';');
+
+            for (let i = 0; i < arrayCookiesDividido.length; i++) {
+                let cookieSelecionado = arrayCookiesDividido[i];
+                while (cookieSelecionado.charAt(0) == ' ') { //for espaço em branco
+                    cookieSelecionado = cookieSelecionado.substring(1); //elimina 1 char
+                }
+                if (cookieSelecionado.indexOf(nomeArmazenado) == 0) {
+                    return cookieSelecionado.substring(nomeArmazenado.length, cookieSelecionado.length);
+                }
+            }
+            return '';
+        }
+
+        function verifyCookie() {
+            let userNameValue = readCookie("userName");
+            if (userNameValue != '') {
+                alert("bem vindo " + userNameValue);
+            } else {
+                userNameValue = prompt("nome: ", "HR");
+                if (userNameValue != '' && userNameValue != null) {
+                    createCookie("userName", userNameValue, "Sat, 26 July 2020 12:00:00 UTC");
+                }
+                if (userNameValue == '') {
+                    alert("nome nao pode ser vazio")
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
+<!-- 
+    Cookies são dados armazenados em pequenos arquivos de texto no seu computador.
+    Quando um servidor da Web envia uma página da Web para um navegador, a conexão é encerrada e o servidor esquece tudo sobre o usuário.
+    Os cookies foram inventados para resolver o problema "como lembrar informações sobre o usuário":
+    Quando um usuário visita uma página da web, seu nome pode ser armazenado em um cookie.
+    Na próxima vez que o usuário visitar a página, o cookie "lembrará" seu nome.
+    Os cookies são salvos em pares nome-valor, como:
+username = John Doe
+
+
+    A propriedade cookie define ou retorna todos os pares de nome / valor de cookies no documento atual.
+Sintaxe
+Retorne a propriedade do cookie:
+document.cookie
+
+Defina a propriedade do cookie:
+document.cookie = newCookie
+
+Valores de propriedade
+newCookie - Uma String que especifica uma lista separada por ponto-e-vírgula de pares nome=valor ou um par nome = valor juntamente com qualquer um dos seguintes valores opcionais:
+
+expires = data - opcional. Especifica a data no formato GMT (consulte o método Date.toUTCString). Se não especificado, o cookie é excluído quando o navegador é fechado.
+
+path = caminho - opcional. Informa ao navegador a que caminho do diretório o cookie pertence (por exemplo, '/', '/ dir'). Nota: O caminho deve ser absoluto. Se não especificado, o cookie pertence à página atual.
+
+domain = nome do domínio - opcional. Especifica o domínio do seu site (por exemplo, 'exemplo.com', '.exemplo.com' (inclui todos os subdomínios), 'subdomínio.exemplo.com'). Se não especificado, o domínio do documento atual será usado.
+
+secure - opcional. Diz ao navegador para usar um protocolo seguro (https) para enviar o cookie ao servidor.
+
+Um exemplo de criação de um cookie:
+
+document.cookie = "username=John Doe; expires=Qui, 18 dez 2013 12:00:00 UTC; path = /";
+
+Nota: O valor de um cookie não pode conter vírgulas, ponto e vírgula ou espaços em branco. No entanto, você pode usar o método encodeURIComponent () para garantir que não.
+ -->
