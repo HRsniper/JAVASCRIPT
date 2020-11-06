@@ -1,0 +1,17 @@
+{
+  "name": "aula119-testes-tdd-bdd",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "description": "aulas sobre teste em javascript",
+  "author": "HRsniper",
+  "private": true,
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^8.2.1",
+    "sinon": "^9.2.1"
+  },
+  "scripts": {
+    "test": "mocha"
+  }
+}
