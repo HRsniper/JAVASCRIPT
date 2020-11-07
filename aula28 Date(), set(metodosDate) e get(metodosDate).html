@@ -69,8 +69,14 @@
         var dataJson = converteData.toJSON();
         document.write(dataJson + '<hr>');
 
-        var dataLocal = converteData.toLocaleString();
-        document.write(dataLocal + '<hr>');
+        var dataLocal1 = converteData.toLocaleString('pt-BR',{});
+        document.write(dataLocal1 + '<hr>');
+
+        var dataLocal2 = converteData.toLocaleDateString();
+        document.write(dataLocal2 + '<hr>');
+
+        var dataLocal3 = converteData.toLocaleTimeString();
+        document.write(dataLocal3 + '<hr>');
     </script>
 
 </body>
